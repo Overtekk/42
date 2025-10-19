@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:35:15 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/18 15:25:43 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/19 16:16:57 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,123 +18,123 @@ int	main()
 	// ft_isalpha
 	//test 1
 	printf("--ft_isalpha--\n");
-	int test_isalpha = 'a';
-	if (ft_isalpha(test_isalpha))
-		printf("(%c) Test 1: ok\n", test_isalpha);
+	int s_isalpha = 'a';
+	if (ft_isalpha(s_isalpha))
+		printf("(%c) Test 1: ok\n", s_isalpha);
 	else
-		printf("(%c) Test 1: failed\n", test_isalpha);
+		printf("(%c) Test 1: failed\n", s_isalpha);
 	//test 2
-	test_isalpha = 'H';
-	if (ft_isalpha(test_isalpha))
-		printf("(%c) Test 2: ok\n", test_isalpha);
+	s_isalpha = 'H';
+	if (ft_isalpha(s_isalpha))
+		printf("(%c) Test 2: ok\n", s_isalpha);
 	else
-		printf("(%c) Test 2: failed\n", test_isalpha);
+		printf("(%c) Test 2: failed\n", s_isalpha);
 	//test 3
-	test_isalpha = '5';
-	if (ft_isalpha(test_isalpha))
-		printf("(%c) Test 3: ok\n", test_isalpha);
+	s_isalpha = '5';
+	if (ft_isalpha(s_isalpha) == 0)
+		printf("(%c) Test 3: ok\n", s_isalpha);
 	else
-		printf("(%c) Test 3: failed\n", test_isalpha);
+		printf("(%c) Test 3: failed\n", s_isalpha);
 
 	// ft_isdigit
 	//test 1
 	printf("--ft_isdigit--\n");
-	int test_isdigit = '5';
-	if (ft_isdigit(test_isdigit))
-		printf("(%c) Test 1: ok\n", test_isdigit);
+	int s_isdigit = '5';
+	if (ft_isdigit(s_isdigit))
+		printf("(%c) Test 1: ok\n", s_isdigit);
 	else
-		printf("(%c) Test 1: failed\n", test_isdigit);
+		printf("(%c) Test 1: failed\n", s_isdigit);
 	//test 2
-	test_isdigit = 'j';
-	if (ft_isdigit(test_isdigit))
-		printf("(%c) Test 2: ok\n", test_isdigit);
+	s_isdigit = 'j';
+	if (ft_isdigit(s_isdigit) == 0)
+		printf("(%c) Test 2: ok\n", s_isdigit);
 	else
-		printf("(%c) Test 2: failed\n", test_isdigit);
+		printf("(%c) Test 2: failed\n", s_isdigit);
 
 	// ft_isalnum
 	//test 1
 	printf("--ft_isalnum--\n");
-	int test_isalnum = '5';
-	if (ft_isalnum(test_isalnum))
-		printf("(%c) Test 1: ok\n", test_isalnum);
+	int s_isalnum = '5';
+	if (ft_isalnum(s_isalnum))
+		printf("(%c) Test 1: ok\n", s_isalnum);
 	else
-		printf("(%c) Test 1: failed\n", test_isalnum);
+		printf("(%c) Test 1: failed\n", s_isalnum);
 	//test 2
-	test_isalnum = 'j';
-	if (ft_isalnum(test_isalnum))
-		printf("(%c) Test 2: ok\n", test_isalnum);
+	s_isalnum = 'j';
+	if (ft_isalnum(s_isalnum))
+		printf("(%c) Test 2: ok\n", s_isalnum);
 	else
-		printf("(%c) Test 2: failed\n", test_isalnum);
+		printf("(%c) Test 2: failed\n", s_isalnum);
 	//test 3
-	test_isalnum = '(';
-	if (ft_isalnum(test_isalnum))
-		printf("(%c) Test 3: ok\n", test_isalnum);
+	s_isalnum = '(';
+	if (ft_isalnum(s_isalnum) == 0)
+		printf("(%c) Test 3: ok\n", s_isalnum);
 	else
-		printf("(%c) Test 3: failed\n", test_isalnum);
+		printf("(%c) Test 3: failed\n", s_isalnum);
 
 	// ft_isascii
 	//test 1
 	printf("--ft_isascii--\n");
-	int test_isascii = 127;
-	if (ft_isascii(test_isascii))
-		printf("(%d) Test 1: ok\n", test_isascii);
+	int s_isascii = 127;
+	if (ft_isascii(s_isascii))
+		printf("(%d) Test 1: ok\n", s_isascii);
 	else
-		printf("(%d) Test 1: failed\n", test_isascii);
+		printf("(%d) Test 1: failed\n", s_isascii);
 	//test 2
-	test_isascii = 128;
-	if (ft_isascii(test_isascii))
-		printf("(%d) Test 2: ok\n", test_isascii);
+	s_isascii = 128;
+	if (ft_isascii(s_isascii) == 0)
+		printf("(%d) Test 2: ok\n", s_isascii);
 	else
-		printf("(%d) Test 2: failed\n", test_isascii);
+		printf("(%d) Test 2: failed\n", s_isascii);
 
 	// ft_isprint
 	//test 1
 	printf("--ft_isprint--\n");
-	int test_isprint = ' ';
-	if (ft_isprint(test_isprint))
-		printf("(%c) Test 1: ok\n", test_isprint);
+	int s_isprint = ' ';
+	if (ft_isprint(s_isprint))
+		printf("(%c) Test 1: ok\n", s_isprint);
 	else
-		printf("(%c) Test 1: failed\n", test_isprint);
+		printf("(%c) Test 1: failed\n", s_isprint);
 	//test 2
-	test_isprint = 'A';
-	if (ft_isprint(test_isprint))
-		printf("(%c) Test 2: ok\n", test_isprint);
+	s_isprint = 'A';
+	if (ft_isprint(s_isprint))
+		printf("(%c) Test 2: ok\n", s_isprint);
 	else
-		printf("(%c) Test 2: failed\n", test_isprint);
+		printf("(%c) Test 2: failed\n", s_isprint);
 	//test 3
-	test_isprint = 31;
-	if (ft_isprint(test_isprint))
-		printf("(%c) Test 3: ok\n", test_isprint);
+	s_isprint = 31;
+	if (ft_isprint(s_isprint) == 0)
+		printf("(%c) Test 3: ok\n", s_isprint);
 	else
-		printf("(%c) Test 3: failed\n", test_isprint);
+		printf("(%c) Test 3: failed\n", s_isprint);
 
 	// ft_strlen
 	//test 1
 	printf("--ft_strlen--\n");
-	char *test_strlen = "Hello"; // 5
-	if (ft_strlen(test_strlen) == 5)
-		printf("(%s) Test 1: ok\n", test_strlen);
+	char *s_strlen = "Hello"; // 5
+	if (ft_strlen(s_strlen) == 5)
+		printf("(%s) Test 1: ok\n", s_strlen);
 	else
-		printf("(%s) Test 1: failed\n", test_strlen);
+		printf("(%s) Test 1: failed\n", s_strlen);
 	//test 2
-	test_strlen = "";
-	if (ft_strlen(test_strlen) == 0)
-		printf("(%s) Test 2: ok\n", test_strlen);
+	s_strlen = "";
+	if (ft_strlen(s_strlen) == 0)
+		printf("(%s) Test 2: ok\n", s_strlen);
 	else
-		printf("(%s) Test 2: failed\n", test_strlen);
+		printf("(%s) Test 2: failed\n", s_strlen);
 
 	// ft_memset / ft_bzero
 	printf("--ft_memset / ft_bzero--\n");
-	char test_memset[10];
+	char s_memset[10];
 	//test 1 ft_memset
-	ft_memset(test_memset, 'A', 5);
-	if (test_memset[0] == 'A' && test_memset[4] == 'A' && test_memset[5] != 'A')
+	ft_memset(s_memset, 'A', 5);
+	if (s_memset[0] == 'A' && s_memset[4] == 'A' && s_memset[5] != 'A')
 		printf("ft_memset Test 1: ok\n");
 	else
 		printf("ft_memset Test 1: failed\n");
 	//test 2 ft_bzero
-	ft_bzero(test_memset, 5);
-	if (test_memset[0] == 0 && test_memset[4] == 0)
+	ft_bzero(s_memset, 5);
+	if (s_memset[0] == 0 && s_memset[4] == 0)
 		printf("ft_bzero Test 2: ok\n");
 	else
 		printf("ft_bzero Test 2: failed\n");
@@ -175,7 +175,7 @@ int	main()
 	else
 		printf("ft_memmove Test 2 (Arriere): failed\n");
 
-// ft_strlcpy
+	// ft_strlcpy
 	printf("--ft_strlcpy--\n");
 	char src_lcpy[] = "Hello";
 	char dst_lcpy[5];
@@ -418,6 +418,39 @@ int	main()
 	else
 		printf("ft_strjoin Test 2: failed\n");
 	free(m_join);
+
+	// ft_strtrim
+	printf("--ft_strtrim--\n");
+	char s1_trim[] = "***Mai*son***";
+	char *s2_trim = "*";
+	//test 1
+	char *m_trim = ft_strtrim(s1_trim, s2_trim);
+	if (m_trim != NULL && strcmp(m_trim, "Mai*son") == 0)
+		printf("ft_strtrim Test 1: ok\n");
+	else
+		printf("ft_strtrim Test 1: failed\n");
+	free(m_trim);
+	//test 2 (S1 vide)
+	m_trim = ft_strtrim("", s2_trim);
+	if (m_trim != NULL && strcmp(m_trim, "") == 0)
+		printf("ft_strtrim Test 2: ok\n");
+	else
+		printf("ft_strtrim Test 2: failed\n");
+	free(m_trim);
+	//test 3 (trim vide)
+	m_trim = ft_strtrim(s1_trim, "");
+	if (m_trim != NULL && strcmp("", "") == 0)
+		printf("ft_strtrim Test 3: ok\n");
+	else
+		printf("ft_strtrim Test 3: failed\n");
+	free(m_trim);
+	//test 4 (S1 uniquement de trim)
+	m_trim = ft_strtrim("***", s2_trim);
+	if (m_trim != NULL && strcmp(m_trim, "") == 0)
+		printf("ft_strtrim Test 4: ok\n");
+	else
+		printf("ft_strtrim Test 4: failed\n");
+	free(m_trim);
 
 	return (0);
 }
