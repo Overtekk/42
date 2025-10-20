@@ -6,13 +6,13 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:51:56 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/20 14:49:02 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:14:40 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_checkset(char c, const char *set)
+static int	ft_checkset(char c, const char *set)
 {
 	while (*set)
 	{
