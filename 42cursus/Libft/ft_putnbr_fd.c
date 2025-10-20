@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:30:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/19 17:49:19 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:52:43 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == INT_MIN)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		return;
-	}
+	int	sign;
+
+	sign = 1;
 	if (n < 0)
 	{
-		ft_putchar_fd('-', 1);
-		n = -n;
+		ft_putchar_fd('-', fd);
+		sign = -sign;
 	}
-	if (n > 9)
+	if (n / 10)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		ft_putnbr_fd((n / 10) * sign, fd);
+		ft_putnbr_fd((n % 10) * sign, fd);
 	}
 	else
-		ft_putchar_fd((n + '0'), fd);
+		ft_putchar_fd(((n * sign) + '0'), fd);
 }
