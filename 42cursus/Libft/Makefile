@@ -30,6 +30,7 @@ SRCS = 	ft_isalpha.c	\
 		ft_strjoin.c	\
 		ft_strtrim.c	\
 		ft_itoa.c		\
+		ft_split.c		\
 		ft_strmapi.c	\
 		ft_striteri.c	\
 		ft_putchar_fd.c	\
@@ -44,7 +45,7 @@ OBJS = $(SRCS:.c=.o)
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): ${OBJS}
 	ar rcs ${NAME} ${OBJS}
