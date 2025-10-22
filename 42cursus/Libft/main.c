@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:35:15 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/22 21:07:27 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:19:38 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,8 +299,8 @@ void test_ft_memcpy()
 	if (memcmp(dest, dest_copy, 100) == 0 && result == dest)
 	{
 		printf(GREEN "[SUCCESS]\n");
-		printf("Original string =	%s\n", dest_original);
-		printf("New String =	%s\n", dest);
+		printf("Original string	=	%s\n", dest_original);
+		printf("New	string	=	%s\n", dest);
 		printf(RESET);
 	}
 	else
