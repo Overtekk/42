@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:35:15 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/22 21:19:38 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/23 13:07:34 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@
 #define	BLUE		"\033[34m"
 #define	PURPLE		"\033[35m"
 #define	CYAN		"\033[36m"
+
+/*
+#include <stdio.h>
+int main()
+{
+	char str[] = "bonjour";
+	t_list	*new;
+	new = ft_lstnew(str);
+	printf("%c\n", *(char *)new->content);
+	free (new);
+}
+*/
 
 void	show_menu(int menu_showed)
 {

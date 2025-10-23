@@ -29,8 +29,8 @@ SRCS = 	ft_isalpha.c	\
 		ft_substr.c		\
 		ft_strjoin.c	\
 		ft_strtrim.c	\
-		ft_itoa.c		\
 		ft_split.c		\
+		ft_itoa.c		\
 		ft_strmapi.c	\
 		ft_striteri.c	\
 		ft_putchar_fd.c	\
@@ -38,23 +38,28 @@ SRCS = 	ft_isalpha.c	\
 		ft_putendl_fd.c	\
 		ft_putnbr_fd.c
 
-OBJS = $(SRCS:.c=.o)
+BONUS_SRCS =	ft_lstnew.c
 
-.PHONY: all clean fclean re
+OBJS = 	$(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+
+.PHONY: all bonus clean fclean re
 
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): ${OBJS}
+${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
+bonus: ${BONUS_OBJS}
+		ar rcs ${NAME} ${BONUS_OBJS}
+
 clean:
-	rm -f $(OBJS)
+	rm -f ${OBJS} ${BONUS_OBJS}
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f ${NAME}
 
-re: fclean $(NAME)
-
+re: fclean ${NAME}
