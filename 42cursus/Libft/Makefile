@@ -38,7 +38,7 @@ SRCS = 	ft_isalpha.c	\
 		ft_putendl_fd.c	\
 		ft_putnbr_fd.c
 
-BONUS_SRCS =	ft_lstnew.c
+BONUS_SRCS =	ft_lstnew_bonus.c
 
 OBJS = 	$(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
