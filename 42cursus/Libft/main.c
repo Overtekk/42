@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:35:15 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/23 13:07:34 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/24 11:38:49 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,27 @@ int main()
 	printf("%c\n", *(char *)new->content);
 	free (new);
 }
+
+int main()
+{
+	t_list *list = NULL;
+	t_list *elem1 = ft_lstnew("Hello");
+	t_list *elem2 = ft_lstnew("Soleil");
+	t_list *elem3 = ft_lstnew("Cluster");
+	ft_lstadd_front(&list, elem3);
+	ft_lstadd_front(&list, elem2);
+	ft_lstadd_front(&list, elem1);
+	while (list)
+	{
+		printf("%s\n", (char *)list->content);
+		list = list->next;
+	}
+	free (elem1);
+	free (elem2);
+	free (elem3);
+}
 */
+
 
 void	show_menu(int menu_showed)
 {
@@ -331,6 +351,178 @@ void test_ft_memcpy()
 	sleep(2);
 }
 
+void test_ft_memmove()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strlcpy()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strlcat()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_toupper()
+{
+	char	c;
+	char	result;
+
+	printf(UNDERLINE"\n=========="RESET"Testing "RED"ft_toupper" RESET UNDERLINE "==========\n" RESET);
+	printf("\nInstruction (1/1) : write a printable character to perfom the test\n");
+	scanf(" %c", &c);
+	printf("\n/!\\ Testing in progress /!\\\n\n");
+	result = ft_toupper(c);
+	getchar();
+	sleep((1));
+	printf(PURPLE "%c is now %c \n", c, result);
+	printf(RESET);
+	sleep(2);
+}
+
+void test_ft_tolower()
+{
+	char	c;
+	char	result;
+
+	printf(UNDERLINE"\n=========="RESET"Testing "RED"ft_tolower" RESET UNDERLINE "==========\n" RESET);
+	printf("\nInstruction (1/1) : write a printable character to perfom the test\n");
+	scanf(" %c", &c);
+	printf("\n/!\\ Testing in progress /!\\\n\n");
+	result = ft_tolower(c);
+	getchar();
+	sleep((1));
+	printf(PURPLE "%c is now %c \n", c, result);
+	printf(RESET);
+	sleep(2);
+}
+
+void test_ft_strchr()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strrchr()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strncmp()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_memchr()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_memcmp()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strnstr()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_atoi()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_calloc()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strdup()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_substr()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strjoin()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strtrim()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_split()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_itoa()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_strmapi()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_striteri()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_putchar_fd()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_putstr_fd()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_putendl_fd()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
+void test_ft_putnbr_fd()
+{
+	printf(RED"\nNot Implemented yet\n"RESET);
+	sleep(2);
+}
+
 int	main()
 {
 	int	choice = -1;
@@ -364,11 +556,61 @@ int	main()
 			test_ft_bzero();
 		else if (choice == 9)
 			test_ft_memcpy();
+		else if (choice == 10)
+			test_ft_memmove();
+		else if (choice == 11)
+			test_ft_strlcpy();
+		else if (choice == 12)
+			test_ft_strlcat();
+		else if (choice == 13)
+			test_ft_toupper();
+		else if (choice == 14)
+			test_ft_tolower();
+		else if (choice == 15)
+			test_ft_strchr();
+		else if (choice == 16)
+			test_ft_strrchr();
+		else if (choice == 17)
+			test_ft_strncmp();
+		else if (choice == 18)
+			test_ft_memchr();
+		else if (choice == 19)
+			test_ft_memcmp();
+		else if (choice == 20)
+			test_ft_strnstr();
+		else if (choice == 21)
+			test_ft_atoi();
+		else if (choice == 22)
+			test_ft_calloc();
+		else if (choice == 23)
+			test_ft_strdup();
+		else if (choice == 24)
+			test_ft_substr();
+		else if (choice == 25)
+			test_ft_strjoin();
+		else if (choice == 26)
+			test_ft_strtrim();
+		else if (choice == 27)
+			test_ft_split();
+		else if (choice == 28)
+			test_ft_itoa();
+		else if (choice == 29)
+			test_ft_strmapi();
+		else if (choice == 30)
+			test_ft_striteri();
+		else if (choice == 31)
+			test_ft_putchar_fd();
+		else if (choice == 32)
+			test_ft_putstr_fd();
+		else if (choice == 33)
+			test_ft_putendl_fd();
+		else if (choice == 34)
+			test_ft_putnbr_fd();
 		else if (choice == 0)
 			printf("Goodbye!\n");
 		else
 			printf(RED "Invalid number. Please, put a number that exist in the list.");
-		if (choice != 0 && choice >= 1 && choice <= 9)
+		if (choice != 0 && choice >= 1 && choice <= 34)
 		{
 			printf("\n(Press Enter to return to the menu)");
 			getchar();
