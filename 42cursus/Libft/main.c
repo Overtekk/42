@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:35:15 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/24 11:38:49 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/25 20:35:32 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,100 @@
 
 /*
 #include <stdio.h>
-int main()
+void	*ft_cap(void *content)
 {
-	char str[] = "bonjour";
-	t_list	*new;
-	new = ft_lstnew(str);
-	printf("%c\n", *(char *)new->content);
-	free (new);
-}
+	char	*ptr;
+	char	*new;
 
+	new = ft_strdup((char *)content);
+	if (!new)
+		return (NULL);
+	ptr = new;
+	while (*ptr != '\0')
+	{
+		if (*ptr >= 'a' && *ptr <= 'z')
+			*ptr -= 32;
+		ptr++;
+	}
+	return (new);
+}
+void	ft_del(void *content)
+{
+	free(content);
+}
+void	print_list(t_list *lst)
+{
+	t_list *current = lst;
+	while (current)
+	{
+		printf("%s\n", (char *)current->content);
+		current = current->next;
+	}
+}
 int main()
 {
 	t_list *list = NULL;
-	t_list *elem1 = ft_lstnew("Hello");
-	t_list *elem2 = ft_lstnew("Soleil");
-	t_list *elem3 = ft_lstnew("Cluster");
+	t_list	*list2 = NULL;
+	t_list *elem1 = ft_lstnew(ft_strdup("Un"));
+	t_list *elem2 = ft_lstnew(ft_strdup("Deux"));
+	t_list *elem3 = ft_lstnew(ft_strdup("Trois"));
+	t_list *elem4 = ft_lstnew(ft_strdup("Quatre"));
+	ft_lstadd_front(&list, elem4);
 	ft_lstadd_front(&list, elem3);
 	ft_lstadd_front(&list, elem2);
 	ft_lstadd_front(&list, elem1);
-	while (list)
+	printf("Old list\n");
+	print_list(list);
+	printf("\nNew List\n");
+	list2 = ft_lstmap(list, ft_cap, ft_del);
+	print_list(list2);
+	ft_lstclear(&list, ft_del);
+	ft_lstclear(&list2, ft_del);
+}
+*/
+
+/*
+void	ft_cap(void *content)
+{
+	char	*ptr;
+
+	ptr = (char *)content;
+	while (*ptr != '\0')
 	{
-		printf("%s\n", (char *)list->content);
-		list = list->next;
+		if (*ptr >= 'a' && *ptr <= 'z')
+			*ptr -= 32;
+		ptr++;
 	}
-	free (elem1);
-	free (elem2);
-	free (elem3);
+}
+ft_lstiter(list, ft_cap);
+
+#include <stdio.h>
+void	ft_del(void *content)
+{
+	free(content);
+}
+void	print_list(t_list *lst)
+{
+	t_list *current = lst;
+	while (current)
+	{
+		printf("%s\n", (char *)current->content);
+		current = current->next;
+	}
+}
+int main()
+{
+	t_list *list = NULL;
+	t_list *elem1 = ft_lstnew(ft_strdup("Un"));
+	t_list *elem2 = ft_lstnew(ft_strdup("Deux"));
+	t_list *elem3 = ft_lstnew(ft_strdup("Trois"));
+	t_list *elem4 = ft_lstnew(ft_strdup("Quatre"));
+	ft_lstadd_front(&list, elem4);
+	ft_lstadd_front(&list, elem3);
+	ft_lstadd_front(&list, elem2);
+	ft_lstadd_front(&list, elem1);
+	print_list(list);
+	ft_lstclear(&list, ft_del);
 }
 */
 
