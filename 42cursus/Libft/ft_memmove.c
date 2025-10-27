@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:07:31 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/17 14:27:13 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/27 12:59:44 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	pdest = dest;
 	psrc = src;
+	if (pdest == NULL && psrc == NULL)
+		return (NULL);
 	if (src < dest && src + n > dest)
 	{
 		psrc += n - 1;
