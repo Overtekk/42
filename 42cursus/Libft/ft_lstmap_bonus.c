@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 18:01:00 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/25 20:38:16 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/27 13:30:20 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new_list;
 	void	*new_content;
 
+	if (!lst || !f || !del)
+		return (NULL);
 	new_list = NULL;
 	while (lst != NULL)
 	{
