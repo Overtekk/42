@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 11:48:58 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/28 14:14:54 by roandrie         ###   ########.fr       */
+/*   Created: 2025/10/27 10:26:52 by roandrie          #+#    #+#             */
+/*   Updated: 2025/10/28 11:54:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main()
-{
-	int	fd;
-	char *result;
+# include <stdlib.h>
+# include <unistd.h>
 
-	fd = open("hello.txt", O_RDONLY);
-	if (fd == -1)
-		return (2);
-	result = get_next_line(fd);
-	printf("%s", result);
-	//free (result);
-	close(fd);
-	return (0);
-}
+char	*get_next_line(int fd);
+
+#endif
