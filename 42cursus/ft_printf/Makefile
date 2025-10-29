@@ -1,27 +1,38 @@
-NAME = libftprintf.a
-cc = gcc
-CFLAGS = -g Walls Werror Wextra
+NAME 		=	libftprintf.a
+CC 			=	gcc
+CFLAGS 		=	-g -Wall -Werror -Wextra
 
-HEADERS = $(wildcard $(includes)/*.c)
+SRCS 		=	ft_printf.c			\
+				ft_printchar.c
 
-SRCS = ft_printf.c
+OBJS 		=	${SRCS:.c=.o}
 
-OBJS = $(SRC:.c=.o)
+LIBFT_PATH 	=	./Libft
+LIBFT 		=	${LIBFT_PATH}/libft.a
 
-.PHONY = all clean fclean re
+.PHONY 		=	all clean fclean re libft
 
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+## RULES ##
 
-all: $(NAME)
+all:			${NAME}
 
-${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+%.o:			%.c
+				${CC} ${CFLAGS} -c $< -o $@
+
+${NAME}:		${LIBFT} ${OBJS}
+				cp ${LIBFT} ${NAME}
+				ar rcs ${NAME} ${OBJS}
+
+$(LIBFT):
+				make -C ${LIBFT_PATH} all
+				make -C ${LIBFT_PATH} bonus
 
 clean:
-	rm -f ${OBJS} ${BONUS_OBJS}
+				make -C ${LIBFT_PATH} clean
+				rm -f ${OBJS}
 
-fclean: clean
-	rm -f ${NAME}
+fclean:			clean
+				make -C $(LIBFT_PATH) fclean
+				rm -f ${NAME}
 
-re: fclean ${NAME}
+re: 			fclean all
