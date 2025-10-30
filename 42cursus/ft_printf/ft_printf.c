@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:53:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/30 13:20:06 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/30 13:47:00 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	ft_check_sign(char str, va_list args)
 	//	print_chars += ft_printnumber((va_arg(args, int)));
 	else if (str == 'u')
 		print_chars += ft_print_unsi_number((va_arg(args, unsigned int)));
-	//else if (str == 'x')
-	//	print_chars += ft_printnumber((va_arg(args, int)));
+	else if (str == 'x')
+		print_chars += ft_print_hexa_lower((va_arg(args, int)));
 	//else if (str == 'X')
 	//	print_chars += ft_printnumber((va_arg(args, int)));
 	else if (str == '%')
