@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 09:10:35 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/30 12:01:14 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/30 13:26:34 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,17 @@ int main()
 	//char 			c = 'a';
 	//char			*str = "Hello!";
 	//char			*pstr = NULL;
-	//int				n = 0;
-	unsigned	int	unsigned_dec = 0;
+	int				n = 0;
+	//unsigned	int	unsigned_dec = 0;
+	// void	*ptr = &n;
 
 
 	printf(RED"\n--- Printf vs ft_printf ---\n"RESET);
+	printf("\n"RESET);
 	sleep (1);
+
+	count = ft_printf("\n%c %s %d %i %u %%", 'c', "Hey!", 42, -1, 8);
+	ft_printf("\nCount = %d\n", count);
 /*
 // ### PRINT AN EMPTY PRINT ### ///
 	printf(UNDERLINE"\n-Print empty-\n\n"RESET);
@@ -161,6 +166,7 @@ int main()
 	count = ft_printf("%d", -254863);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 */
+/*
 // ### PRINT AN UNSIGNED DECIMAL (base 10) ### ///
 	printf(UNDERLINE"\n-Print an unsigned decimal (base 10)-\n\n"RESET);
 
@@ -171,32 +177,63 @@ int main()
 	while (unsigned_dec <= 10)
 	{
 		count = 0;
-		printf(GREEN "\nprintf =	%i\n" RESET, unsigned_dec);
-		ft_printf(CYAN "ft_printf =	");
-		count = ft_printf("%i", unsigned_dec);
-		printf(RESET "\nChars printed > \"%d\"\n", count);
-		unsigned_dec++;
-	}
-
-	// ## NEGATIVE NUMBERS ## //
-	printf(UNDERLINE"\n-Print negative numbers-\n\n"RESET);
-
-	unsigned_dec = -10;
-	while (unsigned_dec <= 0)
-	{
-		count = 0;
 		printf(GREEN "\nprintf =	%u\n" RESET, unsigned_dec);
 		ft_printf(CYAN "ft_printf =	");
 		count = ft_printf("%u", unsigned_dec);
 		printf(RESET "\nChars printed > \"%d\"\n", count);
 		unsigned_dec++;
 	}
-	sleep(1);
 
 	count = 0;
-	printf(GREEN "\nprintf =	%u\n" RESET, -254863);
+	printf(GREEN "\nprintf =	%u\n" RESET, 15870);
 	ft_printf(CYAN "ft_printf =	");
-	count = ft_printf("%u", -254863);
+	count = ft_printf("%u", 15870);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+
+	count = 0;
+	printf(GREEN "\nprintf =	%u\n" RESET, -150);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%u", -150);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+*/
+/*
+// ### PRINT A PERCENT SIGN ### ///
+	printf(UNDERLINE"\n-Print a percent sign-\n\n"RESET);
+
+	printf(GREEN"Printf =	%%\n" RESET);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%%");
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+	sleep(1);
+
+	printf(GREEN"Printf =	%%%%\n"RESET);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%%%%");
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+	sleep(1);
+*/
+
+// ### PRINT A NUMBER IN HEXADECIMAL (base 16) lowercase format ### ///
+	printf(UNDERLINE"\n-Print a number in hexadecimal (base 16) lowercase format-\n\n"RESET);
+
+	// ## POSITIVE NUMBERS ## //
+	printf(UNDERLINE"\n-Print positive numbers-\n\n"RESET);
+
+	n = 0;
+	while (n <= 16)
+	{
+		count = 0;
+		printf(GREEN "\nprintf =	%x\n" RESET, n);
+		ft_printf(CYAN "ft_printf =	");
+		count = ft_printf("%x", n);
+		printf(RESET "\nChars printed > \"%d\"\n", count);
+		n++;
+	}
+
+	count = 0;
+	printf(GREEN "\nprintf =	%x\n" RESET, 42);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%x", 42);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 
 
@@ -206,80 +243,12 @@ int main()
 
 
 
-
-
-
-
-
-
-
-	// ;
-	// unsigned	int	unsigned_dec_neg = -8;
-	// void	*ptr = &n;
-
 /*
 	printf("\n-Print THE VOID *-\n");
 	printf("Printf = %p\n", ptr);
 	//ft_printf(ptr, );
 	printf("\n");
 	sleep(1);
+*/
 
-	printf("\n-Print a decimal (base 10)-\n");
-	n = 0;
-	while (n <= 10)
-	{
-		printf("Printf = %d\n", n);
-		//ft_printf(n, );
-		printf("\n");
-		n++;
-	}
-	sleep(1);
-
-	printf("\n-Print a integer (base 10)-\n");
-	n = 0;
-	while (n <= 10)
-	{
-		printf("Printf = %i\n", n);
-		//ft_printf(n, );
-		printf("\n");
-		n++;
-	}
-	sleep(1);
-
-	printf("\n-Print a unsigned decimal (base 10)-\n");
-	printf("Printf (positive) = %u\n", unsigned_dec);
-	//ft_printf(unsigned_dec, );
-	printf("\n");
-	printf("Printf (negative) = %u\n", unsigned_dec_neg);
-	//ft_printf(unsigned_dec_neg, );
-	printf("\n");
-	sleep(1);
-
-	printf("\n-Print a number in hexadecimal (base 16) lowercase format-\n");
-	n = 0;
-	while (n <= 15)
-	{
-		printf("Printf = %x\n", n);
-		//ft_printf(n, );
-		printf("\n");
-		n++;
-	}
-	sleep(1);
-
-	printf("\n-Print a number in hexadecimal (base 16) uppercase format-\n");
-	n = 0;
-	while (n <= 15)
-	{
-		printf("Printf = %X\n", n);
-		//ft_printf(n, );
-		printf("\n");
-		n++;
-	}
-	sleep(1);
-
-	printf("\n-Print a percent sign-\n");
-	printf("Printf = %%\n");
-	//ft_printf(n, );
-	printf("\n");
-	sleep(1);*/
 }
