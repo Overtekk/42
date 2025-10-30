@@ -6,41 +6,55 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:53:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/29 15:23:51 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/30 12:03:15 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_check_sign(char *str, va_list args, int count)
+int	ft_check_sign(char str, va_list args)
 {
-	int	i;
+	int	print_chars;
 
-	i = 0;
-	if (str[i] == 'c')
-		count += ft_printchar((va_arg(args, int)));
-	return (count);
+	print_chars = 0;
+	if (str == 'c')
+		print_chars += ft_printchar((va_arg(args, int)));
+	else if (str == 's')
+		print_chars += ft_printstr((va_arg(args, char *)));
+	else if (str == 'd')
+		print_chars += ft_printnumber((va_arg(args, int)));
+	else if (str == 'i')
+		print_chars += ft_printnumber((va_arg(args, int)));
+	//else if (str == 'p')
+	//	print_chars += ft_printnumber((va_arg(args, int)));
+	else if (str == 'u')
+		print_chars += ft_printnumber((va_arg(args, unsigned int)));
+	//else if (str == 'x')
+	//	print_chars += ft_printnumber((va_arg(args, int)));
+	//else if (str == 'X')
+	//	print_chars += ft_printnumber((va_arg(args, int)));
+	//else if (str == '%')
+	//	print_chars += ft_printnumber((va_arg(args, int)));
+	return (print_chars);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list		args;
-	char		*str;
 	int			count;
 	int			i;
 
-	va_start (args, format);
-	str = ft_strdup(format);
+	va_start (args, str);
 	count = 0;
 	i = 0;
 	while (str[i] != '\0')
 	{
-		count += ft_printchar(str[i]);
 		if (str[i] == '%')
-			ft_check_sign(&str[++i], args, count);
+			count += ft_check_sign(str[++i], args);
+		else
+			count += ft_printchar(str[i]);
 		i++;
 	}
 	va_end (args);
-	free (str);
 	return (count);
 }

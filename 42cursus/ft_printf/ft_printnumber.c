@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_printnumber.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 13:01:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/30 09:16:26 by roandrie         ###   ########.fr       */
+/*   Created: 2025/10/30 10:34:30 by roandrie          #+#    #+#             */
+/*   Updated: 2025/10/30 11:37:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(int c)
+int	ft_printnumber(int n)
 {
-	write(1, &c, 1);
-	return (1);
+	int	count_numbers;
+	int	n_copy;
+
+	count_numbers = 0;
+	n_copy = n;
+	if (n == 0)
+		count_numbers++;
+	while (n_copy != 0)
+	{
+		n_copy = n_copy / 10;
+		count_numbers++;
+	}
+	ft_putnbr_fd(n, 1);
+	return (count_numbers);
 }
