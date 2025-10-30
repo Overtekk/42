@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:27:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/29 15:03:36 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/30 11:27:30 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 
 int		ft_printf(const char *, ...);
 int		ft_printchar(int c);
+int		ft_printstr(char *str);
+int		ft_printnumber(int n);
 
 #endif

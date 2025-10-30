@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_printunsnumber.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 13:01:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/30 09:16:26 by roandrie         ###   ########.fr       */
+/*   Created: 2025/10/30 12:13:54 by roandrie          #+#    #+#             */
+/*   Updated: 2025/10/30 12:14:35 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(int c)
+int	ft_printunsnumber(unsigned int n)
 {
-	write(1, &c, 1);
-	return (1);
+
 }
