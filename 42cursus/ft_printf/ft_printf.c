@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:53:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/30 13:47:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:29:56 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	ft_check_sign(char str, va_list args)
 		print_chars += ft_printnumber((va_arg(args, int)));
 	else if (str == 'i')
 		print_chars += ft_printnumber((va_arg(args, int)));
-	//else if (str == 'p')
-	//	print_chars += ft_printnumber((va_arg(args, int)));
+	else if (str == 'p')
+		print_chars += ft_print_ptr((va_arg(args, void *)));
 	else if (str == 'u')
 		print_chars += ft_print_unsi_number((va_arg(args, unsigned int)));
 	else if (str == 'x')
-		print_chars += ft_print_hexa_lower((va_arg(args, int)));
-	//else if (str == 'X')
-	//	print_chars += ft_printnumber((va_arg(args, int)));
+		print_chars += ft_print_hexa((va_arg(args, unsigned int)), 'x');
+	else if (str == 'X')
+		print_chars += ft_print_hexa((va_arg(args, unsigned int)), 'X');
 	else if (str == '%')
 		print_chars += ft_printchar('%');
 	return (print_chars);

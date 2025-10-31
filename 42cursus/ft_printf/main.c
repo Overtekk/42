@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 09:10:35 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/31 15:25:36 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:47:15 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,30 @@
 int main()
 {
 	int				count = 0;
-	//char 			c = 'a';
-	//char			*str = "Hello!";
-	//char			*pstr = NULL;
+	char 			c = 'a';
+	char			*str = "Hello!";
+	char			*pstr = NULL;
 	int				n = 0;
-	//unsigned	int	unsigned_dec = 0;
+	unsigned	int	unsigned_dec = 0;
 	void			*ptr = &n;
+	void 			*ptr_v = NULL;
 
+// INT MIN / INT MAX
 
-	printf(RED"\n--- Printf vs ft_printf ---\n"RESET);
+	ft_printf(RED"\n--- ft_printf test ---\n"RESET);
 	printf("\n"RESET);
 	sleep (1);
 
-	count = ft_printf("\n%c %s %d %i %u %%, %x, %X", 'c', "Hey!", 42, -1, 8, 48, 69);
-	ft_printf("\nCount = %d\n", count);
-/*
+	ft_printf("\nPress something to continue the test\n");
+	getchar();
+
 // ### PRINT AN EMPTY PRINT ### ///
 	printf(UNDERLINE"\n-Print empty-\n\n"RESET);
 	count = ft_printf("");
 	printf("\nCount = %d\n", count);
+
+	ft_printf("\nPress something to continue the test\n");
+	getchar();
 
 // ### PRINT CHARACTER ### ///
 	printf(UNDERLINE"\n-Print a character-\n\n"RESET);
@@ -55,8 +60,10 @@ int main()
 		c++;
 	}
 	sleep(1);
-*/
-/*
+
+	ft_printf("\nPress something to continue the test\n");
+	getchar();
+
 // ### PRINT A STRING ### ///
 	printf(UNDERLINE"\n-Print a string-\n\n"RESET);
 
@@ -86,8 +93,7 @@ int main()
 	count = ft_printf("%s", pstr);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 	sleep(1);
-*/
-/*
+
 // ### PRINT A DECIMAL (base 10) ### ///
 	printf(UNDERLINE"\n-Print a decimal (base 10)-\n\n"RESET);
 
@@ -126,8 +132,8 @@ int main()
 	count = ft_printf("%d", -254863);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 	n++;
-*/
-/*
+
+
 // ### PRINT AN INTEGER in base 10 ### ///
 	printf(UNDERLINE"\n-Print an integer in base 10-\n\n"RESET);
 
@@ -165,8 +171,7 @@ int main()
 	ft_printf(CYAN "ft_printf =	");
 	count = ft_printf("%d", -254863);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
-*/
-/*
+
 // ### PRINT AN UNSIGNED DECIMAL (base 10) ### ///
 	printf(UNDERLINE"\n-Print an unsigned decimal (base 10)-\n\n"RESET);
 
@@ -195,8 +200,7 @@ int main()
 	ft_printf(CYAN "ft_printf =	");
 	count = ft_printf("%u", -150);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
-*/
-/*
+
 // ### PRINT A PERCENT SIGN ### ///
 	printf(UNDERLINE"\n-Print a percent sign-\n\n"RESET);
 
@@ -211,8 +215,8 @@ int main()
 	count = ft_printf("%%%%");
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 	sleep(1);
-*/
-/*
+
+
 // ### PRINT A NUMBER IN HEXADECIMAL (base 16) lowercase format ### ///
 	printf(UNDERLINE"\n-Print a number in hexadecimal (base 16) lowercase format-\n\n"RESET);
 
@@ -247,8 +251,8 @@ int main()
 	ft_printf(CYAN "ft_printf =	");
 	count = ft_printf("%x", -50);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
-*/
-/*
+
+
 // ### PRINT A NUMBER IN HEXADECIMAL (base 16) uppercase format ### ///
 	printf(UNDERLINE"\n-Print a number in hexadecimal (base 16) uppercase format-\n\n"RESET);
 
@@ -283,14 +287,23 @@ int main()
 	ft_printf(CYAN "ft_printf =	");
 	count = ft_printf("%X", -50);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
-*/
+
 /// ### PRINT THE VOID * POINTER ### ///
 	printf(UNDERLINE"\n-Print THE VOID * pointer-\n\n"RESET);
 
-	count = 0;
 	printf(GREEN "\nprintf =	%p\n" RESET, ptr);
 	ft_printf(CYAN "ft_printf =	");
 	count = ft_printf("%p", ptr);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+
+	printf(GREEN "\nprintf =	%p\n" RESET, &ptr);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%p", &ptr);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+
+	printf(GREEN "\nprintf =	%p\n" RESET, ptr_v);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%p", ptr_v);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 
 
