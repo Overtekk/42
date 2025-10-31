@@ -6,7 +6,8 @@ SRCS 		=	ft_printf.c				\
 				ft_printchar.c			\
 				ft_printstr.c			\
 				ft_printnumber.c		\
-				ft_print_unsi_number.c
+				ft_print_unsi_number.c	\
+				ft_print_hexa_lower.c
 
 OBJS 		=	${SRCS:.c=.o}
 

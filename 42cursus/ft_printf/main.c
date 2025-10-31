@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 09:10:35 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/30 13:26:34 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:25:36 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int main()
 	//char			*pstr = NULL;
 	int				n = 0;
 	//unsigned	int	unsigned_dec = 0;
-	// void	*ptr = &n;
+	void			*ptr = &n;
 
 
 	printf(RED"\n--- Printf vs ft_printf ---\n"RESET);
 	printf("\n"RESET);
 	sleep (1);
 
-	count = ft_printf("\n%c %s %d %i %u %%", 'c', "Hey!", 42, -1, 8);
+	count = ft_printf("\n%c %s %d %i %u %%, %x, %X", 'c', "Hey!", 42, -1, 8, 48, 69);
 	ft_printf("\nCount = %d\n", count);
 /*
 // ### PRINT AN EMPTY PRINT ### ///
@@ -212,7 +212,7 @@ int main()
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 	sleep(1);
 */
-
+/*
 // ### PRINT A NUMBER IN HEXADECIMAL (base 16) lowercase format ### ///
 	printf(UNDERLINE"\n-Print a number in hexadecimal (base 16) lowercase format-\n\n"RESET);
 
@@ -236,19 +236,62 @@ int main()
 	count = ft_printf("%x", 42);
 	printf(RESET "\nChars printed > \"%d\"\n", count);
 
+	count = 0;
+	printf(GREEN "\nprintf =	%x\n" RESET, 50);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%x", 50);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
 
-
-
-
-
-
-
-/*
-	printf("\n-Print THE VOID *-\n");
-	printf("Printf = %p\n", ptr);
-	//ft_printf(ptr, );
-	printf("\n");
-	sleep(1);
+	count = 0;
+	printf(GREEN "\nprintf =	%x\n" RESET, -50);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%x", -50);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
 */
+/*
+// ### PRINT A NUMBER IN HEXADECIMAL (base 16) uppercase format ### ///
+	printf(UNDERLINE"\n-Print a number in hexadecimal (base 16) uppercase format-\n\n"RESET);
+
+	// ## POSITIVE NUMBERS ## //
+	printf(UNDERLINE"\n-Print positive numbers-\n\n"RESET);
+
+	n = 0;
+	while (n <= 16)
+	{
+		count = 0;
+		printf(GREEN "\nprintf =	%X\n" RESET, n);
+		ft_printf(CYAN "ft_printf =	");
+		count = ft_printf("%X", n);
+		printf(RESET "\nChars printed > \"%d\"\n", count);
+		n++;
+	}
+
+	count = 0;
+	printf(GREEN "\nprintf =	%X\n" RESET, 42);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%X", 42);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+
+	count = 0;
+	printf(GREEN "\nprintf =	%x\n" RESET, 50);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%X", 50);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+
+	count = 0;
+	printf(GREEN "\nprintf =	%X\n" RESET, -50);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%X", -50);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+*/
+/// ### PRINT THE VOID * POINTER ### ///
+	printf(UNDERLINE"\n-Print THE VOID * pointer-\n\n"RESET);
+
+	count = 0;
+	printf(GREEN "\nprintf =	%p\n" RESET, ptr);
+	ft_printf(CYAN "ft_printf =	");
+	count = ft_printf("%p", ptr);
+	printf(RESET "\nChars printed > \"%d\"\n", count);
+
 
 }
