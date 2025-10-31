@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 14:35:15 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/26 21:54:56 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/27 10:08:40 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -589,13 +589,14 @@ void test_ft_strlcpy()
 	char	dest[100];
 	char	dest_cpy[100];
 	size_t	size;
-	size_t	result, result_original;
+	size_t	result;
 	int		choice;
 
 	memset(str, 0, 100);
 	memset(dest, 0, 100);
 	memset(dest_cpy, 0, 100);
 	printf(UNDERLINE"\n=========="RESET"Testing "RED"ft_strlcpy" RESET UNDERLINE "==========\n" RESET);
+	printf("Note: ft_strlcpy can't be compared to the original function. It's up to you to watch if it's working or not.\n\n");
 	printf("\nInstruction (1/2) : write a string (source)\n");
 	fgets(str, sizeof(str), stdin);
 	str[strcspn(str, "\n")] = 0;
@@ -604,30 +605,10 @@ void test_ft_strlcpy()
 	getchar();
 	printf("\n/!\\ Testing in progress /!\\\n\n");
 	result = ft_strlcpy(dest, str, size);
-	result_original = strlcpy(dest_cpy, str, size);
 	sleep(1);
-	if (memcmp(dest, dest_cpy, 100) == 0 && result == result_original)
-	{
-		printf(GREEN "[SUCCESS]\n");
-		printf("New string (len = %zu) = %s\n", result, dest);
-		printf(RESET);
-	}
-	else
-	{
-		if ((memcmp(dest, dest_cpy, 100) != 0))
-		{
-			printf(RED "[Content Mismatch]\n");
-			printf("ft_strlcpy:	%s\n", dest);
-			printf("strlcpy   :	%s\n", dest_cpy);
-		}
-		if (result != result_original)
-		{
-			printf(RED "[Return Mismatch]\n");
-			printf("ft_strlcpy:	%zu\n", result);
-			printf("strlcpy   :	%zu\n", result_original);
-		}
-		printf(RESET);
-	}
+	printf(YELLOW"Manual result\n");
+	printf("New string (len = %zu) = %s\n", result, dest);
+	printf(RESET);
 	sleep(1);
 	printf("\nTap 1 to make another test or 2 to return to main menu\n");
 	choice = 0;
@@ -646,7 +627,7 @@ void test_ft_strlcat()
 	char	dest_original[100];
 	char	dest_cpy[100];
 	size_t	size;
-	size_t	result, result_original;
+	size_t	result;
 	int		choice;
 
 	memset(str, 0, 100);
@@ -654,6 +635,7 @@ void test_ft_strlcat()
 	memset(dest_cpy, 0, 100);
 	memset(dest_original, 0, 100);
 	printf(UNDERLINE"\n=========="RESET"Testing "RED"ft_strlcat" RESET UNDERLINE "==========\n" RESET);
+	printf("Note: ft_strlcat can't be compared to the original function. It's up to you to watch if it's working or not.\n\n");
 	printf("\nInstruction (1/3) : write a string (destination)\n");
 	fgets(dest, sizeof(dest), stdin);
 	dest[strcspn(dest, "\n")] = 0;
@@ -667,31 +649,11 @@ void test_ft_strlcat()
 	getchar();
 	printf("\n/!\\ Testing in progress /!\\\n\n");
 	result = ft_strlcat(dest, str, size);
-	result_original = strlcat(dest_cpy, str, size);
 	sleep(1);
-	if (memcmp(dest, dest_cpy, 100) == 0 && result == result_original)
-	{
-		printf(GREEN "[SUCCESS]\n");
-		printf("Original string : %s\n", dest_original);
-		printf("New string (len = %zu) = %s\n", result, dest);
-		printf(RESET);
-	}
-	else
-	{
-		if ((memcmp(dest, dest_cpy, 100) != 0))
-		{
-			printf(RED "[Content Mismatch]\n");
-			printf("ft_strlcat:	%s\n", dest);
-			printf("strlcat   :	%s\n", dest_cpy);
-		}
-		if (result != result_original)
-		{
-			printf(RED "[Return Mismatch]\n");
-			printf("ft_strlcat:	%zu\n", result);
-			printf("strlcat   :	%zu\n", result_original);
-		}
-		printf(RESET);
-	}
+	printf(YELLOW"Manual result\n");
+	printf("Original string : %s\n", dest_original);
+	printf("New string (len = %zu) = %s\n", result, dest);
+	printf(RESET);
 	sleep(1);
 	printf("\nTap 1 to make another test or 2 to return to main menu\n");
 	choice = 0;
