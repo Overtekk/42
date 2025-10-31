@@ -6,51 +6,54 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:41:06 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/31 13:25:29 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:20:59 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+static	int	ft_puthexa_lower_fd(unsigned int n, int fd)
 {
-	write(fd, &c, 1);
-}
+	char	*base;
+	int		i;
 
-static	void	ft_puthexa_fd(unsigned int n, int fd)
-{
-	char	*base = "0123456789abcdef";
-	int	count_hexa;
-
+	i = 0;
+	base = "0123456789abcdef";
 	if (n >= 16)
 	{
-		ft_puthexa_fd(n / 16, fd);
-		ft_puthexa_fd(n % 16, fd);
+		i+= ft_puthexa_lower_fd(n / 16, fd);
+		i+= ft_puthexa_lower_fd(n % 16, fd);
 	}
 	else
-	{
-		ft_putchar_fd(base[n], fd);
-		count_hexa++;
-	}
-
-	printf("\nCount = %d\n", count_hexa);
+		i+= ft_printchar(base[n]);
+	return (i);
 }
 
-int	ft_print_hexa_lower(int n)
+static	int	ft_puthexa_upper_fd(unsigned int n, int fd)
+{
+	char	*base;
+	int		i;
+
+	i = 0;
+	base = "0123456789ABCDEF";
+	if (n >= 16)
+	{
+		i+= ft_puthexa_upper_fd(n / 16, fd);
+		i+= ft_puthexa_upper_fd(n % 16, fd);
+	}
+	else
+		i+= ft_printchar(base[n]);
+	return (i);
+}
+
+int	ft_print_hexa(unsigned int n, char c)
 {
 	int	count_hexa;
 
 	count_hexa = 0;
-	ft_puthexa_fd(n, 1);
+	if (c == 'x')
+		count_hexa = ft_puthexa_lower_fd(n, 1);
+	else
+		count_hexa = ft_puthexa_upper_fd(n, 1);
 	return (count_hexa);
-}
-
-#include <stdio.h>
-int main()
-{
-	int n = 256;
-	int	count = 0;
-
-	count = ft_print_hexa_lower(n);
-	printf("\n%d\n", count);
 }
