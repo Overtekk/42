@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 12:13:54 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/03 10:44:13 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:00:48 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_print_unsi_number(unsigned int n)
 {
 	int	count_number;
 
-	count_number = ft_count_number(n);
+	count_number = ft_count_unsigned_number(n);
 	ft_putnbr_unsigned_fd(n);
 	return (count_number);
 }
