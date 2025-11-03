@@ -6,42 +6,46 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 12:13:54 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/31 14:33:34 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:44:13 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	void	ft_putnbr_unsigned_fd(unsigned int n, int fd)
+static	int	ft_count_unsigned_number(unsigned int n)
+{
+	int	count_number;
+
+	count_number = 0;
+	if (n == 0)
+		return (1);
+	else
+	{
+		while (n != 0)
+		{
+			n = n / 10;
+			count_number++;
+		}
+	}
+	return (count_number);
+}
+
+static	void	ft_putnbr_unsigned_fd(unsigned int n)
 {
 	if (n >= 10)
 	{
-		ft_putnbr_unsigned_fd(n / 10, fd);
-		ft_putnbr_unsigned_fd(n % 10, fd);
+		ft_putnbr_unsigned_fd(n / 10);
+		ft_putnbr_unsigned_fd(n % 10);
 	}
 	else
-		ft_putchar_fd(n + 48, fd);
+		ft_putchar_fd((n + 48), 1);
 }
 
 int	ft_print_unsi_number(unsigned int n)
 {
-	int	count_numbers;
-	int	n_copy;
+	int	count_number;
 
-	count_numbers = 0;
-	n_copy = n;
-	if (n == 0)
-		count_numbers++;
-	else if (n_copy < 0)
-		count_numbers = 10;
-	else
-	{
-		while (n_copy != 0)
-		{
-			n_copy = n_copy / 10;
-			count_numbers++;
-		}
-	}
-	ft_putnbr_unsigned_fd(n, 1);
-	return (count_numbers);
+	count_number = ft_count_number(n);
+	ft_putnbr_unsigned_fd(n);
+	return (count_number);
 }
