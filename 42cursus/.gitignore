@@ -1,0 +1,11 @@
+# Tester .c
+main.c
+test.c
+a.out
+
+# Library
+libftprintf.a
+libft.a
+
+# Obj
+*.o
