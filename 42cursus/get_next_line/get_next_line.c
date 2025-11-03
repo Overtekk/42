@@ -6,47 +6,35 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:26:13 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/03 14:21:43 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:54:31 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char	*clear_buffer(char *large_buffer)
-// {
-// 	char	*new_buffer;
-// 	int		i;
-
-// 	i = 0;
-// 	while (large_buffer[i] != '\n')
-// 	{
-// 		large_buffer++;
-// 		i++;
-// 	}
-// 	new_buffer = large_buffer;
-// 	free (large_buffer);
-// 	return (new_buffer);
-// }
-
-char	*fill_line(char *large_buffer)
+char	*clear_buffer(char *large_buffer)
 {
-	char	*new_line;
+	char	*new_buffer;
 	int		i;
 
 	i = 0;
 	while (large_buffer[i] != '\n')
 		i++;
-	new_line = ft_substr(large_buffer, 0, i);
-	return (new_line);
+	new_buffer = large_buffer;
+	return (new_buffer);
 }
 
-char	*append_buffer(char *large_buffer, char *buffer_read)
+char	*fill_line(char *large_buffer)
 {
-	char	*temp;
+	char	*line;
+	int		i;
 
-	temp = ft_strjoin(large_buffer, buffer_read);
-	free(large_buffer);
-	return (temp);
+	i = 0;
+	while (large_buffer[i] != '\n')
+		i++;
+	line = ft_substr(large_buffer, 0, i);
+	line[i] = '\n';
+	return (line);
 }
 
 char	*read_line(int fd, char *large_buffer)
@@ -62,13 +50,11 @@ char	*read_line(int fd, char *large_buffer)
 	{
 		byte_read = read(fd, buffer_read, BUFFER_SIZE);
 		if (byte_read <= -1)
-			return (free (buffer_read), NULL);
-		buffer_read[byte_read] = '\0';
-		large_buffer = append_buffer(large_buffer, buffer_read);
+			return (NULL);
+		large_buffer = buffer_read;
 		if (ft_strchr(large_buffer, '\n'))
 			break ;
 	}
-	free (buffer_read);
 	return (large_buffer);
 }
 
@@ -77,11 +63,10 @@ char	*get_next_line(int fd)
 	static char	*large_buffer;
 	char		*line;
 
-	if (large_buffer == NULL)
-		large_buffer = ft_strdup("");
 	if (ft_strchr(large_buffer, '\n') == NULL)
 		large_buffer = read_line(fd, large_buffer);
+
 	line = fill_line(large_buffer);
-	//large_buffer = clear_buffer(large_buffer);
+	large_buffer = clear_buffer(large_buffer);
 	return (line);
 }

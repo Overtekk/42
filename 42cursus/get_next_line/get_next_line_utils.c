@@ -6,11 +6,41 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:26:54 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/03 14:14:24 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:22:11 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(const char *s)
+{
+	size_t	len;
+	char	*dup;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(s);
+	dup = malloc(len + 1);
+	if (dup == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = 0;
+	return (dup);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -36,36 +66,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	subs[i] = 0;
 	return (subs);
-}
-
-char	*ft_strdup(const char *s)
-{
-	size_t	len;
-	char	*dup;
-	int		i;
-
-	i = 0;
-	len = ft_strlen(s);
-	dup = malloc(len + 1);
-	if (dup == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = 0;
-	return (dup);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
