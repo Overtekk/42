@@ -8,7 +8,7 @@ Finished at **Level 06** at **91%**.
 
 ## List of projects:
 ### Shell00
-![Shell00](https://github.com/user-attachments/assets/af326753-a8c6-4eb4-a1cb-bc9ba3d0a30f)
+![Shell00](https://github.com/user-attachments/assets/af326753-a8c6-4eb4-a1cb-bc9ba3d0a30f)     
 ![Shell00_Moulinette](https://github.com/user-attachments/assets/744bd2a8-f7bd-4d7c-9b33-9002d02fa5f2)
 
 ### Shell01
@@ -20,7 +20,7 @@ Finished at **Level 06** at **91%**.
 ![C00_Moulinette](https://github.com/user-attachments/assets/ed9bea71-37a3-42b6-a214-546bde360ddb)
 
 ### C01
-![C01](https://github.com/user-attachments/assets/7fa4b718-3f6d-4241-be6d-9dbfb240bf14)
+![C01](https://github.com/user-attachments/assets/7fa4b718-3f6d-4241-be6d-9dbfb240bf14)     
 ![C01_Moulinette](https://github.com/user-attachments/assets/463b0d9c-3dee-4c39-a558-fa69fb5a4e88)
 
 ### C02
@@ -28,29 +28,29 @@ Finished at **Level 06** at **91%**.
 ![C02_Moulinette](https://github.com/user-attachments/assets/9333ffa9-7190-448d-a587-5e15add53cdb)
 
 ### C03
-![C03](https://github.com/user-attachments/assets/49422664-9764-4ee1-80d1-8e9dd947c519)
+![C03](https://github.com/user-attachments/assets/49422664-9764-4ee1-80d1-8e9dd947c519)     
 ![C03_Moulinette](https://github.com/user-attachments/assets/09cfa258-da4c-4f8f-97fa-e236b9d01d4e)
 
 ### C04
-![C04](https://github.com/user-attachments/assets/41c0dcca-ff88-4631-9e0d-1b83074e54bd)
+![C04](https://github.com/user-attachments/assets/41c0dcca-ff88-4631-9e0d-1b83074e54bd)     
 ![C04_Moulinette](https://github.com/user-attachments/assets/2790f8cf-34d7-4edd-9312-f271786d84a1)
 
 ### C05
-![C05](https://github.com/user-attachments/assets/41c0dcca-ff88-4631-9e0d-1b83074e54bd)
+![C05](https://github.com/user-attachments/assets/41c0dcca-ff88-4631-9e0d-1b83074e54bd)     
 ![C05_Moulinette](https://github.com/user-attachments/assets/69b01ef5-2d1b-4d60-92dc-90b60f200738)
 
 ### C06
-![C06](https://github.com/user-attachments/assets/2f735623-3282-4e7a-b27b-3b9547f89282)
+![C06](https://github.com/user-attachments/assets/2f735623-3282-4e7a-b27b-3b9547f89282)     
 ![C06_Moulinette](https://github.com/user-attachments/assets/a1cb0dd7-515b-4b2a-85c8-8e8153232f8e)
 
 ### C07
-*Didn't have the time to finish all mandatory part, and learn all things about malloc.*
-![C07](https://github.com/user-attachments/assets/b4a72804-86cd-4573-8960-353a3d340e83)
+*Didn't have the time to finish all mandatory part, and learn all things about malloc.*     
+![C07](https://github.com/user-attachments/assets/b4a72804-86cd-4573-8960-353a3d340e83)     
 ![C07_Moulinette](https://github.com/user-attachments/assets/49342114-fa1b-4015-a5e9-1cdc36cf105a)
 
 ## Rushs:
 ### Rush00
-*We did it well, even with bonus but one of our group didn't come so it's a 0. :(*
+*We did it well, even with bonus but one of our group didn't come so it's a 0. :(*     
 ![Rush00](https://github.com/user-attachments/assets/1d3c8aa5-e7b3-4183-a2aa-661671aa7b08)
 
 ### Rush01
