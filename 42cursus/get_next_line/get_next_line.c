@@ -6,14 +6,14 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:26:13 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/04 17:25:43 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:44:04 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-char	*clear_buffer(char *large_buffer)
+static	char	*clear_buffer(char *large_buffer)
 {
 	char	*new_buffer;
 	int		i;
@@ -31,7 +31,7 @@ char	*clear_buffer(char *large_buffer)
 	return (new_buffer);
 }
 
-char	*fill_line(char *large_buffer)
+static	char	*fill_line(char *large_buffer)
 {
 	char	*line;
 	int		i;
@@ -46,7 +46,14 @@ char	*fill_line(char *large_buffer)
 	return (line);
 }
 
-char	*read_line(int fd, char *large_buffer)
+static	char	*free_buffers(char *large_buffer, char *buffer_read)
+{
+	free (large_buffer);
+	free (buffer_read);
+	return (NULL);
+}
+
+static	char	*read_line(int fd, char *large_buffer)
 {
 	char	*buffer_read;
 	char	*temp_buffer;
@@ -60,7 +67,9 @@ char	*read_line(int fd, char *large_buffer)
 	{
 		byte_read = read(fd, buffer_read, BUFFER_SIZE);
 		if (byte_read <= -1)
-			return (NULL);
+		{
+			return (free_buffers(buffer_read, large_buffer));
+		}
 		buffer_read[byte_read] = '\0';
 		temp_buffer = large_buffer;
 		large_buffer = ft_strjoin(temp_buffer, buffer_read);
@@ -77,13 +86,18 @@ char	*get_next_line(int fd)
 	static char	*large_buffer;
 	char		*line;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	if (large_buffer == NULL)
 		large_buffer = ft_strdup("");
 	if (!ft_strchr(large_buffer, '\n'))
 		large_buffer = read_line(fd, large_buffer);
+	if (large_buffer == NULL)
+		return (NULL);
 	if (*large_buffer == '\0')
 	{
 		free (large_buffer);
+		large_buffer = NULL;
 		return (NULL);
 	}
 	line = fill_line(large_buffer);
