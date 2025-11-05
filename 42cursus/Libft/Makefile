@@ -1,5 +1,5 @@
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 HEADERS = libft.h
 
