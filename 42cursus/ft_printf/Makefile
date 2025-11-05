@@ -12,7 +12,7 @@ SRCS 		=	ft_printf.c				\
 
 OBJS 		=	${SRCS:.c=.o}
 
-LIBFT_PATH 	=	./Libft
+LIBFT_PATH 	=	./libft
 LIBFT 		=	${LIBFT_PATH}/libft.a
 
 .PHONY 		=	all clean fclean re libft
