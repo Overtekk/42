@@ -1,46 +1,110 @@
-## Useful commands
+## 💻 CPU Info
 
-`uname -a` ➡️ see GPU architecture\
+`uname -a` ➡️ Displays kernel information and CPU architecture (e.g., x86_64).
 
-`grep "physical id" /proc/cpuinfo | wc -l` ➡️ see number of physical cores\
+`lscpu` ➡️ Displays a complete summary of the CPU architecture (easier to read).
+
+`grep "physical id" /proc/cpuinfo | sort -u | wc -l` ➡️ Counts the number of **physical processors** (sockets).
+
+`grep "^processor" /proc/cpuinfo | wc -l` ➡️ Counts the number of **virtual cores** (vCPU / threads).
 >[!NOTE]
-> *grep : search in lines for a specific pattern*\
-> */proc/cpuinfo/ : folder and file to look to*\
-> *"physical id" : the pattern to searc for*\
-> *wc -l : to count the lines*\
+> *grep: searches for a pattern in a file.*\
+> */proc/cpuinfo: file containing detailed CPU information.*\
+> *sort -u: sorts and keeps only unique entries.*\
+> *wc -l: counts the number of lines.*
 
-`grep processor /proc/cpuinfo | wc -l` ➡️ see number of virtual cores\
+---
 
-`grep processor /proc/cpuinfo | wc -l` ➡️ see informations about RAM\
-`free --mega | awk '$1 == "Mem:" {print $3}'` ➡️ get number of mb of usef memory\
-`free --mega | awk '$1 == "Mem:" {print $2}'` ➡️ get number of total nb memory\
-`free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}'` ➡️ get pourcent of used memory\
+## 💾 RAM (Memory)
+
+`free -h` ➡️ Displays RAM (and Swap) usage in a human-readable format (GB, MB).
+
+`free --mega | awk '$1 == "Mem:" {print $3}'` ➡️ Displays used RAM (in Mebibytes).
+
+`free --mega | awk '$1 == "Mem:" {print $2}'` ➡️ Displays total RAM (in Mebibytes).
+
+`free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}'` ➡️ Displays the percentage of used RAM.
 >[!NOTE]
-> *--mega : show ouput in mb*\
-> *awk pattern {action}*\
+> *--mega: displays output in Mebibytes (MB).*\
+> *-h: displays output in "Human-readable" format.*\
+> *awk 'pattern {action}': a tool for processing text line by line.*
 
-`dep` ➡️ see information about disk usage\
-`df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use}'` ➡️ see final
-`df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%d%%)\n"), use/total*100}'` ➡️ see total disk usage in percentage\
+---
 
-`vmstat` ➡️ show VM statistics\
-`vmstat 1 4 | tail -1 | awk '{print $15}'` ➡️ get CPU usage\
+## 💿 Disk Usage
 
-`who` ➡️ see informations about users\
-`who -b | awk '$1 == "system" {print $3 " " $4}'` ➡️ get date and time of last reboot\
+`df -h` ➡️ Displays usage for all filesystems (disks) in human-readable format.
 
-`lsblk` ➡️ see informations about LVM\
-`'if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi` ➡️ to know if LVM is active or not\
+`df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use "MB"}'` ➡️ Calculates total disk usage (in MB) for main partitions.
 
-`ss` ➡️ check number of TCP connections\
-`ss -ta | grep ESTAB | wc -l` ➡️ get number of TCP connections\
+`df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%.0f%%)\n", use/total*100)}'` ➡️ Calculates the total disk usage percentage.
 
-`users` ➡️ show informations about users\
-`users | wc -w` ➡️ get numbers of users\
+---
 
-`hostname -I` ➡️ obtain the MAC\
-`ip link` ➡️ show network interface\
-`ip link | grep "link/ether" | awk '{print $2}'` ➡️ to get adress of MAC\
+## 📈 System Load & Uptime
 
-`journaclctl` ➡️ collect and manage system logs\
-`journalctl _COMM=sudo | grep COMMAND | wc -l` ➡️ to get number of executed commands with sudo\
+`uptime` ➡️ Shows how long the server has been running (uptime) and the average load.
+
+`vmstat 1 5` ➡️ Displays 5 reports on VM activity (memory, swap, cpu) at 1-second intervals.
+
+`vmstat 1 2 | tail -1 | awk '{print $15}'` ➡️ Displays the percentage of **idle** CPU.
+
+`vmstat 1 2 | tail -1 | awk '{print 100 - $15"%"}'` ➡️ Calculates the percentage of **used** CPU.
+
+---
+
+## 👥 Users & Boot Time
+
+`who` ➡️ Shows who is currently logged into the system.
+
+`last` ➡️ Shows the history of last user logins.
+
+`who -b` ➡️ Shows the date and time of the last system boot.
+
+`users | wc -w` ➡️ Counts the number of currently open user sessions.
+
+---
+
+## 🖴 LVM (Logical Volume Management)
+
+`lsblk` ➡️ Lists storage devices (disks, partitions), very useful for seeing LVM structure.
+
+`vgs` ➡️ Displays LVM Volume Groups.
+
+`lvs` ➡️ Displays LVM Logical Volumes.
+
+`if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo "LVM active"; else echo "LVM not active"; fi` ➡️ Checks if LVM is active or not.
+
+---
+
+## 🌐 Network & Connections
+
+`ip a` ➡️ Displays all network interfaces with their IP and MAC addresses (replaces `ifconfig`).
+
+`hostname -I` ➡️ Displays the machine's local IP address.
+
+`ip link | grep "link/ether" | awk '{print $2}'` ➡️ Extracts the MAC address of the main interface.
+
+`ss -tuna` ➡️ Displays all open or listening ports (TCP and UDP), with numerical addresses.
+
+`ss -ta | grep ESTAB | wc -l` ➡️ Counts the number of currently **established** TCP connections.
+
+---
+
+## 🔥 Firewall (UFW)
+
+`sudo ufw status` ➡️ Checks if the UFW (Uncomplicated Firewall) is active.
+
+`sudo ufw status numbered` ➡️ Displays firewall rules with numbers (useful for deleting them).
+
+---
+
+## ⚙️ Services & Logs (Sudo)
+
+`systemctl status sshd` ➡️ Checks the status of the SSH service (very important for this project).
+
+`journalctl` ➡️ Main tool for reading system logs (journals).
+
+`journalctl -u sshd | grep "Failed password"` ➡️ Displays failed SSH login attempts (very useful for spotting attacks!).
+
+`journalctl _COMM=sudo | grep COMMAND | wc -l` ➡️ Counts the number of commands executed with `sudo` and logged.
