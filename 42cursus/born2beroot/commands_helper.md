@@ -18,3 +18,16 @@
 >[!NOTE]
 > *--mega : show ouput in mb*\
 > *awk pattern {action}*\
+
+`dep` ➡️ see information about disk usage\
+`df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use}'` ➡️ see final
+`df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%d%%)\n"), use/total*100}'` ➡️ see total disk usage in percentage\
+
+`vmstat` ➡️ show VM statistics\
+`vmstat 1 4 | tail -1 | awk '{print $15}'` ➡️ get CPU usage\
+
+`who` ➡️ see informations about users\
+`who -b | awk '$1 == "system" {print $3 " " $4}'` ➡️ get date and time of last reboot\
+
+`lsblk` ➡️ see informations about LVM\
+`'if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi` ➡️ to know if LVM is active or not
