@@ -30,4 +30,17 @@
 `who -b | awk '$1 == "system" {print $3 " " $4}'` ➡️ get date and time of last reboot\
 
 `lsblk` ➡️ see informations about LVM\
-`'if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi` ➡️ to know if LVM is active or not
+`'if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi` ➡️ to know if LVM is active or not\
+
+`ss` ➡️ check number of TCP connections\
+`ss -ta | grep ESTAB | wc -l` ➡️ get number of TCP connections\
+
+`users` ➡️ show informations about users\
+`users | wc -w` ➡️ get numbers of users\
+
+`hostname -I` ➡️ obtain the MAC\
+`ip link` ➡️ show network interface\
+`ip link | grep "link/ether" | awk '{print $2}'` ➡️ to get adress of MAC\
+
+`journaclctl` ➡️ collect and manage system logs\
+`journalctl _COMM=sudo | grep COMMAND | wc -l` ➡️ to get number of executed commands with sudo\
