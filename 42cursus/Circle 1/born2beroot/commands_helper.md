@@ -108,3 +108,33 @@
 `journalctl -u sshd | grep "Failed password"` ➡️ Displays failed SSH login attempts (very useful for spotting attacks!).
 
 `journalctl _COMM=sudo | grep COMMAND | wc -l` ➡️ Counts the number of commands executed with `sudo` and logged.
+
+---
+
+## 🖥️ Hostname
+
+`hostnamectl` ➡️ Displays the current hostname.
+
+`sudo hostnamectl set-hostname yourlogin42` ➡️ Changes the hostname (replace 'yourlogin42').
+
+---
+
+## 👥 User and Group Management
+
+`sudo adduser new_username` ➡️ Creates a new user (starts an interactive prompt).
+
+`sudo addgroup new_group_name` ➡️ Creates a new group.
+
+`sudo usermod -aG new_group_name new_username` ➡️ Adds the user to the group (the `-a` is crucial).
+
+`id new_username` ➡️ Checks which groups the user belongs to.
+
+---
+
+## 🔑 Password Management
+
+`passwd` ➡️ Changes your own password (for the current user).
+
+`sudo passwd root` ➡️ Changes the 'root' account's password.
+
+`sudo passwd other_username` ➡️ Changes another user's password.
