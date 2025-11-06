@@ -1,21 +1,17 @@
-# **42 cursus started from 13/11/2025**
+# **42 cursus started from _13/11/2025_**
+## Tracked Progression 🖱️
 
+### [Circle 0](https://github.com/Overtekk/42/tree/main/42cursus/Circle%200) 
+Completed (1/1) ✅
 
-# **Tracked Progression**
+### [Circle 1](https://github.com/Overtekk/42/tree/main/42cursus/Circle%201) 
+In Progress (1/3) ⚠️
 
+### [Circle 2](https://github.com/Overtekk/42/tree/main/42cursus/Circle%202)
+In Progress (0/4) ⚠️
 
-## [Circle 0](https://github.com/Overtekk/42/tree/main/42cursus/Circle%200)
-### Libft
-*Completed on 27/10/2025*   
-![Libft](../PiscineReloaded/assets/Libft.png)
-![Libft_Moulinette](../PiscineReloaded/assets/Libft_Moulinette.png)
-
-## [Circle 1](https://github.com/Overtekk/42/tree/main/42cursus/Circle%201)
-### ft_printf
-*Completed on 06/11/2025*   
-![Libft](../PiscineReloaded/assets/ft_printf.png)  
-![Libft_Moulinette](../PiscineReloaded/assets/ft_printf_Moulinette.png)
-
-## *Tracked Logtime*
---2025--  
-**October**: 96h
+#
+## Tracked Logtime 🕐
+### --2025--  
+**October**: 96h\
+**November**: 00h
