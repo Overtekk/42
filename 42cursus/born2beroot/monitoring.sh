@@ -43,15 +43,17 @@ mac=$(ip link | grep "link/ether" | awk '{print $2}')
 # SUDO
 cmnd=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
 
-wall "	Architecture: $arch
-	CPU physical: $cpuf
-	vCPU: $cpuv
-	Memory Usage: $ram_use/${ram_total}MB ($ram_percent%)
-	Disk Usage: $disk_use/${disk_total} ($disk_percent%)
-	CPU load: $cpu_fin%
-	Last boot: $lb
-	LVM use: $lvmu
-	Connections TCP: $tcpc ESTABLISHED
-	User log: $ulog
-	Network: IP $ip ($mac)
-	Sudo: $cmnd cmd"
+wall "
+Architecture: $arch
+CPU physical: $cpuf
+vCPU: $cpuv
+Memory Usage: $ram_use/${ram_total}MB ($ram_percent%)
+Disk Usage: $disk_use/${disk_total} ($disk_percent%)
+CPU Load: $cpu_fin%
+Last Loot: $lb
+LVM Use: $lvmu
+Connections TCP: $tcpc ESTABLISHED
+User Log: $ulog
+Network: IP $ip ($mac)
+Sudo: $cmnd cmd
+"
