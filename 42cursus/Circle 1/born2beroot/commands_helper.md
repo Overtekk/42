@@ -136,5 +136,18 @@
 `passwd` ➡️ Changes your own password (for the current user).
 
 `sudo passwd root` ➡️ Changes the 'root' account's password.
-
+	if (fd != 0)
+        close(fd);
 `sudo passwd other_username` ➡️ Changes another user's password.
+
+---
+
+## 📝 Website
+
+`sudo systemctl stop lighttpd.service` ➡️ Stop the lightppd service.
+
+`sudo systemctl start apache2.service` ➡️ Start the apache2 service.
+
+`sudo systemctl reload apache2.service` ➡️ Reload the apache2 service.
+>[!NOTE]
+> *Can be set for any service.*
