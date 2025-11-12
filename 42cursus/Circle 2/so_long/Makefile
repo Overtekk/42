@@ -1,7 +1,7 @@
 NAME			=	so_long
 CC				=	cc
 CFLAGS			=	-g3 -Wall -Werror -Wextra
-#MLXFLAGS		=	-L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS		=	-L $(MINILIBX_PATH) -lmlx -lXext -lX11
 
 LIBFT_PATH		=	./libft
 MINILIBX_PATH	=	./minilibx-linux
@@ -12,7 +12,8 @@ MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 INCLUDE			=	-I${LIBFT_PATH}/include -I$(MINILIBX_PATH) -I./include
 
 SRCS_DIR		=	sources
-C_FILE			=	main.c
+C_FILE			=	main.c				\
+					ft_print_error.c	\
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
 OBJ_DIR			=	obj
@@ -35,7 +36,6 @@ $(OBJ_DIR):
 
 $(NAME):		$(LIBFT) $(MINILIBX) $(OBJ_DIR) $(OBJS)
 				$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
-#$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) -o $(NAME) $(LIBFT)
 
 $(OBJ_DIR)/%.o:	$(SRCS_DIR)/%.c
 				mkdir -p $(OBJ_DIR)
