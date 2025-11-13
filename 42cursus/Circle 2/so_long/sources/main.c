@@ -15,8 +15,11 @@
 static	int	check_filename(char *file_name)
 {
 	file_name = file_name + (ft_strlen(file_name) - 4);
-	if (ft_strncmp(file_name, ".ber", 4))
+	if (ft_strncmp(file_name, ".ber", 4) != 0)
+	{
 		ft_print_error("Error\nWrong filename extension (need .ber)\n");
+		return (1);
+	}
 	return (0);
 }
 
@@ -31,8 +34,11 @@ int	main(int argc, char **argv)
 		if (argc < 2)
 			return (ft_print_error("Error\nPlease, but the map argument.\n"));
 	}
-	check_filename(argv[1]);
+	if (check_filename(argv[1] != 0);
+			return (1);
 	game = malloc(sizeof(t_game));
+	(if game == NULL)
+		return (ft_print_error("Error\nMalloc failed.\n"));
 	init_map(argv[1], game);
 	free_memory(game);
 	return (0);
