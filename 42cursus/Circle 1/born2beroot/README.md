@@ -111,7 +111,7 @@ Mot de passe = Un*Cl4vi1ER *(10 caractères / 1 lettre capitale, minuscule, digi
 * Protocole réseau chiffré.
 * **Objectif :** Permet de se connecter à distance à un terminal (shell) de manière sécurisée.
 * Toute la communication (mots de passe, commandes) est chiffrée.
-* 
+
 `ssh root@localhost -p 2222`\
 `ssh newuser@localhost -p 2222`
 
