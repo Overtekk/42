@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 12:13:54 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/03 11:00:48 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:42:59 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static	int	ft_count_unsigned_number(unsigned int n)
 {

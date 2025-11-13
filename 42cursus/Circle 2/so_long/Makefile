@@ -13,7 +13,8 @@ INCLUDE			=	-I${LIBFT_PATH}/include -I$(MINILIBX_PATH) -I./include
 
 SRCS_DIR		=	sources
 C_FILE			=	main.c				\
-					ft_print_error.c	\
+					check_map.c			\
+					ft_print_error.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
 OBJ_DIR			=	obj

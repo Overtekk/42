@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 10:34:30 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/03 10:40:47 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:43:20 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static	int	ft_count_number(int n)
 {
