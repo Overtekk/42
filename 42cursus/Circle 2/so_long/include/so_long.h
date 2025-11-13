@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 15:29:21 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:16:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,14 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	int				character;
-	int				item;
-	int				exit;
 	struct s_map	**map;
 }	t_game;
 
 //#PROTYPE#//
-int	is_valid_map(char *argv);
+int		is_valid_map(char *argv);
 
-int	ft_print_error(char *err_msg);
+void	free_memory(t_game *game);
+
+int		ft_print_error(char *err_msg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 15:40:28 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:16:59 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int	check_filename(char *file_name)
 
 int	main(int argc, char **argv)
 {
-	int	fd;
+	t_game	*game;
 
 	if (argc != 2)
 	{
@@ -32,12 +32,8 @@ int	main(int argc, char **argv)
 			return (ft_print_error("Error\nPlease, but the map argument.\n"));
 	}
 	check_filename(argv[1]);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (ft_print_error("Error\nOpening map failed.\n"));
-	if (is_valid_map(argv[1]))
-		ft_printstr("\nValid map\n");
-	else
-		return (ft_print_error("Error\nThis map is invalid.\n"));
+	game = malloc(sizeof(t_game));
+	init_map(argv[1], game);
+	free_memory(game);
 	return (0);
 }
