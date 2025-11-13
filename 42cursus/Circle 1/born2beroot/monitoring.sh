@@ -29,6 +29,7 @@ if lsblk | grep -q "lvm"; then
 else
   lvmu="no"
 fi
+
 # TCP CONNEXIONS
 tcpc=$(ss -ta | grep -c ESTAB)
 
