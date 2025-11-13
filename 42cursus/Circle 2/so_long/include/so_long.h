@@ -25,7 +25,7 @@
 //#STRUCTURE#//
 typedef struct s_map
 {
-	int		**grid;
+	char	**grid;
 	int		x;
 	int		y;
 }	t_map;
