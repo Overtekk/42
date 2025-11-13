@@ -4,14 +4,13 @@
 
 `lscpu` ➡️ Displays a complete summary of the CPU architecture (easier to read).
 
-`grep "physical id" /proc/cpuinfo | sort -u | wc -l` ➡️ Counts the number of **physical processors** (sockets).
+`grep -c "physical id" /proc/cpuinfo` ➡️ Counts the number of **physical processors** (sockets).
 
-`grep "^processor" /proc/cpuinfo | wc -l` ➡️ Counts the number of **virtual cores** (vCPU / threads).
+`grep -c "^processor" /proc/cpuinfo` ➡️ Counts the number of **virtual cores** (vCPU / threads).
 >[!NOTE]
 > *grep: searches for a pattern in a file.*\
 > */proc/cpuinfo: file containing detailed CPU information.*\
-> *sort -u: sorts and keeps only unique entries.*\
-> *wc -l: counts the number of lines.*
+> *-c: (count) counts the number of matching lines.*
 
 ---
 
@@ -35,9 +34,15 @@
 
 `df -h` ➡️ Displays usage for all filesystems (disks) in human-readable format.
 
-`df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use "MB"}'` ➡️ Calculates total disk usage (in MB) for main partitions.
+`$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')` ➡️ Calculates **total** disk size (in GB) for main partitions.
+
+`df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use "MB"}'` ➡️ Calculates **used** disk space (in MB) for main partitions.
 
 `df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%.0f%%)\n", use/total*100)}'` ➡️ Calculates the total disk usage percentage.
+>[!NOTE]
+> *`df -m`: displays usage in Mebibytes (MB).*\
+> *`grep "/dev/"`: filters to show only physical device partitions (e.g., `/dev/sda1`).*\
+> *`grep -v "/boot"`: excludes the `/boot` partition from the calculation.*
 
 ---
 
@@ -59,7 +64,7 @@
 
 `last` ➡️ Shows the history of last user logins.
 
-`who -b` ➡️ Shows the date and time of the last system boot.
+`who -b | awk '{print $3, $4}'` ➡️ Shows the date and time of the last system boot.
 
 `users | wc -w` ➡️ Counts the number of currently open user sessions.
 
@@ -74,6 +79,12 @@
 `lvs` ➡️ Displays LVM Logical Volumes.
 
 `if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo "LVM active"; else echo "LVM not active"; fi` ➡️ Checks if LVM is active or not.
+or
+`if lsblk | grep -q "lvm"; then
+  lvmu="yes"
+else
+  lvmu="no"
+fi`
 
 ---
 
@@ -87,7 +98,7 @@
 
 `ss -tuna` ➡️ Displays all open or listening ports (TCP and UDP), with numerical addresses.
 
-`ss -ta | grep ESTAB | wc -l` ➡️ Counts the number of currently **established** TCP connections.
+`ss -ta | grep -c ESTAB` ➡️ Counts the number of currently **established** TCP connections.
 
 ---
 
@@ -136,8 +147,7 @@
 `passwd` ➡️ Changes your own password (for the current user).
 
 `sudo passwd root` ➡️ Changes the 'root' account's password.
-	if (fd != 0)
-        close(fd);
+
 `sudo passwd other_username` ➡️ Changes another user's password.
 
 ---
