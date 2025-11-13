@@ -78,8 +78,8 @@
 
 `lvs` ➡️ Displays LVM Logical Volumes.
 
-`if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo "LVM active"; else echo "LVM not active"; fi` ➡️ Checks if LVM is active or not.
-or
+`if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo "LVM active"; else echo "LVM not active"; fi` ➡️ Checks if LVM is active or not.\
+or\
 `if lsblk | grep -q "lvm"; then
   lvmu="yes"
 else
