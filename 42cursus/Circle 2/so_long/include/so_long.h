@@ -25,14 +25,14 @@
 //#STRUCTURE#//
 typedef struct s_map
 {
-	int		**map;
+	int		**grid;
 	int		x;
 	int		y;
 }	t_map;
 
 typedef struct s_game
 {
-	struct s_map	**map;
+	t_map	map;
 }	t_game;
 
 //#PROTYPE#//
