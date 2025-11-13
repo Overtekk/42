@@ -119,8 +119,6 @@ Mot de passe = Un*Cl4vi1ER *(10 caractères / 1 lettre capitale, minuscule, digi
 `sudo crontab -u root -e`
 
 ### **Cron** =>
-* **Objectif :** Service qui exécute des tâches planifiées à des moments précis.
- 
-`You can rush whatever you want to make sure the script runs with dynamic values correctly`\
+* Service qui exécute des tâches planifiées à des moments précis.
 
 @reboot /home/roandrie/monitoring.sh
