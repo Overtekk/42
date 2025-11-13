@@ -121,4 +121,4 @@ Mot de passe = Un*Cl4vi1ER *(10 caractères / 1 lettre capitale, minuscule, digi
 ### **Cron** =>
 * Service qui exécute des tâches planifiées à des moments précis.
 
-@reboot /home/roandrie/monitoring.sh
+`@reboot /home/roandrie/monitoring.sh`
