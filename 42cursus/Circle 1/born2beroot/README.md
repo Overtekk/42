@@ -37,7 +37,7 @@
 ## Part 2
 `ls /usr/bin/*session`\
 
-Mot de passe = Un*Cl4vi1ER *(10 caractères / 1 lettre capitale, minuscule, digit / Pas de caractères répété 3 fois / Pas d'username / 7 caractères différents d'avant)*\
+Mot de passe = Un4cl*v1ER *(10 caractères / 1 lettre capitale, minuscule, digit / Pas de caractères répété 3 fois / Pas d'username / 7 caractères différents d'avant)*\
 
 `sudo ufw status`\
 `sudo service ufw status`\
