@@ -21,6 +21,7 @@
 * Facile pour les débutant.
 * Immense communauté et documentation.
 * Utilise `apt` et les fichiers `.deb`. Très facile à gérer.
+
 **CentOS**
 *  Plus utilisée dans les grandes entreprises, pour les admins système en entreprise.
 * Utilise `dnf` (ou `yum`) et les fichiers `.rpm`.
