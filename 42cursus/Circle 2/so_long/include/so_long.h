@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 20:54:03 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:28:40 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ typedef struct s_game
 
 //#PROTYPE#//
 int		init_map(char *argv, t_game *game);
+int		check_map(t_game *game);
 
-void	free_memory(t_game *game);
-
-void	print_map_debug(t_game *game);
 int		ft_print_error(char *err_msg);
+
+int		free_map_list(char *line, t_list *map_list);
+void	free_memory(t_game *game);
 
 #endif

@@ -6,11 +6,25 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 20:57:22 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 22:42:19 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	print_map_debug(t_game *game)
+{
+	int	y;
+
+	y = 0;
+	ft_printf("\nShowing Map\n");
+	while (game->map.grid[y] != NULL)
+	{
+		ft_putstr_fd(game->map.grid[y], 1);
+		ft_putchar_fd('\n', 1);
+		y++;
+	}
+}
 
 static	int	check_filename(char *file_name)
 {
@@ -40,10 +54,10 @@ int	main(int argc, char **argv)
 	if (game == NULL)
 	{
 		free_memory(game);
-		return (ft_print_error("Error\nMalloc failed.\n"));
+		return (ft_print_error("Error\nMalloc for game failed.\n"));
 	}
-	init_map(argv[1], game);
-	print_map_debug(game);
+	if (init_map(argv[1], game) == 0 && check_map(game) == 0)
+		print_map_debug(game);
 	free_memory(game);
 	return (0);
 }
