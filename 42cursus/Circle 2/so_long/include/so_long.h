@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 17:27:19 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 20:54:03 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # include "../minilibx-linux/mlx.h"
 
 //#LIBRARY#//
-# include "unistd.h"
-# include "fcntl.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 //#STRUCTURE#//
 typedef struct s_map
@@ -36,10 +37,11 @@ typedef struct s_game
 }	t_game;
 
 //#PROTYPE#//
-int		is_valid_map(char *argv);
+int		init_map(char *argv, t_game *game);
 
 void	free_memory(t_game *game);
 
+void	print_map_debug(t_game *game);
 int		ft_print_error(char *err_msg);
 
 #endif

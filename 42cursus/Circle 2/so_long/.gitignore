@@ -1,13 +1,23 @@
+# Editor
+.vscode/*
+*~
+\#*\#
+
 # Tester .c
 test.c
 a.out
 so_long
 
 # Library
+*.a
 libftprintf.a
 libft.a
 
-# Obj
-libft/obj
-/obj
+# Object
 *.o
+/obj
+libft/obj
+minilibx-linux/obj
+
+#Other
+.DS_STORE

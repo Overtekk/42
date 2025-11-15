@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 17:27:30 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 20:57:22 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,16 @@ int	main(int argc, char **argv)
 		if (argc < 2)
 			return (ft_print_error("Error\nPlease, but the map argument.\n"));
 	}
-	if (check_filename(argv[1] != 0);
+	if (check_filename(argv[1]) != 0)
 			return (1);
 	game = malloc(sizeof(t_game));
-	(if game == NULL)
+	if (game == NULL)
+	{
+		free_memory(game);
 		return (ft_print_error("Error\nMalloc failed.\n"));
+	}
 	init_map(argv[1], game);
+	print_map_debug(game);
 	free_memory(game);
 	return (0);
 }
