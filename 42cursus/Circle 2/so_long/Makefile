@@ -16,7 +16,8 @@ C_FILE			=	main.c				\
 					init_map.c			\
 					check_map.c			\
 					free_memory.c		\
-					ft_print_error.c
+					ft_print_error.c	\
+					debug.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
 OBJ_DIR			=	obj

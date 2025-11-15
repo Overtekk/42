@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:13:21 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 22:39:52 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:20:52 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static	int	convert_map(t_list *map_list, t_game *game)
 
 static	char	*get_line(char *line, int map_fd)
 {
-	char *line_copy;
+	char	*line_copy;
 
 	line = get_next_line(map_fd);
 	line_copy = ft_strtrim(line, "\n");
@@ -63,7 +63,7 @@ int	init_map(char *map_file, t_game *game)
 	{
 		line = get_line(line, map_fd);
 		if (line == NULL)
-			break;
+			break ;
 		new_node_map = ft_lstnew(line);
 		if (new_node_map == NULL)
 			return (free_map_list(line, map_list));
