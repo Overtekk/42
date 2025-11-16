@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:10:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 22:36:20 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:58:26 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	free_memory(t_game *game)
 	free (game);
 }
 
-int	free_map_list(char *line, t_list *map_list)
+void	free_map_list(char *line, t_list *map_list)
 {
 	free (line);
 	ft_lstclear(&map_list, free);
-	ft_print_error("Error\nMalloc failed while reading line.\n");
-	return (1);
+	ft_print_error(RED"Error\nMalloc failed while reading line.\n");
 }

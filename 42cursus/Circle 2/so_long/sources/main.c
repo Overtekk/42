@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 23:20:41 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:57:42 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	int	check_filename(char *file_name)
 	file_name = file_name + (ft_strlen(file_name) - 4);
 	if (ft_strncmp(file_name, ".ber", 4) != 0)
 	{
-		ft_print_error("Error\nWrong filename extension (need .ber)\n");
+		ft_print_error(RED"Error\nWrong filename extension (need .ber)\n");
 		return (1);
 	}
 	return (0);
@@ -30,9 +30,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		if (argc > 2)
-			return (ft_print_error("Error\nToo many arguments.\n"));
+			return (ft_print_error(RED"Error\nToo many arguments.\n"), 1);
 		if (argc < 2)
-			return (ft_print_error("Error\nPlease, but the map argument.\n"));
+			return (ft_print_error(RED"Error\nMissing map argument.\n"), 1);
 	}
 	if (check_filename(argv[1]) != 0)
 		return (1);
@@ -40,10 +40,11 @@ int	main(int argc, char **argv)
 	if (game == NULL)
 	{
 		free_memory(game);
-		return (ft_print_error("Error\nMalloc for game failed.\n"));
+		return (ft_print_error(RED"Error\nMalloc for game failed.\n"), 1);
 	}
-	if (init_map(argv[1], game) == 0 && check_map(game) == 0)
-		ft_printf("ok");
+	if (init_map(argv[1], game) == 0)
+		if (check_map(game) == 0)
+			ft_printf(GRN"\nMap ok\n");
 	free_memory(game);
 	return (0);
 }

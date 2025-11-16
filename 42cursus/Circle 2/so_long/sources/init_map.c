@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:13:21 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 23:20:52 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:58:17 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static	int	convert_map(t_list *map_list, t_game *game)
 	t_list	*temp;
 
 	if (map_list == NULL)
-		return (ft_print_error("Error\nMap is empty.\n"));
+		return (ft_print_error(RED"Error\nMap is empty.\n"), 1);
 	game->map.y = ft_lstsize(map_list);
 	game->map.x = ft_strlen(map_list->content);
 	game->map.grid = malloc(sizeof(char *) * (game->map.y + 1));
 	if (game->map.grid == NULL)
-		return (ft_print_error("Error\nMalloc failed for grid y.\n"));
+		return (ft_print_error(RED"Error\nMalloc failed for grid y.\n"), 1);
 	y = 0;
 	temp = map_list;
 	while (temp)
@@ -58,7 +58,7 @@ int	init_map(char *map_file, t_game *game)
 	map_list = NULL;
 	map_fd = open(map_file, O_RDONLY);
 	if (map_fd < 0)
-		return (ft_print_error("Error\nOpening map failed.\n"));
+		return (ft_print_error(RED"Error\nOpening map failed.\n"), 1);
 	while (1)
 	{
 		line = get_line(line, map_fd);
@@ -66,13 +66,12 @@ int	init_map(char *map_file, t_game *game)
 			break ;
 		new_node_map = ft_lstnew(line);
 		if (new_node_map == NULL)
-			return (free_map_list(line, map_list));
+			return (free_map_list(line, map_list), 1);
 		ft_lstadd_back(&map_list, new_node_map);
 	}
 	close (map_fd);
 	if (convert_map(map_list, game) != 0)
-		return (free_map_list(line, map_list));
+		return (free_map_list(line, map_list), 1);
 	ft_lstclear(&map_list, free);
-	check_map(game);
 	return (0);
 }
