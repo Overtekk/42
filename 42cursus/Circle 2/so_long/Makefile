@@ -1,6 +1,6 @@
 NAME			=	so_long
 CC				=	cc
-CFLAGS			=	-g3 -Wall -Werror -Wextra
+CFLAGS			=	-g -Wall -Werror -Wextra
 MLXFLAGS		=	-L $(MINILIBX_PATH) -lmlx -lXext -lX11
 
 LIBFT_PATH		=	./libft
