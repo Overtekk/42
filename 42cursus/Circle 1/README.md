@@ -5,9 +5,9 @@
 ✅ *Completed on **06/11/2025*** *no bonus*
 
 *Score*\
-![ft_printf](../../PiscineReloaded/assets/ft_printf.png)  
+![ft_printf](../../assets/Scores/42cursus/Circle%201/ft_printf.png)  
 *Moulinette*\
-![ft_printf_Moulinette](../../PiscineReloaded/assets/ft_printf_Moulinette.png)
+![ft_printf_Moulinette](../../assets/Scores/42cursus/Circle%201/ft_printf_Moulinette.png)
 
 ⭐
 #
@@ -23,9 +23,9 @@ Finally, I can use printf(), but first I need to code it! Overall, an easy proje
 ✅ *Completed on **12/11/2025*** *no bonus*
 
 *Score*\
-![ft_printf](../../PiscineReloaded/assets/get_next_line.png)  
+![ft_printf](../../assets/Scores/42cursus/Circle%201/get_next_line.png)  
 *Moulinette*\
-![ft_printf_Moulinette](../../PiscineReloaded/assets/get_next_line_moulinette.png)
+![ft_printf_Moulinette](../../assets/Scores/42cursus/Circle%201/get_next_line_Moulinette.png)
 
 ⭐
 #

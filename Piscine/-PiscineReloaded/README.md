@@ -1,0 +1,1 @@
+Exercises to brush up on your coding skills before the start of the new school year.

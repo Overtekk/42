@@ -5,9 +5,9 @@
 ✅ *Completed on **27/10/2025*** *with bonus*
 
 *Score*\
-![Libft](../../PiscineReloaded/assets/Libft.png)\
+![Libft](../../assets/Scores/42cursus/Circle%200/Libft.png)\
 *Moulinette*\
-![Libft_Moulinette](../../PiscineReloaded/assets/Libft_Moulinette.png)
+![Libft_Moulinette](../../assets/Scores/42cursus/Circle%200/Libft_Moulinette.png)
 
 ⭐
 #

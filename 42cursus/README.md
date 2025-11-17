@@ -15,3 +15,6 @@ In Progress (0/4) ⚠️
 ### --2025--  
 **October**: 96h\
 **November**: 00h
+
+# *Note*
+I don't really touch old project to keep them like they were. It's much nicer to see my progression rather than everything be perfect.
