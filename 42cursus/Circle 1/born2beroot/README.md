@@ -3,13 +3,13 @@
 ## Part 1
 `shasum machinename.vdi`\
 
-### **Comment fonctionne une VM / Utilité** => 
+### **Comment fonctionne une VM / Utilité** =>
 * **Utilité :** Simuler un ordinateur.
 * **Intérêt :**
     * **Isolation:** Ce qui se passe dans la VM n'affecte pas la machine hôte.
     * **Tests:** Permet de tester des configurations, des logiciels ou des OS sans risque.
     * **Portabilité:** On peut déplacer ou cloner la VM facilement.
-  
+
 ### **Choix de l'OS** =>
 * **Stabilité :** Réputé, idéal pour les serveurs.
 * **Communauté :** Énorme communauté et très large documentation.
@@ -61,13 +61,13 @@ Mot de passe = Un4cl*v1ER *(10 caractères / 1 lettre capitale, minuscule, digit
 
 ### Désavantages
 * Moins pratique parce qu'on a plus tendance à oublier des mots de passe.
-* Rien n'empêche l'utilisateur de l'écrire à un endroit évident (genre sur son bureau), ou qu'il se fasse hacker en cliquant sur le mail d'un prince indien. 
+* Rien n'empêche l'utilisateur de l'écrire à un endroit évident (genre sur son bureau), ou qu'il se fasse hacker en cliquant sur le mail d'un prince indien.
 * Demande une configuration manuelle (éditer les fichiers PAM), ce qui peut être intimidant pour un débutant.
 
 ## Part 4
 `hostname`\
 `sudo nano /etc/hostname`\
-`sudo nano /etc/hosts`\ 
+`sudo nano /etc/hosts`\
 `sudo reboot`\
 `lsblk`\
 
@@ -86,7 +86,7 @@ Mot de passe = Un4cl*v1ER *(10 caractères / 1 lettre capitale, minuscule, digit
 
 ### **Fonctionnement de Sudo** =>
 1.  **Sudo (Super User Do)** permet à un utilisateur autorisé d'exécuter une commande en tant qu'un autre utilisateur (par défaut `root`, donc administrateur).
-2.  
+2.
 `nano /etc/sudoers.d/sudo_config`\
 `cd /var/log/sudo`\
 `cat sudo_config`
@@ -98,7 +98,7 @@ Mot de passe = Un4cl*v1ER *(10 caractères / 1 lettre capitale, minuscule, digit
 ### **UFW (Uncomplicated Firewall)** =>
 * **Objectif :** Interface simplifiée pour `iptables` (le pare-feu complexe du noyau Linux).
 * **Rôle :** Filtrer le trafic réseau. Il protège les ports en définissant quelles connexions sont autorisées (entrantes, sortantes) et lesquelles sont bloquées.
-* 
+*
 `sudo ufw status numbered`\
 `sudo ufw allow 8080`\
 `sudo ufw delete num_rule`\
@@ -107,7 +107,7 @@ Mot de passe = Un4cl*v1ER *(10 caractères / 1 lettre capitale, minuscule, digit
 ## Part 6
 `which ssh`\
 `sudo service ssh status`\
-`sudo nano/etc/ssh/sshd_config'\
+`sudo nano/etc/ssh/sshd_config`\
 
 ### **SSH (Secure Shell)** =>
 * Protocole réseau chiffré.
