@@ -107,7 +107,7 @@ Mot de passe = Un4cl*v1ER *(10 caractères / 1 lettre capitale, minuscule, digit
 ## Part 6
 `which ssh`\
 `sudo service ssh status`\
-`sudo nano/etc/ssh/sshd_config`\
+`sudo nano/etc/ssh/sshd_config`
 
 ### **SSH (Secure Shell)** =>
 * Protocole réseau chiffré.
