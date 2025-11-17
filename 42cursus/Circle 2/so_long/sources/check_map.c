@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/17 16:22:18 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:50:00 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ static	void	check_elements(t_game *game, int y, int x)
 
 static	void	check_walls(t_game *game, int y, int x)
 {
-	if (game->map.grid[y][x] == 1)
-		ft_printf("oui\n");
+	if (y == 0 && game->map.grid[y][x] != '1')
+		game->map_error = 1;
+	else if (y == (game->map.y - 1) && game->map.grid[y][x] != '1')
+		game->map_error = 1;
 }
 
 int	check_map(t_game *game)
