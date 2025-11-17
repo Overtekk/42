@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:13:21 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/15 23:58:17 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:55:45 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ int	init_map(char *map_file, t_game *game)
 	t_list		*map_list;
 	t_list		*new_node_map;
 
+	line = NULL;
 	map_list = NULL;
 	map_fd = open(map_file, O_RDONLY);
-	if (map_fd < 0)
+	if (map_fd <= 0)
 		return (ft_print_error(RED"Error\nOpening map failed.\n"), 1);
 	while (1)
 	{

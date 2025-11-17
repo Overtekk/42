@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/16 00:02:08 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:48:53 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_game
 	int		character;
 	int		collectible;
 	int		exit;
+	int		map_error;
 }	t_game;
 
 //#PROTYPE#//
