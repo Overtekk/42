@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/17 12:50:32 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:41:13 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ static	void	check_elements(t_game *game, int y, int x)
 		game->collectible++;
 }
 
-static	void	check_walls(t_game *game)
+static	void	check_walls(t_game *game, int line_size)
 {
 	int	i;
 
 	i = 0;
-	if (game->map.grid[0][i] == 1)
-		i++;
-	else
-		game->map_error = 1;
+	while (line_size > 0)
+	{
+		if (game->map.grid[0][i] == 1)
+			i++;
+		else
+			game->map_error = 1;
+		line_size--;
+	}
 }
 
 int	check_map(t_game *game)
@@ -62,6 +66,8 @@ int	check_map(t_game *game)
 	}
 	if (game->character != 1 || game->exit != 1 || game->collectible == 0)
 		return (map_error(game), 1);
-	check_walls(game);
+	check_walls(game, x);
+	if (game->map_error == 1)
+		return (map_error(game), 1);
 	return (0);
 }
