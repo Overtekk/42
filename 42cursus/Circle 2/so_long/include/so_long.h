@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 10:25:37 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/18 12:08:07 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct s_map
 	int		error_west;
 }			t_map;
 
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}			t_point;
+
 typedef struct s_game
 {
 	t_map	map;
@@ -48,9 +54,10 @@ typedef struct s_game
 	int		exit;
 }			t_game;
 
-//#PROTYPE#//
+//#FUNCTIONS#//
 int		init_map(char *argv, t_game *game);
 int		check_map(t_game *game);
+int		is_valid_path(t_game *game);
 
 void	ft_print_error(char *err_msg);
 void	map_error(t_game *game);

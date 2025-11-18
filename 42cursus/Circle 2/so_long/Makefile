@@ -12,11 +12,12 @@ MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 INCLUDE			=	-I${LIBFT_PATH}/include -I$(MINILIBX_PATH) -I./include
 
 SRCS_DIR		=	sources
-C_FILE			=	main.c				\
-					init_map.c			\
-					check_map.c			\
-					free_memory.c		\
-					ft_print_error.c	\
+C_FILE			=	main.c					\
+					init_map.c				\
+					check_map.c				\
+					check_invalid_path.c	\
+					free_memory.c			\
+					ft_print_error.c		\
 					debug.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
