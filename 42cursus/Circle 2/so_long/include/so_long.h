@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 12:08:07 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:43:02 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@
 # include <fcntl.h>
 
 //#STRUCTURE#//
+
+typedef struct s_coord
+{
+	int	x;
+	int	y;
+}		t_coord;
+
 typedef struct s_map
 {
 	char	**grid;
@@ -38,13 +45,8 @@ typedef struct s_map
 	int		error_north;
 	int		error_east;
 	int		error_west;
+	t_coord	player;
 }			t_map;
-
-typedef struct s_point
-{
-	int		x;
-	int		y;
-}			t_point;
 
 typedef struct s_game
 {

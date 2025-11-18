@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 11:52:55 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:57:18 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ static	void	init_elements(t_game *game)
 static	void	check_elements(t_game *game, int y, int x)
 {
 	if (game->map.grid[y][x] == 'P')
+	{
 		game->character++;
+		game->map.player.x = x;
+		game->map.player.y = y;
+	}
 	if (game->map.grid[y][x] == 'E')
 		game->exit++;
 	if (game->map.grid[y][x] == 'C')
