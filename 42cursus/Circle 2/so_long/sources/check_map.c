@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/17 17:50:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/18 10:41:58 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static	void	init_elements(t_game *game)
 	game->character = 0;
 	game->exit = 0;
 	game->collectible = 0;
-	game->map_error = 0;
+	game->map.error_north = 0;
+	game->map.error_south = 0;
+	game->map.error_west = 0;
+	game->map.error_east = 0;
 }
 
 static	void	check_elements(t_game *game, int y, int x)
@@ -34,9 +37,24 @@ static	void	check_elements(t_game *game, int y, int x)
 static	void	check_walls(t_game *game, int y, int x)
 {
 	if (y == 0 && game->map.grid[y][x] != '1')
-		game->map_error = 1;
+		game->map.error_north = 1;
+	if (x == 0 && game->map.grid[y][x] != '1')
+		game->map.error_west = 1;
+	if (x == (game->map.x - 1) && game->map.grid[y][x] != '1')
+		game->map.error_east = 1;
 	else if (y == (game->map.y - 1) && game->map.grid[y][x] != '1')
-		game->map_error = 1;
+		game->map.error_south = 1;
+}
+
+static	int	check_errors(t_game *game)
+{
+	if (game->character != 1 || game->exit != 1 || game->collectible == 0)
+		return (map_error(game), 1);
+	if (game->map.error_north == 1 || game->map.error_south == 1)
+		return (map_error(game), 1);
+	if (game->map.error_west == 1 || game->map.error_east == 1)
+		return (map_error(game), 1);
+	return (0);
 }
 
 int	check_map(t_game *game)
@@ -58,9 +76,7 @@ int	check_map(t_game *game)
 		}
 		y++;
 	}
-	if (game->character != 1 || game->exit != 1 || game->collectible == 0)
-		return (map_error(game), 1);
-	if (game->map_error == 1)
-		return (map_error(game), 1);
+	if (check_errors(game) == 1)
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/17 13:15:30 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/18 10:40:02 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ static	int	check_filename(char *file_name)
 	{
 		ft_print_error(RED"Error\nWrong filename extension (need .ber)\n");
 		return (1);
+	}
+	return (0);
+}
+
+static	int	init(char **argv, t_game *game)
+{
+	if (init_map(argv[1], game) == 0)
+	{
+		if (check_map(game) == 0)
+		{
+			ft_printf(GRN"\nMap ok\n");
+			free_memory(game);
+		}
 	}
 	return (0);
 }
@@ -42,12 +55,7 @@ int	main(int argc, char **argv)
 		free_memory(game);
 		return (ft_print_error(RED"Error\nMalloc for game failed.\n"), 1);
 	}
-	if (init_map(argv[1], game) == 0)
-		if (check_map(game) == 0)
-		{
-			ft_printf(GRN"\nMap ok\n");
-			free_memory(game);
-		}
+	init(argv, game);
 	free (game);
 	return (0);
 }
