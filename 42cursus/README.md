@@ -5,7 +5,7 @@
 Completed (1/1) ✅
 
 ### [Circle 1](https://github.com/Overtekk/42/tree/main/42cursus/Circle%201) 
-In Progress (2/3) ⚠️
+In Progress (3/3) ✅
 
 ### [Circle 2](https://github.com/Overtekk/42/tree/main/42cursus/Circle%202)
 In Progress (0/4) ⚠️
