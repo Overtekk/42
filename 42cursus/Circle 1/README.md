@@ -33,3 +33,19 @@ Finally, I can use printf(), but first I need to code it! Overall, an easy proje
 #
 
 It was hard to figured out the algorithm first, but once I understood the project it was easy. Well, except for all the leaks and segfault that occured. This thing was tedious for that. I didn't do bonuses but I heard they are simple. But I need to advance (points are missing).
+
+# Born2beRoot
+###  *The wonderful world of virtualization.*
+
+
+✅ *Completed on **18/11/2025*** *4/5 bonus*
+
+*Score*\
+![ft_printf](../../assets/Scores/42cursus/Circle%201/born2beroot.png)  
+
+⭐
+#
+### Thoughts about this project
+#
+
+The introduction to the world of Virtual Machine. I already used VM but not for system administration side. It's easy with a guide (alone... well, good luck) but we need to understand what we do. I know a bit of that so no problem on that side. I'm not a fan of system administration so I don't know if I will love doing more of this, but perhaps? Trying to make a true server is maybe fun.
