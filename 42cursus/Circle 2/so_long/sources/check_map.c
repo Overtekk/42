@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 15:57:18 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:59:12 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_map(t_game *game)
 		}
 		y++;
 	}
-	if (check_errors(game) == 1 && is_valid_path(game) == 1)
+	if (check_errors(game) == 1 || is_valid_path(game) == 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/20 13:00:34 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/20 14:10:46 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,9 @@ typedef struct s_map
 	int		error_east;
 	int		error_west;
 	t_coord	player;
+	int		c_found;
+	int		exit_reached;
 }			t_map;
-
-typedef struct s_path_check
-{
-	int	c_found;
-	int	exit_reached;
-}		t_path_check;
 
 typedef struct s_game
 {
@@ -75,5 +71,6 @@ void	free_memory_path(char **tab);
 void	free_map_list(char *line, t_list *map_list);
 
 void	print_map_debug(t_game *game);
+void	print_map_copy_debug(char **tab);
 
 #endif
