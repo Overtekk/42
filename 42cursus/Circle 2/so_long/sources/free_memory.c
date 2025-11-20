@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:10:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 15:43:12 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:38:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	free_memory(t_game *game)
 		y++;
 	}
 	free (game->map.grid);
+}
+
+void	free_memory_path(char **tab, t_game *game)
+{
+	int	y;
+
+	y = 0;
+	while (tab[y] != NULL)
+	{
+		free(tab[y]);
+		y++;
+	}
+	free(tab);
 }
 
 void	free_map_list(char *line, t_list *map_list)
