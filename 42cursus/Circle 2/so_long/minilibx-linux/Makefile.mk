@@ -53,7 +53,7 @@ $(OBJ_DIR)/%.o: %.c
 
 $(NAME)	: $(OBJ)
 	@echo "$(BLUE)Compiled with $(GREEN)$(BOLD)$(CC) $(CFLAGS)$(RESET)"
-	ar -r $(NAME) $(OBJ)
+	@ar -r $(NAME) $(OBJ) 2>/dev/null
 	ranlib $(NAME)
 	@echo "$(MAGENTA)-----------------------------------------------"
 	@echo "	$(BLUE)$(BOLD)$(NAME)$(RESET)$(BLUE) NOW READY FOR USE!"

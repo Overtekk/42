@@ -43,3 +43,5 @@ clean:
 	rm -f $(NAME) $(OBJ) *~ core *.core
 
 re: clean all
+
+.SILENT:
