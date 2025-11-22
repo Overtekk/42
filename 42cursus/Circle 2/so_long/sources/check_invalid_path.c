@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 10:53:14 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/20 14:10:48 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/22 11:25:17 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ static	void	flood_fill(char **tab, int y, int x, t_game *game)
 		return ;
 	tab[y][x] = 'V';
 	if (tab[y][x] == 'C')
+	{
 		game->map.c_found++;
+		printf("collectible!\n");
+	}
 	if (tab[y][x] == 'E')
+	{
 		game->map.exit_reached = 1;
+		printf("exit!\n");
+	}
 	flood_fill(tab, y + 1, x, game);
 	flood_fill(tab, y - 1, x, game);
 	flood_fill(tab, y, x + 1, game);

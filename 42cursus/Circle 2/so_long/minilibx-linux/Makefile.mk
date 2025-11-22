@@ -1,9 +1,9 @@
 ##
 ## Makefile for MiniLibX in /home/boulon/work/c/raytraceur/minilibx
-## 
+##
 ## Made by Olivier Crouzet
 ## Login   <ol@epitech.net>
-## 
+##
 ## Started on  Tue Oct  5 15:56:43 2004 Olivier Crouzet
 ## Last update Tue May 15 15:41:20 2007 Olivier Crouzet
 ##
@@ -38,15 +38,27 @@ OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 CFLAGS	= -O3 -I$(INC)
 
+BLUE			:=	\033[96m
+GREEN			:=	\033[32m
+MAGENTA			:=	\033[38;5;206m
+BOLD			:=	\033[1m
+RESET			:=	\033[0m
+
 all	: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
+	@echo "$(BLUE)$(BOLD)[Compiled] ✅ $(GREEN)\"$^\"$(RESET)"
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
+	@echo "$(BLUE)Compiled with $(GREEN)$(BOLD)$(CC) $(CFLAGS)$(RESET)"
 	ar -r $(NAME) $(OBJ)
 	ranlib $(NAME)
+	@echo "$(MAGENTA)-----------------------------------------------"
+	@echo "	$(BLUE)$(BOLD)$(NAME)$(RESET)$(BLUE) NOW READY FOR USE!"
+	@echo "$(MAGENTA)-----------------------------------------------$(RESET)"
+
 	cp $(NAME) $(NAME_UNAME)
 
 check: all
@@ -62,5 +74,7 @@ show:
 
 clean	:
 	rm -rf $(OBJ_DIR)/ $(NAME) $(NAME_UNAME) *~ core *.core
+	@echo "$(BLUE) $(BOLD)$(NAME) $(RESET)$(BLUE)have been cleaned 🗑️$(RESET)"
 
 .PHONY: all check show clean
+.SILENT:
