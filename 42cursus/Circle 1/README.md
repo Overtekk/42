@@ -16,7 +16,7 @@
 
 Finally, I can use printf(), but first I need to code it! Overall, an easy project that I've done in like 3 days. It was nice to create a entire function, with a lot of files and not one unique piece of code. It's so satisfying to use my own printf and see it work. The bonuses are awful so I skipped it. Maybe one day I will do them?
 
-# get_next_line
+# [get_next_line](https://github.com/Overtekk/get_next_line/tree/main)
 ###  *Reading a line from a file descriptor is far too tedious.*
 
 
@@ -49,4 +49,5 @@ It was hard to figured out the algorithm first, but once I understood the projec
 #
 
 The introduction to the world of Virtual Machine. I already used VM but not for system administration side. It's easy with a guide (alone... well, good luck) but we need to understand what we do. I know a bit of that so no problem on that side. I'm not a fan of system administration so I don't know if I will love doing more of this, but perhaps? Trying to make a true server is maybe fun.
+
 
