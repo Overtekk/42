@@ -1,6 +1,6 @@
 ### My 42 School Curriculum starded from from 13/11/2025.
 
-| Circle | Project | Language | Grade | Date | Description |
+| Circle | Project | Language | Grade | Date Completed | Description |
 | :---: | :--- | :---: | :---: | :--- | :--- |
 | 0 | **[libft](https://github.com/Overtekk/libft)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/125%25-Success-2ea44f) | 27/10/2025 | My very first own library |
 | 1 | **[ft_printf](https://github.com/Overtekk/ft_printf)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) |  06/11/2025 | Because ft_putnbr() and ft_putstr() aren’t enough |
