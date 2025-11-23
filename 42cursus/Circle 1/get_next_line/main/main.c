@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:48:58 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/05 16:46:20 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/23 13:05:44 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
