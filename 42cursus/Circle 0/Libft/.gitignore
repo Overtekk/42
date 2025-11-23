@@ -1,0 +1,8 @@
+# libft
+libft.a
+
+# Obj files
+*.o
+
+# Executable
+a.out
