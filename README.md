@@ -25,7 +25,7 @@
 | **[C07](https://github.com/Overtekk/42/tree/main/Piscine/C07)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/30%25-Fail-red) |
 | **[Rush00](https://github.com/Overtekk/42/tree/main/Piscine/Rush00)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/0%25-Fail-red) |
 | **[Rush01](https://github.com/Overtekk/42/tree/main/Piscine/Rush01)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) |
-| **[Exam00](https://github.com/Overtekk/42/tree/main/Piscine/Exam00)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/50%25-Success-2ea44f) |
-| **[Exam01](https://github.com/Overtekk/42/tree/main/Piscine/Exam01)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/60%25-Success-2ea44f) |
-| **[Exam02](https://github.com/Overtekk/42/tree/main/Piscine/Exam02)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/10%25-Fail-red) |
-| **[ExamFinal](https://github.com/Overtekk/42/tree/main/Piscine/ExamFinal)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/66%25-Success-2ea44f) |
+| **Exam00** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/50%25-Success-2ea44f) |
+| **Exam01** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/60%25-Success-2ea44f) |
+| **Exam02** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/10%25-Fail-red) |
+| **ExamFinal** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/66%25-Success-2ea44f) |
