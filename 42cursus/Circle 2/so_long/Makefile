@@ -17,7 +17,7 @@ C_FILE			=	main.c					\
 					check_map.c				\
 					check_invalid_path.c	\
 					free_memory.c			\
-					ft_print_error.c		\
+					print_errors.c			\
 					debug.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/22 11:25:32 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:01:09 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		is_valid_path(t_game *game);
 
 void	ft_print_error(char *err_msg);
 void	map_error(t_game *game);
+void	path_error(t_game *game);
 
 void	free_memory(t_game *game);
 void	free_memory_path(char **tab);

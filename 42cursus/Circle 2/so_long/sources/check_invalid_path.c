@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 10:53:14 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/22 11:25:17 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:37:53 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static	void	flood_fill(char **tab, int y, int x, t_game *game)
 		return ;
 	if (tab[y][x] == '1' || tab[y][x] == 'V')
 		return ;
-	tab[y][x] = 'V';
 	if (tab[y][x] == 'C')
-	{
 		game->map.c_found++;
-		printf("collectible!\n");
-	}
 	if (tab[y][x] == 'E')
-	{
 		game->map.exit_reached = 1;
-		printf("exit!\n");
-	}
+	tab[y][x] = 'V';
 	flood_fill(tab, y + 1, x, game);
 	flood_fill(tab, y - 1, x, game);
 	flood_fill(tab, y, x + 1, game);
 	flood_fill(tab, y, x - 1, game);
+}
+
+static	void	init_elements(t_game *game)
+{
+	game->map.c_found = 0;
+	game->map.exit_reached = 0;
 }
 
 int	is_valid_path(t_game *game)
@@ -41,9 +41,8 @@ int	is_valid_path(t_game *game)
 	int		y;
 
 	y = 0;
-	game->map.c_found = 0;
-	game->map.exit_reached = 0;
-	tab = malloc(sizeof(char *) * (game->map.y));
+	init_elements(game);
+	tab = malloc(sizeof(char *) * (game->map.y + 1));
 	if (tab == NULL)
 		return (ft_print_error(RED"Error\nMalloc failed.\n"), free (tab), 1);
 	while (game->map.grid[y] != NULL)
@@ -56,12 +55,10 @@ int	is_valid_path(t_game *game)
 		}
 		y++;
 	}
-	tab[y++] = NULL;
+	tab[y] = NULL;
 	flood_fill(tab, game->map.player.y, game->map.player.x, game);
-	print_map_copy_debug(tab);
 	free_memory_path(tab);
-	ft_printf("\nCollectible = %d | Exit = %d\n", game->map.c_found, game->map.exit_reached);
 	if (game->map.c_found == game->collectible && game->map.exit_reached == 1)
 		return (0);
-	return (ft_print_error(RED"Error\nMap path is blocked\n"), 1);
+	return (path_error(game), 1);
 }

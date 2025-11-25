@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:23:01 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 15:43:10 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:02:16 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ void	map_error(t_game *game)
 		ft_print_error(RED"Error\nInvalid walls east.\n");
 	if (game->map.error_west == 1)
 		ft_print_error(RED"Error\nInvalid walls west.\n");
+}
+
+void	path_error(t_game *game)
+{
+	if (game->map.c_found != game->collectible)
+		ft_print_error(RED"Error\nCannot collect all collectibles.\n");
+	if (game->map.exit_reached != 1)
+		ft_print_error(RED"Error\nExit is blocked.\n");
 }

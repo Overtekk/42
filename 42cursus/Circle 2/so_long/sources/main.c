@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/18 10:40:02 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:47:57 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 static	int	check_filename(char *file_name)
 {
-	file_name = file_name + (ft_strlen(file_name) - 4);
+	size_t	len;
+
+	len = ft_strlen(file_name);
+	if (len <= 4)
+		return (ft_print_error(RED"Error\nFilename is too short\n"), 1);
+	file_name = file_name + (len - 4);
 	if (ft_strncmp(file_name, ".ber", 4) != 0)
 	{
 		ft_print_error(RED"Error\nWrong filename extension (need .ber)\n");
@@ -27,9 +32,10 @@ static	int	init(char **argv, t_game *game)
 {
 	if (init_map(argv[1], game) == 0)
 	{
+		print_map_debug(game);
 		if (check_map(game) == 0)
 		{
-			ft_printf(GRN"\nMap ok\n");
+			ft_printf(GRN"Map ok\n");
 			free_memory(game);
 		}
 	}
