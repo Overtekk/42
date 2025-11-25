@@ -1,46 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_memory.c                                      :+:      :+:    :+:   */
+/*   stop_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 16:10:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/25 21:02:54 by roandrie         ###   ########.fr       */
+/*   Created: 2025/11/25 21:03:14 by roandrie          #+#    #+#             */
+/*   Updated: 2025/11/25 21:21:07 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	free_memory(t_game *game)
+int	stop_game(t_game *game)
 {
-	int	y;
-
-	y = 0;
-	while (game->map.grid[y] != NULL)
-	{
-		free(game->map.grid[y]);
-		y++;
-	}
-	free (game->map.grid);
-}
-
-void	free_memory_path(char **tab)
-{
-	int	y;
-
-	y = 0;
-	while (tab[y] != NULL)
-	{
-		free(tab[y]);
-		y++;
-	}
-	free(tab);
-}
-
-void	free_map_list(char *line, t_list *map_list)
-{
-	free (line);
-	ft_lstclear(&map_list, free);
-	ft_print_error(RED"Error\nMalloc failed while reading line.\n");
+	//mlx_destroy_image(game->mlx, game->sprite.player);
+	mlx_destroy_window(game->mlx, game->screen);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	return (0);
 }

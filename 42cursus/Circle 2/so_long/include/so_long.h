@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/25 16:24:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:34:51 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <string.h>
 
 //#STRUCTURE#//
 
@@ -68,13 +69,20 @@ typedef struct s_game
 	int			character;
 	int			collectible;
 	int			exit;
-	t_sprite	img;
+	t_sprite	sprite;
+	void		*mlx;
+	void		*screen;
 }				t_game;
 
 //#FUNCTIONS#//
 int		init_map(char *argv, t_game *game);
 int		check_map(t_game *game);
 int		is_valid_path(t_game *game);
+
+int		init_game(t_game *game);
+void	print_img(t_game *game, void *img, int x, int y);
+void	set_img(t_game *game);
+int		stop_game(t_game *game);
 
 void	ft_print_error(char *err_msg);
 void	map_error(t_game *game);

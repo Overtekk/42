@@ -16,6 +16,8 @@ C_FILE			=	main.c					\
 					init_map.c				\
 					check_map.c				\
 					check_invalid_path.c	\
+					init_game.c				\
+					stop_game.c				\
 					free_memory.c			\
 					print_errors.c			\
 					debug.c
