@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/25 15:01:09 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:24:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@
 
 //#STRUCTURE#//
 
+typedef struct s_sprite
+{
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+	int		width;
+	int		height;
+}			t_sprite;
+
 typedef struct s_coord
 {
 	int	x;
@@ -53,11 +64,12 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	t_map	map;
-	int		character;
-	int		collectible;
-	int		exit;
-}			t_game;
+	t_map		map;
+	int			character;
+	int			collectible;
+	int			exit;
+	t_sprite	img;
+}				t_game;
 
 //#FUNCTIONS#//
 int		init_map(char *argv, t_game *game);
