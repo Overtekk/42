@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:19:32 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/26 14:18:24 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:09:14 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	init_game(t_game *game)
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		return (free (game->mlx), ft_print_error(RED"Error\nMLX connexion failed\n"), 1);
-	game->screen = mlx_new_window(game->mlx, 600, 600, "Hungry Koala");
+	game->screen = mlx_new_window(game->mlx, 64 * (game->map.x), 64 * (game->map.y), "Hungry Koala");
 	if (game->screen == NULL)
 	{
 		free (game->mlx);
