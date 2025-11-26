@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/26 11:55:53 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/26 14:18:21 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_sprite
 	void	*floor;
 	void	*player;
 	void	*collectible;
-	void	*exit;
+	void	*exit_close;
 	int		width;
 	int		height;
 }			t_sprite;

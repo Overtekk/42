@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:19:32 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/26 12:04:45 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/26 14:18:24 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_img(t_game *game)
 	game->sprite.player = mlx_xpm_file_to_image(game->mlx,
 			"textures/characters.xpm",
 			&(game->sprite.width), &(game->sprite.height));
-	game->sprite.exit = mlx_xpm_file_to_image(game->mlx,
+	game->sprite.exit_close = mlx_xpm_file_to_image(game->mlx,
 			"textures/exit_close.xpm",
 			&(game->sprite.width), &(game->sprite.height));
 	game->sprite.collectible = mlx_xpm_file_to_image(game->mlx,
@@ -50,7 +50,12 @@ void	draw_map(t_game *game)
 		while (x < game->map.x)
 		{
 			print_img(game, game->sprite.floor, x, y);
-			if (game)
+			if (game->map.grid[y][x] == '1')
+				print_img(game, game->sprite.wall, x, y);
+			if (game->map.grid[y][x] == 'C')
+				print_img(game, game->sprite.collectible, x, y);
+			if (game->map.grid[y][x] == 'E')
+				print_img(game, game->sprite.exit_close, x, y);
 			x++;
 		}
 		y++;
