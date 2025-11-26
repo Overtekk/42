@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/25 21:34:51 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:55:53 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,17 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+
+//#KEYS#//
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define K_S 115
+# define K_D 100
 
 //#STRUCTURE#//
-
 typedef struct s_sprite
 {
 	void	*wall;
@@ -82,6 +90,7 @@ int		is_valid_path(t_game *game);
 int		init_game(t_game *game);
 void	print_img(t_game *game, void *img, int x, int y);
 void	set_img(t_game *game);
+void	draw_map(t_game *game);
 int		stop_game(t_game *game);
 
 void	ft_print_error(char *err_msg);

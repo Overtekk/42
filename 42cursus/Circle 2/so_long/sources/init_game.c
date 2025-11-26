@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:19:32 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/25 21:39:12 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/26 12:04:45 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void	set_img(t_game *game)
 	game->sprite.exit = mlx_xpm_file_to_image(game->mlx,
 			"textures/exit_close.xpm",
 			&(game->sprite.width), &(game->sprite.height));
+	game->sprite.collectible = mlx_xpm_file_to_image(game->mlx,
+			"textures/collectible.xpm",
+			&(game->sprite.width), &(game->sprite.height));
+	game->sprite.floor = mlx_xpm_file_to_image(game->mlx,
+			"textures/floor.xpm",
+			&(game->sprite.width), &(game->sprite.height));
+	game->sprite.wall = mlx_xpm_file_to_image(game->mlx,
+			"textures/walls.xpm",
+			&(game->sprite.width), &(game->sprite.height));
 }
 
 void	print_img(t_game *game, void *img, int x, int y)
@@ -30,20 +39,46 @@ void	print_img(t_game *game, void *img, int x, int y)
 		game->sprite.width * x, game->sprite.height * y);
 }
 
+void	draw_map(t_game *game)
+{
+	int	x;
+	int	y;
+	y = 0;
+	while (y < game->map.y)
+	{
+		x = 0;
+		while (x < game->map.x)
+		{
+			print_img(game, game->sprite.floor, x, y);
+			if (game)
+			x++;
+		}
+		y++;
+	}
+}
+
+static	int	key_press(int keycode, t_game *game)
+{
+	if (keycode == KEY_ESC)
+		stop_game(game);
+	return (0);
+}
+
 int	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
-		return (ft_print_error(RED"Error\nMLX connexion failed\n"), 1);
-	game->screen = mlx_new_window(game->mlx, 1920, 1080, "Hungry Koala");
+		return (free (game->mlx), ft_print_error(RED"Error\nMLX connexion failed\n"), 1);
+	game->screen = mlx_new_window(game->mlx, 600, 600, "Hungry Koala");
 	if (game->screen == NULL)
 	{
 		free (game->mlx);
 		return (ft_print_error(RED"Error\nFailed to create window\n"), 1);
 	}
 	set_img(game);
+	draw_map(game);
 	print_img(game, game->sprite.player, game->map.player.x, game->map.player.y);
-	print_img(game, game->sprite.exit, game->map.player.x, game->map.player.y);
+	mlx_hook(game->screen, KeyPress, KeyPressMask, &key_press, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
@@ -51,14 +86,3 @@ int	init_game(t_game *game)
 // int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct_ptr)(), void *param);
 // if (game->sprite.player == NULL)
 //		return (stop_game(game), 1);
-
-/*
-static	void	draw_map(t_game *game)
-{
-	game->sprite.player = mlx_xpm_file_to_image(game->mlx,
-			"textures/characters.xpm",
-			&game->sprite.width, &game->sprite.height);
-	mlx_put_image_to_window(game->mlx, game->screen, game->sprite.player,
-		game->map.player.x, game->map.player.y);
-}
-*/
