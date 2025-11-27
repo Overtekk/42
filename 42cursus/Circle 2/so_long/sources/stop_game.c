@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 21:03:14 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 12:12:40 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:36:45 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_img_error(t_game *game)
 		mlx_destroy_image(game->mlx, game->sprite.player);
 	if (game->sprite.exit_close == NULL)
 		mlx_destroy_image(game->mlx, game->sprite.exit_close);
+	if (game->sprite.exit_open == NULL)
+		mlx_destroy_image(game->mlx, game->sprite.exit_open);
 	if (game->sprite.collectible == NULL)
 		mlx_destroy_image(game->mlx, game->sprite.collectible);
 	if (game->sprite.wall == NULL)
@@ -28,6 +30,7 @@ int	check_img_error(t_game *game)
 		return (0);
 	return (1);
 }
+// check avec 1 image NULL
 
 int	close_game(t_game *game)
 {
@@ -37,7 +40,18 @@ int	close_game(t_game *game)
 
 int	stop_game(t_game *game)
 {
-	check_img_error(game);
+	if (game->sprite.player != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.player);
+	if (game->sprite.exit_close != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.exit_close);
+	if (game->sprite.exit_open != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.exit_open);
+	if (game->sprite.collectible != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.collectible);
+	if (game->sprite.wall != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.wall);
+	if (game->sprite.floor != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.floor);
 	mlx_destroy_window(game->mlx, game->screen);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

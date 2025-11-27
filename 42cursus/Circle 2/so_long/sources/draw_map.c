@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:10:01 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 11:25:51 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:36:09 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	set_img(t_game *game)
 			&(game->sprite.width), &(game->sprite.height));
 	game->sprite.exit_close = mlx_xpm_file_to_image(game->mlx,
 			"textures/exit_close.xpm",
+			&(game->sprite.width), &(game->sprite.height));
+	game->sprite.exit_open = mlx_xpm_file_to_image(game->mlx,
+			"textures/exit_open.xpm",
 			&(game->sprite.width), &(game->sprite.height));
 	game->sprite.collectible = mlx_xpm_file_to_image(game->mlx,
 			"textures/collectible.xpm",

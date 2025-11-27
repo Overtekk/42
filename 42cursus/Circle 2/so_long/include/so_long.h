@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 12:12:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:55:09 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //#COLORS#//
 # define RED 	"\e[1;91m"
 # define GRN 	"\e[1;92m"
-# define B		"\e[1;94m"
+# define BLUE	"\e[1;94m"
 # define R		"\e[0m"
 
 	//#LIBRARY#//
@@ -35,6 +35,10 @@
 # define KEY_W			119
 # define KEY_A			97
 # define KEY_S			115
+# define KEY_UP  		65362
+# define KEY_LEFT  		65361
+# define KEY_RIGHT 		65363
+# define KEY_DOWN  		65364
 # define KEY_D			100
 
 	//#STRUCTURE#//
@@ -46,6 +50,7 @@ typedef struct s_sprite
 	void	*player;
 	void	*collectible;
 	void	*exit_close;
+	void	*exit_open;
 	int		width;
 	int		height;
 }			t_sprite;
@@ -70,6 +75,7 @@ typedef struct s_map
 	t_coord	player;
 	int		c_found;
 	int		exit_reached;
+	t_coord	exit;
 }			t_map;
 
 //Structure for the game//
@@ -82,6 +88,7 @@ typedef struct s_game
 	t_sprite	sprite;
 	void		*mlx;
 	void		*screen;
+	int			step;
 }				t_game;
 
 	//#FUNCTIONS#//
@@ -96,6 +103,8 @@ int		stop_game(t_game *game);
 int		close_game(t_game *game);
 
 int		key_press(int keycode, t_game *game);
+void	input(t_game *game, int keycode);
+void	player_movement(t_game *game, int y, int x);
 
 void	print_img(t_game *game, void *img, int x, int y);
 int		set_img(t_game *game);

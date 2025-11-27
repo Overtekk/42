@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:19:32 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 12:09:45 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:41:41 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	init_game(t_game *game)
 	if (set_img(game) == 1)
 		return (ft_print_error(RED"Error\nSprite hasn't loaded\n"), 1);
 	draw_map(game);
+	game->step = 0;
 	mlx_hook(game->screen, KeyPress, KeyPressMask, &key_press, game);
+	mlx_hook(game->screen, 17, 0, close_game, game);
 	mlx_loop(game->mlx);
 	stop_game(game);
 	return (0);
