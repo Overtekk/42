@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:17:56 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 16:59:15 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 17:33:22 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	input(t_game *game, int keycode)
 	else if (keycode == KEY_S || keycode == KEY_DOWN)
 		player_movement(game, game->map.player.y + 1, game->map.player.x);
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
-		player_movement(game, game->map.player.x - 1, game->map.player.x);
+		player_movement(game, game->map.player.y, game->map.player.x - 1);
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
-		player_movement(game, game->map.player.x + 1, game->map.player.x);
+		player_movement(game, game->map.player.y, game->map.player.x + 1);
 }
 
 static	int	is_movement_key(int keycode)

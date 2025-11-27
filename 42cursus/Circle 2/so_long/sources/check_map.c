@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 16:58:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 17:22:43 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static	void	check_elements(t_game *game, int y, int x)
 		game->map.player.y = y;
 	}
 	if (game->map.grid[y][x] == 'E')
+	{
 		game->exit++;
+		game->map.exit.x = x;
+		game->map.exit.y = y;
+	}
 	if (game->map.grid[y][x] == 'C')
 		game->collectible++;
 }

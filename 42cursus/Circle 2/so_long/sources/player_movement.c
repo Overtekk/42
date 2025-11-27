@@ -6,13 +6,13 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:09:18 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 16:55:27 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:09:32 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static	void	check_win_condition(t_game *game)
+static	int	check_win_condition(t_game *game)
 {
 	int	x;
 	int	y;
@@ -22,8 +22,9 @@ static	void	check_win_condition(t_game *game)
 	if (game->collectible == 0)
 	{
 		print_img(game, game->sprite.exit_open, x, y);
-		ft_printf(BLUE"GO FEED YOUR KID!\n"R);
+		return (1);
 	}
+	return (0);
 
 }
 
@@ -38,7 +39,7 @@ void	player_movement(t_game *game, int y, int x)
 	{
 		game->map.player.x = x;
 		game->map.player.y = y;
-		if (game->map.grid[y][x])
+		if (game->map.grid[y][x] == 'C')
 			game->collectible--;
 		print_img(game, game->sprite.player, game->map.player.x,
 		game->map.player.y);
@@ -46,5 +47,8 @@ void	player_movement(t_game *game, int y, int x)
 		old_y);
 		game->step++;
 	}
-	check_win_condition(game);
+	if (check_win_condition(game) == 1)
+	{
+
+	}
 }
