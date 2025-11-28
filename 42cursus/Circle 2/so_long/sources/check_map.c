@@ -6,22 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 21:41:26 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 17:22:43 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:22:39 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-static	void	init_elements(t_game *game)
-{
-	game->character = 0;
-	game->exit = 0;
-	game->collectible = 0;
-	game->map.error_north = 0;
-	game->map.error_south = 0;
-	game->map.error_west = 0;
-	game->map.error_east = 0;
-}
 
 static	void	check_elements(t_game *game, int y, int x)
 {
@@ -39,6 +28,12 @@ static	void	check_elements(t_game *game, int y, int x)
 	}
 	if (game->map.grid[y][x] == 'C')
 		game->collectible++;
+	if (game->map.grid[y][x] != '0' && game->map.grid[y][x] != 'E'
+		&& game->map.grid[y][x] != 'P' && game->map.grid[y][x] != 'C'
+		&& game->map.grid[y][x] != '1')
+	{
+		game->invalid_c = 1;
+	}
 }
 
 static	void	check_walls(t_game *game, int y, int x)
@@ -55,8 +50,11 @@ static	void	check_walls(t_game *game, int y, int x)
 
 static	int	check_errors(t_game *game)
 {
-	if (game->character != 1 || game->exit != 1 || game->collectible == 0)
+	if (game->character != 1 || game->exit != 1 || game->collectible == 0
+		|| game->invalid_c == 1)
+	{
 		return (map_error(game), 1);
+	}
 	if (game->map.error_north == 1 || game->map.error_south == 1
 		|| game->map.error_west == 1 || game->map.error_east == 1)
 		return (map_error(game), 1);

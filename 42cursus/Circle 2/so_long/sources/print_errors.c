@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:23:01 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 16:58:06 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:19:11 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	map_error(t_game *game)
 		ft_print_error(RED"Error\nToo many exit.\n");
 	else if (game->exit == 0)
 		ft_print_error(RED"Error\nMissing exit.\n");
+	if (game->invalid_c == 1)
+		ft_print_error(RED"Error\nInvalid character.\n");
 	if (game->collectible == 0)
 		ft_print_error(RED"Error\nMissing collectible.\n");
 	if (game->map.error_north == 1)

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 16:55:09 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:14:00 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_game
 	t_map		map;
 	int			character;
 	int			collectible;
+	int			invalid_c;
 	int			exit;
 	t_sprite	sprite;
 	void		*mlx;
@@ -96,6 +97,8 @@ typedef struct s_game
 int		init_map(char *argv, t_game *game);
 int		check_map(t_game *game);
 int		is_valid_path(t_game *game);
+
+void	init_elements(t_game *game);
 
 //Game relative functions//
 int		init_game(t_game *game);

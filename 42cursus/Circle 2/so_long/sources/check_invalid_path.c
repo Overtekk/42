@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 10:53:14 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/25 15:37:53 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:08:10 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,12 @@ static	void	flood_fill(char **tab, int y, int x, t_game *game)
 	flood_fill(tab, y, x - 1, game);
 }
 
-static	void	init_elements(t_game *game)
-{
-	game->map.c_found = 0;
-	game->map.exit_reached = 0;
-}
-
 int	is_valid_path(t_game *game)
 {
 	char	**tab;
 	int		y;
 
 	y = 0;
-	init_elements(game);
 	tab = malloc(sizeof(char *) * (game->map.y + 1));
 	if (tab == NULL)
 		return (ft_print_error(RED"Error\nMalloc failed.\n"), free (tab), 1);

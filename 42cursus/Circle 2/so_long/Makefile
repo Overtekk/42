@@ -17,6 +17,7 @@ C_FILE			=	main.c					\
 					check_map.c				\
 					check_invalid_path.c	\
 					init_game.c				\
+					init_elements.c			\
 					draw_map.c				\
 					key_gestion.c			\
 					player_movement.c		\

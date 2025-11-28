@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:17:56 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 11:42:46 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:31:11 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ static	int	is_movement_key(int keycode)
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-	{
-		ft_printf(RED"Game closed\n"R);
 		close_game(game);
-	}
 	if (is_movement_key(keycode) == 1)
 	{
 		input(game, keycode);
