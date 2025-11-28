@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:17:56 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 17:33:22 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 11:42:46 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	key_press(int keycode, t_game *game)
 	if (is_movement_key(keycode) == 1)
 	{
 		input(game, keycode);
-		ft_printf(BLUE"Step = %d\n", game->step, R);
 	}
 	return (0);
 }

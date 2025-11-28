@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:09:18 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 18:09:32 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:39:06 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,14 @@ static	int	check_win_condition(t_game *game)
 		return (1);
 	}
 	return (0);
+}
 
+static	void	collect(t_game *game, int y, int x)
+{
+	game->map.grid[y][x] = '0';
+	game->collectible--;
+	ft_printf(BLUE"Collectible %d/%d\n", game->collectible,
+		game->map.c_found, R);
 }
 
 void	player_movement(t_game *game, int y, int x)
@@ -35,20 +42,22 @@ void	player_movement(t_game *game, int y, int x)
 
 	old_x = game->map.player.x;
 	old_y = game->map.player.y;
-	if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'C')
+	if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'C'
+		|| game->map.grid[y][x] == 'P')
 	{
 		game->map.player.x = x;
 		game->map.player.y = y;
 		if (game->map.grid[y][x] == 'C')
-			game->collectible--;
+			collect(game, y, x);
 		print_img(game, game->sprite.player, game->map.player.x,
-		game->map.player.y);
-		print_img(game, game->sprite.floor, old_x,
-		old_y);
+			game->map.player.y);
+		print_img(game, game->sprite.floor, old_x, old_y);
 		game->step++;
+		ft_printf(BLUE"Step = %d\n", game->step, R);
 	}
 	if (check_win_condition(game) == 1)
 	{
-
+		if (game->map.grid[y][x] == 'E')
+			close_game(game);
 	}
 }
