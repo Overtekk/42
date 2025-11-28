@@ -21,6 +21,7 @@ C_FILE			=	main.c					\
 					draw_map.c				\
 					key_gestion.c			\
 					player_movement.c		\
+					victory.c				\
 					stop_game.c				\
 					free_memory.c			\
 					print_errors.c			\

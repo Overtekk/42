@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:09:18 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 12:39:06 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:23:17 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	player_movement(t_game *game, int y, int x)
 	if (check_win_condition(game) == 1)
 	{
 		if (game->map.grid[y][x] == 'E')
-			close_game(game);
+			winning(game);
 	}
 }

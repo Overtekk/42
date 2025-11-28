@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 09:49:47 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 14:14:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:28:18 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_sprite
 	void	*collectible;
 	void	*exit_close;
 	void	*exit_open;
+	void	*victory;
 	int		width;
 	int		height;
 }			t_sprite;
@@ -90,6 +91,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*screen;
 	int			step;
+	int			game_won;
 }				t_game;
 
 	//#FUNCTIONS#//
@@ -104,6 +106,7 @@ void	init_elements(t_game *game);
 int		init_game(t_game *game);
 int		stop_game(t_game *game);
 int		close_game(t_game *game);
+void	winning(t_game *game);
 
 int		key_press(int keycode, t_game *game);
 void	input(t_game *game, int keycode);
@@ -111,6 +114,7 @@ void	player_movement(t_game *game, int y, int x);
 
 void	print_img(t_game *game, void *img, int x, int y);
 int		set_img(t_game *game);
+int		set_img2(t_game *game);
 void	draw_map(t_game *game);
 int		check_img_error(t_game *game);
 

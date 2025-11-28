@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 13:46:00 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 14:14:20 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:28:35 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	init_elements(t_game *game)
 	game->map.c_found = 0;
 	game->map.exit_reached = 0;
 	game->step = 0;
+	game->game_won = 0;
 }

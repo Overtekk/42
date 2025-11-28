@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:10:01 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 14:37:36 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:42:39 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ int	set_img(t_game *game)
 	game->sprite.wall = mlx_xpm_file_to_image(game->mlx,
 			"textures/walls.xpm",
 			&(game->sprite.width), &(game->sprite.height));
+	set_img2(game);
+	return (0);
+}
+
+int	set_img2(t_game *game)
+{
+	int	height;
+	int width;
+
+	height = 300;
+	width = 300;
+	game->sprite.victory = mlx_xpm_file_to_image(game->mlx,
+		"textures/victory.xpm", &width, &height);
 	if (check_img_error(game) == 1)
 		return (stop_game(game), 1);
 	return (0);

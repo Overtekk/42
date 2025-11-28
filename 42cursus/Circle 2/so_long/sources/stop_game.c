@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 21:03:14 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 14:36:22 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:34:18 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	check_img_error(t_game *game)
 {
 	if (game->sprite.player == NULL || game->sprite.exit_close == NULL
 		|| game->sprite.exit_open == NULL || game->sprite.collectible == NULL
-		|| game->sprite.wall == NULL || game->sprite.floor == NULL)
+		|| game->sprite.wall == NULL || game->sprite.floor == NULL
+		|| game->sprite.victory == NULL)
 		return (1);
 	return (0);
 }
@@ -42,6 +43,8 @@ int	stop_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->sprite.wall);
 	if (game->sprite.floor != NULL)
 		mlx_destroy_image(game->mlx, game->sprite.floor);
+	if (game->sprite.victory != NULL)
+		mlx_destroy_image(game->mlx, game->sprite.victory);
 	mlx_destroy_window(game->mlx, game->screen);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

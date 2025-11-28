@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:17:56 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 14:31:11 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:33:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		close_game(game);
-	if (is_movement_key(keycode) == 1)
+	if (game->game_won == 0)
 	{
-		input(game, keycode);
+		if (is_movement_key(keycode) == 1)
+		{
+			input(game, keycode);
+		}
 	}
 	return (0);
 }
