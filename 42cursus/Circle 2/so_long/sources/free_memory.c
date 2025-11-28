@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:10:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/27 12:05:32 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:31:49 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_memory(t_game *game)
 {
 	int	y;
 
+	if (game->map.grid == NULL)
+		return ;
 	y = 0;
 	while (game->map.grid[y] != NULL)
 	{

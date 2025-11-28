@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 14:29:59 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:31:00 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	}
 	if (check_filename(argv[1]) != 0)
 		return (1);
-	game = malloc(sizeof(t_game));
+	game = ft_calloc(1, sizeof(t_game));
 	if (game == NULL)
 	{
 		free_memory(game);
