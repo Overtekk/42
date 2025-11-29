@@ -7,6 +7,7 @@
 | 1 | **[get_next_line](https://github.com/Overtekk/get_next_line)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/105%25-Success-2ea44f) |  12/11/2025 | Read a file descriptor and get each lines |
 | 1 | **Born2beroot** | ![Shell](https://img.shields.io/badge/Shell-90%25-4EAA25) ![Bash](https://img.shields.io/badge/Bash-10%25-lightgrey) | ![Score](https://img.shields.io/badge/120%25-Success-2ea44f) |  18/11/2025 | Introduction to Virtual Machine |
 | 2 | **[so_long](https://github.com/Overtekk/so_long)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/In_Progress-ce9603) | Not Completed | Create a tiny game using graphics programming |
+| 2 | **[push_swap](https://github.com/Overtekk/push_swap)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/In_Progress-ce9603) | Not Completed | Sort data using two stacks and limited set of instructions |
 
 ---
 
