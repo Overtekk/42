@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:02:11 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/24 10:15:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:37:24 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static int	ft_count_words(char const *s, char c)
 {

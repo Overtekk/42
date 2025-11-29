@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:59:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 14:25:47 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:40:16 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,14 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 //#FT_PRINTF#//
-int		ft_printf(const char *str, ...);
-int		ft_printchar(int c);
-int		ft_printstr(char *str);
-int		ft_printnumber(int n);
-int		ft_print_unsi_number(unsigned int n);
-int		ft_print_hexa(unsigned int n, char c);
-int		ft_print_ptr(void *ptr);
+int		ft_printf(int fd, const char *str, ...);
+int		ft_printchar(int fd, int c);
+int		ft_check_sign(int fd, char str, va_list args);
+int		ft_printstr(int fd, char *str);
+int		ft_printnumber(int fd, int n);
+int		ft_print_unsi_number(int fd, unsigned int n);
+int		ft_print_hexa(int fd, unsigned int n, char c);
+int		ft_print_ptr(int fd, void *ptr);
 
 //#GET_NEXT_LINE#//
 # ifndef BUFFER_SIZE

@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:57:52 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/20 16:11:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:36:14 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static char	*ft_reverse(char *temp, int len)
 {

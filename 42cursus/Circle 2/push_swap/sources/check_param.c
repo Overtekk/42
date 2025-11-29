@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   check_param.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/19 17:13:42 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 13:37:22 by roandrie         ###   ########.fr       */
+/*   Created: 2025/11/29 13:20:23 by roandrie          #+#    #+#             */
+/*   Updated: 2025/11/29 14:15:25 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/push_swap.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	convert_param(char **argv)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	return (0);
 }

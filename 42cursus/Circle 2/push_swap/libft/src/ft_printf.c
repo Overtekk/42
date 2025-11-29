@@ -6,35 +6,35 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:53:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 14:45:37 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:43:16 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_check_sign(char str, va_list args)
+int	ft_check_sign(int fd, char str, va_list args)
 {
 	int	print_chars;
 
 	print_chars = 0;
 	if (str == 'c')
-		print_chars += ft_printchar((va_arg(args, int)));
+		print_chars += ft_printchar(fd, (va_arg(args, int)));
 	else if (str == 's')
-		print_chars += ft_printstr((va_arg(args, char *)));
+		print_chars += ft_printstr(fd, (va_arg(args, char *)));
 	else if (str == 'd' || str == 'i')
-		print_chars += ft_printnumber((va_arg(args, int)));
+		print_chars += ft_printnumber(fd, (va_arg(args, int)));
 	else if (str == 'p')
-		print_chars += ft_print_ptr((va_arg(args, void *)));
+		print_chars += ft_print_ptr(fd, (va_arg(args, void *)));
 	else if (str == 'u')
-		print_chars += ft_print_unsi_number((va_arg(args, unsigned int)));
+		print_chars += ft_print_unsi_number(fd, (va_arg(args, unsigned int)));
 	else if (str == 'x' || str == 'X')
-		print_chars += ft_print_hexa((va_arg(args, unsigned int)), str);
+		print_chars += ft_print_hexa(fd, (va_arg(args, unsigned int)), str);
 	else if (str == '%')
-		print_chars += ft_printchar('%');
+		print_chars += ft_printchar(fd, '%');
 	return (print_chars);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(int fd, const char *str, ...)
 {
 	va_list		args;
 	int			count;
@@ -46,9 +46,9 @@ int	ft_printf(const char *str, ...)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
-			count += ft_check_sign(str[++i], args);
+			count += ft_check_sign(fd, str[++i], args);
 		else
-			count += ft_printchar(str[i]);
+			count += ft_printchar(fd, str[i]);
 		i++;
 	}
 	va_end (args);

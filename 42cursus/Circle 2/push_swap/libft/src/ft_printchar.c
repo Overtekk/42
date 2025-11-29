@@ -6,14 +6,14 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:01:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 14:43:03 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:37:06 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int	ft_printchar(int c)
+int	ft_printchar(int fd, int c)
 {
-	write(1, &c, 1);
+	write(fd, &c, 1);
 	return (1);
 }
