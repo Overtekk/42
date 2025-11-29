@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:10:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 16:31:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:50:22 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	int	init(char **argv, t_game *game)
 		print_map_debug(game);
 		if (check_map(game) == 0)
 		{
-			ft_printf(GRN"Map ok\n"R);
+			ft_printf(1, GRN"Map ok\n"R);
 			init_game(game);
 		}
 	}

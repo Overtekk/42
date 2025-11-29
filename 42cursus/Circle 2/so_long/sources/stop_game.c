@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 21:03:14 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 15:34:18 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:51:08 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_img_error(t_game *game)
 
 int	close_game(t_game *game)
 {
-	ft_printf(RED"Game closed\n"R);
+	ft_printf(1, RED"Game closed\n"R);
 	mlx_loop_end(game->mlx);
 	return (0);
 }

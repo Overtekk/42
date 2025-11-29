@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:09:18 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 12:14:40 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:50:50 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	void	collect(t_game *game, int y, int x)
 	game->map.grid[y][x] = '0';
 	game->collectible--;
 	total = game->map.c_found - game->collectible;
-	ft_printf(BLUE"Collectible %d/%d\n", total, game->map.c_found, R);
+	ft_printf(1, BLUE"Collectible %d/%d\n", total, game->map.c_found, R);
 }
 
 static	void	print_movement(t_game *game)
@@ -49,7 +49,7 @@ static	void	print_movement(t_game *game)
 	move_count = ft_itoa(game->step);
 	col_collected = ft_itoa(count);
 	total = ft_itoa(game->map.c_found);
-	ft_printf(BLUE"Step = %d\n", game->step, R);
+	ft_printf(1, BLUE"Step = %d\n", game->step, R);
 	print_img(game, game->sprite.wall, 0, 0);
 	print_img(game, game->sprite.wall, 1, 0);
 	mlx_string_put(game->mlx, game->screen, 20, 20, 0xFFFFFF, "Steps: ");
