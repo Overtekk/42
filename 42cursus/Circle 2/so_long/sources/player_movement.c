@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:09:18 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 09:32:21 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 12:14:40 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,38 @@ static	int	check_win_condition(t_game *game)
 
 static	void	collect(t_game *game, int y, int x)
 {
+	int	total;
+
 	game->map.grid[y][x] = '0';
 	game->collectible--;
-	ft_printf(BLUE"Collectible %d/%d\n", game->collectible,
-		game->map.c_found, R);
+	total = game->map.c_found - game->collectible;
+	ft_printf(BLUE"Collectible %d/%d\n", total, game->map.c_found, R);
 }
 
 static	void	print_movement(t_game *game)
 {
 	char	*move_count;
+	char	*col_collected;
+	char	*total;
+	int		count;
 
 	game->step++;
+	count = game->map.c_found - game->collectible;
 	move_count = ft_itoa(game->step);
+	col_collected = ft_itoa(count);
+	total = ft_itoa(game->map.c_found);
 	ft_printf(BLUE"Step = %d\n", game->step, R);
-	mlx_string_put(game->mlx, game->screen, 20, 20, 0x0066ff, "Steps: ");
-	mlx_string_put(game->mlx, game->screen, 70, 20, 0x0066ff, move_count);
-	free(move_count);
+	print_img(game, game->sprite.wall, 0, 0);
+	print_img(game, game->sprite.wall, 1, 0);
+	mlx_string_put(game->mlx, game->screen, 20, 20, 0xFFFFFF, "Steps: ");
+	mlx_string_put(game->mlx, game->screen, 70, 20, 0xFFFFFF, move_count);
+	mlx_string_put(game->mlx, game->screen, 20, 40, 0xFFFFFF, "Collectible: ");
+	mlx_string_put(game->mlx, game->screen, 95, 40, 0xFFFFFF, col_collected);
+	mlx_string_put(game->mlx, game->screen, 100, 40, 0xFFFFFF, "/");
+	mlx_string_put(game->mlx, game->screen, 105, 40, 0xFFFFFF, total);
+	free (move_count);
+	free (col_collected);
+	free (total);
 }
 
 void	player_movement(t_game *game, int y, int x)
