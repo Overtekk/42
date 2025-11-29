@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:08 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/21 10:34:06 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:37:35 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

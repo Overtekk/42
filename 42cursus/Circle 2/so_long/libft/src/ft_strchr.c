@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 09:16:06 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/17 14:13:55 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:37:26 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

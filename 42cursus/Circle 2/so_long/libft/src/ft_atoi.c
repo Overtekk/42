@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 10:28:06 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/27 14:23:52 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:35:55 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_atoi(const char *nptr)
 {

@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:28:24 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 14:42:56 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:43:08 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static	int	ft_puthexa_ptr_fd(unsigned long int n, int fd)
 {
@@ -25,21 +25,21 @@ static	int	ft_puthexa_ptr_fd(unsigned long int n, int fd)
 		i += ft_puthexa_ptr_fd(n % 16, fd);
 	}
 	else
-		i += ft_printchar(base[n]);
+		i += ft_printchar(fd, base[n]);
 	return (i);
 }
 
-int	ft_print_ptr(void *ptr)
+int	ft_print_ptr(int fd, void *ptr)
 {
 	int	count_number;
 
 	count_number = 0;
 	if (ptr == NULL)
 	{
-		ft_putstr_fd("(nil)", 1);
+		ft_putstr_fd("(nil)", fd);
 		return (5);
 	}
-	count_number += ft_printstr("0x");
-	count_number += ft_puthexa_ptr_fd((unsigned long int)ptr, 1);
+	count_number += ft_printstr(fd, "0x");
+	count_number += ft_puthexa_ptr_fd((unsigned long int)ptr, fd);
 	return (count_number);
 }

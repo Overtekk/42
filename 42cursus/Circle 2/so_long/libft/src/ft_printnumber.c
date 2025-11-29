@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 10:34:30 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/13 14:43:20 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:40:45 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static	int	ft_count_number(int n)
 {
@@ -32,11 +32,11 @@ static	int	ft_count_number(int n)
 	return (count_number);
 }
 
-int	ft_printnumber(int n)
+int	ft_printnumber(int fd, int n)
 {
 	int	count_number;
 
 	count_number = ft_count_number(n);
-	ft_putnbr_fd(n, 1);
+	ft_putnbr_fd(n, fd);
 	return (count_number);
 }

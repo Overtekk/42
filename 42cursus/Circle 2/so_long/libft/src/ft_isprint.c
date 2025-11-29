@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:30:53 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/14 16:55:07 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:36:12 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_isprint(int c)
 {
