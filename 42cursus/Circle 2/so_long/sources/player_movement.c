@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:09:18 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/28 15:23:17 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/29 09:32:21 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ static	void	collect(t_game *game, int y, int x)
 		game->map.c_found, R);
 }
 
+static	void	print_movement(t_game *game)
+{
+	char	*move_count;
+
+	game->step++;
+	move_count = ft_itoa(game->step);
+	ft_printf(BLUE"Step = %d\n", game->step, R);
+	mlx_string_put(game->mlx, game->screen, 20, 20, 0x0066ff, "Steps: ");
+	mlx_string_put(game->mlx, game->screen, 70, 20, 0x0066ff, move_count);
+	free(move_count);
+}
+
 void	player_movement(t_game *game, int y, int x)
 {
 	int	old_x;
@@ -52,8 +64,7 @@ void	player_movement(t_game *game, int y, int x)
 		print_img(game, game->sprite.player, game->map.player.x,
 			game->map.player.y);
 		print_img(game, game->sprite.floor, old_x, old_y);
-		game->step++;
-		ft_printf(BLUE"Step = %d\n", game->step, R);
+		print_movement(game);
 	}
 	if (check_win_condition(game) == 1)
 	{
