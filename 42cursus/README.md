@@ -14,5 +14,5 @@
 
 | Month | Hours | Status |
 | :--- | :---: | :---: |
-| **November** | 105h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **November** | 118h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
 | **October** | 96h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
