@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 15:27:55 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/05 17:01:40 by roandrie         ###   ########.fr       */
+/*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
+/*   Updated: 2025/11/29 12:39:24 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-# include "libft.h"
+//#COLORS#//
+# define RED 	"\e[1;91m"
+# define GRN 	"\e[1;92m"
+# define BLUE	"\e[1;94m"
+# define R		"\e[0m"
+
+	//#LIBRARY#//
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdarg.h>
-
-int		ft_printf(const char *str, ...);
-int		ft_printchar(int c);
-int		ft_printstr(char *str);
-int		ft_printnumber(int n);
-int		ft_print_unsi_number(unsigned int n);
-int		ft_print_hexa(unsigned int n, char c);
-int		ft_print_ptr(void *ptr);
+# include <fcntl.h>
+# include <stdio.h>
+# include <string.h>
+# include "../libft/include/libft.h"
 
 #endif

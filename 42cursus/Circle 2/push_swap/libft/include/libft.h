@@ -6,19 +6,22 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:59:34 by roandrie          #+#    #+#             */
-/*   Updated: 2025/10/25 20:35:56 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:25:47 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+//#LIBRARY#//
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>
+# include <stdarg.h>
 
+//#LIBFT#//
 typedef struct s_list
 {
 	void			*content;
@@ -68,5 +71,26 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//#FT_PRINTF#//
+int		ft_printf(const char *str, ...);
+int		ft_printchar(int c);
+int		ft_printstr(char *str);
+int		ft_printnumber(int n);
+int		ft_print_unsi_number(unsigned int n);
+int		ft_print_hexa(unsigned int n, char c);
+int		ft_print_ptr(void *ptr);
+
+//#GET_NEXT_LINE#//
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 3
+# endif
+
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

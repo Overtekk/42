@@ -6,12 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:26:13 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/05 16:44:04 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:45:20 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "../include/libft.h"
 
 static	char	*clear_buffer(char *large_buffer)
 {

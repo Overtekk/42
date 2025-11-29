@@ -6,11 +6,11 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:28:24 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/03 10:32:34 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:42:56 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static	int	ft_puthexa_ptr_fd(unsigned long int n, int fd)
 {

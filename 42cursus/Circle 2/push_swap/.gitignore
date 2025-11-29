@@ -1,0 +1,23 @@
+# Editor
+.vscode/*
+*~
+\#*\#
+
+# Tester .c
+test.c
+a.out
+push_swap
+
+# Library
+*.a
+libftprintf.a
+libft.a
+
+# Object
+*.o
+/obj
+libft/obj
+minilibx-linux/obj
+
+#Other
+.DS_STORE
