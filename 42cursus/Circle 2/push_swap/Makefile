@@ -8,7 +8,10 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 INCLUDE			=	-I${LIBFT_PATH}/include
 
 SRCS_DIR		=	sources
-C_FILE			=	main.c
+C_FILE			=	main.c					\
+					check_param.c			\
+					utils/list_management.c	\
+					utils/ft_error.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
 OBJ_DIR			=	obj
@@ -35,10 +38,7 @@ $(LIBFT):
 				@echo "$(MAGENTA)>>>$(RESET)"
 				@make -C $(LIBFT_PATH) --no-print-directory
 
-$(OBJ_DIR):
-				mkdir -p $(OBJ_DIR)
-
-$(NAME):		$(LIBFT) $(OBJ_DIR) $(OBJS)
+$(NAME):		$(LIBFT) $(OBJS)
 				@echo "$(BLUE)Compiled with $(GREEN)$(BOLD)$(CC) $(CFLAGS)$(RESET)"
 				$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 				@echo "$(MAGENTA)-----------------------------------------------$(RESET)"
@@ -46,7 +46,7 @@ $(NAME):		$(LIBFT) $(OBJ_DIR) $(OBJS)
 				@echo "$(MAGENTA)-----------------------------------------------$(RESET)"
 
 $(OBJ_DIR)/%.o:	$(SRCS_DIR)/%.c
-				mkdir -p $(OBJ_DIR)
+				mkdir -p $(dir $@)
 				@if [ ! -f $(OBJ_DIR)/.header_shown ]; then \
 				echo "$(MAGENTA)>>>$(RESET)"; \
 				echo "	$(BRED)STARTING CREATING $(BOLD)$(NAME)$(RESET)"; \

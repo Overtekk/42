@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/29 12:36:59 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 22:07:43 by roandrie         ###   ########.fr       */
+/*   Created: 2025/11/29 21:58:33 by roandrie          #+#    #+#             */
+/*   Updated: 2025/11/29 22:09:31 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_error(t_stack **stack_a, t_stack **stack_b)
 {
-	t_data	data;
-
-	if (argc < 2)
-		return (ft_error(NULL, NULL));
-	data.stack_a = NULL;
-	data.stack_b = NULL;
-	if (convert_argv(argc, argv, &data) == 1)
-		return (ft_error(&(data.stack_a), NULL));
-	ft_double_lstclear(&(data.stack_a));
-	ft_double_lstclear(&(data.stack_b));
-	return (0);
+	if (stack_a != NULL)
+		ft_double_lstclear(stack_a);
+	if (stack_b != NULL)
+		ft_double_lstclear(stack_b);
+	ft_putstr_fd(RED"Error\n"R, 2);
+	return (1);
 }

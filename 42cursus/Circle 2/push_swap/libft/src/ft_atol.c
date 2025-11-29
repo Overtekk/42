@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/29 12:36:59 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 22:07:43 by roandrie         ###   ########.fr       */
+/*   Created: 2025/11/29 21:26:29 by roandrie          #+#    #+#             */
+/*   Updated: 2025/11/29 21:28:08 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/libft.h"
 
-int	main(int argc, char **argv)
+long	ft_atol(const char *nptr)
 {
-	t_data	data;
+	int		sign;
+	long	result;
 
-	if (argc < 2)
-		return (ft_error(NULL, NULL));
-	data.stack_a = NULL;
-	data.stack_b = NULL;
-	if (convert_argv(argc, argv, &data) == 1)
-		return (ft_error(&(data.stack_a), NULL));
-	ft_double_lstclear(&(data.stack_a));
-	ft_double_lstclear(&(data.stack_b));
-	return (0);
+	sign = 1;
+	result = 0;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-')
+	{
+		sign = -1;
+		nptr++;
+	}
+	else if (*nptr == '+')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		result = (result * 10) + (*nptr - '0');
+		nptr++;
+	}
+	return (result * sign);
 }
