@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 18:16:11 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 21:43:02 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/01 13:16:55 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,11 @@ void	ft_double_lstclear(t_stack **stack)
 		current = tmp;
 	}
 	*stack = NULL;
+}
+
+int	ft_compare(int a, int b)
+{
+	if (a == b)
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 22:05:16 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:36:37 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data
 // ======================
 //	Check Parameters
 int		convert_argv(int argc, char **argv, t_data *data);
+int		ft_compare(int a, int b);
 
 // ======================
 //		PROTOTYPE UTILS
@@ -65,6 +66,6 @@ void	ft_double_lstadd_back(t_stack **lst, t_stack *node);
 void	ft_double_lstclear(t_stack **stack);
 
 //	Error gestion
-int	ft_error(t_stack **stack_a, t_stack **stack_b);
+int		ft_error(t_stack **stack_a, t_stack **stack_b);
 
 #endif
