@@ -10,6 +10,7 @@ INCLUDE			=	-I${LIBFT_PATH}/include
 SRCS_DIR		=	sources
 C_FILE			=	main.c					\
 					check_param.c			\
+					sort/swap.c				\
 					utils/list_management.c	\
 					utils/ft_error.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))

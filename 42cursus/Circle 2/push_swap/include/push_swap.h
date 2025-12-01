@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/01 14:36:37 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:28:00 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,18 @@ int		convert_argv(int argc, char **argv, t_data *data);
 int		ft_compare(int a, int b);
 
 // ======================
-//		PROTOTYPE UTILS
+//		UTILS
 // ======================
 //	Functions to create Doubly Linked List
 t_stack	*ft_double_lstnew(int content);
 void	ft_double_lstadd_back(t_stack **lst, t_stack *node);
 void	ft_double_lstclear(t_stack **stack);
+
+//		Sort option
+//	Swap
+void	sa(t_data *data);
+void	sb(t_data *data);
+void	ss(t_data *data);
 
 //	Error gestion
 int		ft_error(t_stack **stack_a, t_stack **stack_b);
