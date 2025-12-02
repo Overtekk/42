@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:36:59 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 11:18:12 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:11:12 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ int	main(int argc, char **argv)
 		return (ft_error(&(data.stack_a), NULL));
 	temp_print(&(data));
 	pb(&(data.stack_a), &(data.stack_b));
+	pb(&(data.stack_a), &(data.stack_b));
+	pb(&(data.stack_a), &(data.stack_b));
 	temp_print(&(data));
-	pa(&(data.stack_a), &(data.stack_b));
+	rra(&(data));
 	temp_print(&(data));
 	ft_double_lstclear(&(data.stack_a));
 	ft_double_lstclear(&(data.stack_b));

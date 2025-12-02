@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 18:16:11 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/01 13:16:55 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:24:49 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ void	ft_double_lstadd_back(t_stack **lst, t_stack *node)
 	tmp->next = node;
 }
 
+void	ft_double_lstadd_front(t_stack **lst, t_stack *node)
+{
+	if (node == NULL)
+		return ;
+	node->next = *lst;
+	if (*lst != NULL)
+		(*lst)->prev = node;
+	node->prev = NULL;
+	*lst = node;
+}
+
 void	ft_double_lstclear(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -63,9 +74,11 @@ void	ft_double_lstclear(t_stack **stack)
 	*stack = NULL;
 }
 
-int	ft_compare(int a, int b)
+t_stack	*get_last_node(t_stack *list)
 {
-	if (a == b)
-		return (1);
-	return (0);
+	if (list == NULL)
+		return (NULL);
+	while (list->next != NULL)
+		list = list->next;
+	return (list);
 }

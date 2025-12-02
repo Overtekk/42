@@ -6,13 +6,13 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:20:23 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/01 14:59:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:20:41 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static	int	check_double_number(t_data *data, int (*f)(int, int))
+static	int	check_double_number(t_data *data)
 {
 	t_stack	*curr;
 	t_stack	*checker;
@@ -23,7 +23,7 @@ static	int	check_double_number(t_data *data, int (*f)(int, int))
 		checker = curr->next;
 		while (checker != NULL)
 		{
-			if ((*f)(curr->number, checker->number) == 1)
+			if (curr->number == checker->number)
 				return (1);
 			checker = checker->next;
 		}
@@ -113,7 +113,7 @@ int	convert_argv(int argc, char **argv, t_data *data)
 		if (convert_string(argv[1], data) == 1)
 			return (1);
 	}
-	if (check_double_number(data, ft_compare) == 1)
+	if (check_double_number(data) == 1)
 		return (1);
 	return (0);
 }

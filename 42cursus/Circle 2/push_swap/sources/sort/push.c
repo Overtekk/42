@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:22:13 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 11:42:27 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:12:34 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,15 @@
 
 static	void	push(t_stack **dest, t_stack **src)
 {
-	t_stack	*tmp_src;
+	t_stack	*tmp;
 
 	if (src == NULL || *src == NULL)
 		return ;
-	tmp_src = *src;
+	tmp = *src;
 	*src = (*src)->next;
 	if (*src != NULL)
 		(*src)->prev = NULL;
-	if (*dest == NULL)
-	{
-		*dest = tmp_src;
-		(*dest)->prev = NULL;
-		(*dest)->next = NULL;
-	}
-	else
-	{
-		(*dest)->prev = tmp_src;
-		tmp_src->next = (*dest);
-		*dest = tmp_src;
-		(*dest)->prev = NULL;
-	}
+	ft_double_lstadd_front(dest, tmp);
 }
 
 void	pa(t_stack **a, t_stack **b)

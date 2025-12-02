@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 10:46:07 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:51:45 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,25 @@ typedef struct s_data
 }					t_data;
 
 // ======================
-//		PROTOTYPE
+//	GENERAL PROTOTYPE
 // ======================
 //	Check Parameters
 int		convert_argv(int argc, char **argv, t_data *data);
 int		ft_compare(int a, int b);
 
 // ======================
-//		UTILS
+//	PROTOTYPE UTILS
 // ======================
-//	Functions to create Doubly Linked List
+//	Functions for Doubly Linked List
 t_stack	*ft_double_lstnew(int content);
 void	ft_double_lstadd_back(t_stack **lst, t_stack *node);
+void	ft_double_lstadd_front(t_stack **lst, t_stack *node);
 void	ft_double_lstclear(t_stack **stack);
+t_stack	*get_last_node(t_stack *list);
 
-//		Sort option
+// ======================
+//	PROTOTYPE SORT OPTIONS
+// ======================
 //	Swap
 void	sa(t_data *data);
 void	sb(t_data *data);
@@ -73,6 +77,14 @@ void	ss(t_data *data);
 //	Push
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
+//	Rotate
+void	ra(t_data *data);
+void	rb(t_data *data);
+void	rr(t_data *data);
+//	Reverse Rotate
+void	rra(t_data *data);
+void	rrb(t_data *data);
+void	rrr(t_data *data);
 
 //	Error gestion
 int		ft_error(t_stack **stack_a, t_stack **stack_b);
