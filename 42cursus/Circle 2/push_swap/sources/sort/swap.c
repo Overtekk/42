@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:25:07 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/01 16:17:11 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 10:08:30 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,27 @@ static	void	swap(t_stack **stack)
 
 void	sa(t_data *data)
 {
+	if (data == NULL || data->stack_a == NULL || data->stack_a->next == NULL)
+		return ;
 	swap(&(data->stack_a));
-	ft_printf(1, "sa\n");
+	ft_printf(1, BLUE"sa\n"R);
 }
 
 void	sb(t_data *data)
 {
+	if (data == NULL || data->stack_b == NULL || data->stack_b->next == NULL)
+		return ;
 	swap(&(data->stack_b));
-	ft_printf(1, "sb\n");
+	ft_printf(1, BLUE"sb\n"R);
 }
 
 void	ss(t_data *data)
 {
-	sa(data);
-	sb(data);
-	ft_printf(1, "ss\n");
+	if (data == NULL)
+		return ;
+	if (data->stack_a != NULL && data->stack_a->next != NULL)
+		swap(&(data->stack_a));
+	if (data->stack_b != NULL && data->stack_b->next != NULL)
+		swap(&(data->stack_b));
+	ft_printf(1, BLUE"ss\n"R);
 }

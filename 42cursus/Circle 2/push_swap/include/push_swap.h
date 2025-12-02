@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/01 16:28:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 10:46:07 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void	ft_double_lstclear(t_stack **stack);
 void	sa(t_data *data);
 void	sb(t_data *data);
 void	ss(t_data *data);
+//	Push
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
 
 //	Error gestion
 int		ft_error(t_stack **stack_a, t_stack **stack_b);

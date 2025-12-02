@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:36:59 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/01 16:27:26 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 11:18:12 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,18 @@ static	void	temp_print(t_data *data)
 	t_stack	*curr;
 
 	curr = data->stack_a;
-	ft_printf(1, "\nListe:\n");
+	ft_printf(1, "\nStack A:\n");
 	while (curr != NULL)
 	{
 		ft_printf(1, "[%d] ", curr->number);
 		curr = curr->next;
 	}
-	curr = data->stack_a;
-	while (curr->next != NULL)
-		curr = curr->next;
-	ft_printf(1, "\nListe inverse:\n");
+	ft_printf(1, "\nStack B:\n");
+	curr = data->stack_b;
 	while (curr != NULL)
 	{
 		ft_printf(1, "[%d] ", curr->number);
-		curr = curr->prev;
+		curr = curr->next;
 	}
 	ft_printf(1, "\n");
 }
@@ -46,7 +44,9 @@ int	main(int argc, char **argv)
 	if (convert_argv(argc, argv, &data) == 1)
 		return (ft_error(&(data.stack_a), NULL));
 	temp_print(&(data));
-	ss(&(data));
+	pb(&(data.stack_a), &(data.stack_b));
+	temp_print(&(data));
+	pa(&(data.stack_a), &(data.stack_b));
 	temp_print(&(data));
 	ft_double_lstclear(&(data.stack_a));
 	ft_double_lstclear(&(data.stack_b));
