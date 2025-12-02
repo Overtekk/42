@@ -10,12 +10,15 @@ INCLUDE			=	-I${LIBFT_PATH}/include
 SRCS_DIR		=	sources
 C_FILE			=	main.c					\
 					check_param.c			\
+					check_order.c			\
+					init_index.c			\
 					sort/swap.c				\
 					sort/push.c				\
 					sort/rotate.c			\
 					sort/reverse_rotate.c	\
 					utils/list_management.c	\
-					utils/ft_error.c
+					utils/ft_error.c		\
+					utils/debug.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
 OBJ_DIR			=	obj

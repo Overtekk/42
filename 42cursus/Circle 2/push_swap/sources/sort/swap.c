@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:25:07 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 10:08:30 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:22:35 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	sa(t_data *data)
 	if (data == NULL || data->stack_a == NULL || data->stack_a->next == NULL)
 		return ;
 	swap(&(data->stack_a));
-	ft_printf(1, BLUE"sa\n"R);
+	ft_printf(1, "sa\n");
 }
 
 void	sb(t_data *data)
@@ -45,7 +45,7 @@ void	sb(t_data *data)
 	if (data == NULL || data->stack_b == NULL || data->stack_b->next == NULL)
 		return ;
 	swap(&(data->stack_b));
-	ft_printf(1, BLUE"sb\n"R);
+	ft_printf(1, "sb\n");
 }
 
 void	ss(t_data *data)
@@ -56,5 +56,5 @@ void	ss(t_data *data)
 		swap(&(data->stack_a));
 	if (data->stack_b != NULL && data->stack_b->next != NULL)
 		swap(&(data->stack_b));
-	ft_printf(1, BLUE"ss\n"R);
+	ft_printf(1, "ss\n");
 }

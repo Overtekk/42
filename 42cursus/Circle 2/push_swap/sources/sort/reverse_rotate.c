@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:49:51 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 15:16:16 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:22:16 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	rra(t_data *data)
 	if (data == NULL || data->stack_a == NULL || data->stack_a->next == NULL)
 		return ;
 	reverse_rotate(&(data->stack_a));
-	ft_printf(1, BLUE"rra\n"R);
+	ft_printf(1, "rra\n");
 }
 
 void	rrb(t_data *data)
@@ -38,7 +38,7 @@ void	rrb(t_data *data)
 	if (data == NULL || data->stack_b == NULL || data->stack_b->next == NULL)
 		return ;
 	reverse_rotate(&(data->stack_b));
-	ft_printf(1, BLUE"rrb\n"R);
+	ft_printf(1, "rrb\n");
 }
 
 void	rrr(t_data *data)
@@ -49,5 +49,5 @@ void	rrr(t_data *data)
 		reverse_rotate(&(data->stack_a));
 	if (data->stack_b != NULL && data->stack_b->next != NULL)
 		reverse_rotate(&(data->stack_b));
-	ft_printf(1, BLUE"rrr\n"R);
+	ft_printf(1, "rrr\n");
 }

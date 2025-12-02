@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   init_index.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 10:22:13 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 17:22:02 by roandrie         ###   ########.fr       */
+/*   Created: 2025/12/02 18:00:40 by roandrie          #+#    #+#             */
+/*   Updated: 2025/12/02 19:33:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../include/push_swap.h"
 
-static	void	push(t_stack **dest, t_stack **src)
+void	init_index(t_data *data)
 {
-	t_stack	*tmp;
+	t_stack	*curr;
+	t_stack	*cmp;
 
-	if (src == NULL || *src == NULL)
-		return ;
-	tmp = *src;
-	*src = (*src)->next;
-	if (*src != NULL)
-		(*src)->prev = NULL;
-	ft_double_lstadd_front(dest, tmp);
-}
-
-void	pa(t_stack **a, t_stack **b)
-{
-	push(a, b);
-	ft_printf(1, "pa\n");
-}
-
-void	pb(t_stack **a, t_stack **b)
-{
-	push(b, a);
-	ft_printf(1, "pb\n");
+	curr = data->stack_a;
+	while (curr != NULL)
+	{
+		cmp = data->stack_a;
+		while (cmp != NULL)
+		{
+			if (cmp->number < curr->number)
+				curr->index++;
+			cmp = cmp->next;
+		}
+		curr = curr->next;
+	}
 }

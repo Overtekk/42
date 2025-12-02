@@ -6,20 +6,12 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 14:51:45 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/02 19:02:23 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-// ======================
-//		COLORS
-// ======================
-# define RED 	"\e[1;91m"
-# define GRN 	"\e[1;92m"
-# define BLUE	"\e[1;94m"
-# define R		"\e[0m"
 
 // ======================
 //		LIBRARY
@@ -55,7 +47,10 @@ typedef struct s_data
 // ======================
 //	Check Parameters
 int		convert_argv(int argc, char **argv, t_data *data);
-int		ft_compare(int a, int b);
+//	Init Index
+void	init_index(t_data *data);
+//	Check if sort is needed
+int		is_already_sort(t_data *data);
 
 // ======================
 //	PROTOTYPE UTILS
@@ -66,6 +61,10 @@ void	ft_double_lstadd_back(t_stack **lst, t_stack *node);
 void	ft_double_lstadd_front(t_stack **lst, t_stack *node);
 void	ft_double_lstclear(t_stack **stack);
 t_stack	*get_last_node(t_stack *list);
+
+//	See stack if you need
+void	debug_print(t_data *data);
+void	debug_print_index(t_data *data);
 
 // ======================
 //	PROTOTYPE SORT OPTIONS
