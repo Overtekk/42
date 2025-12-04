@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 17:09:53 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:52:25 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	init_index(t_data *data);
 int		is_already_sort(t_data *data);
 //	Check what algo to use
 int		check_numbers(t_data *data);
+//	Sort all numbers
+void	sort_all(t_data *data);
 
 // ======================
 //	PROTOTYPE UTILS

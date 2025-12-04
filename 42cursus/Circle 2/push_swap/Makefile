@@ -13,6 +13,7 @@ C_FILE			=	main.c					\
 					check_order.c			\
 					init_index.c			\
 					sort_check.c			\
+					push_swap.c				\
 					sort/swap.c				\
 					sort/push.c				\
 					sort/rotate.c			\

@@ -6,13 +6,13 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:10:17 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 17:45:30 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:52:33 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static	int	sort_three(t_data *data)
+static	void	sort_three(t_data *data)
 {
 	t_stack	*big;
 
@@ -26,10 +26,9 @@ static	int	sort_three(t_data *data)
 	}
 	if (data->stack_a->index > data->stack_a->next->index)
 		sa(data);
-	return (0);
 }
 
-static	int	sort_four(t_data *data)
+static	void	sort_four(t_data *data)
 {
 	t_stack	*lowest_n;
 
@@ -41,7 +40,6 @@ static	int	sort_four(t_data *data)
 	pb(&(data->stack_a), &(data->stack_b));
 	sort_three(data);
 	pa(&(data->stack_a), &(data->stack_b));
-	return (0);
 }
 
 static	void	move_to_top(t_data *data, int target_index)
@@ -60,7 +58,7 @@ static	void	move_to_top(t_data *data, int target_index)
 	}
 }
 
-static	int	sort_five(t_data *data)
+static	void	sort_five(t_data *data)
 {
 	int		i;
 
@@ -74,7 +72,6 @@ static	int	sort_five(t_data *data)
 	sort_three(data);
 	pa(&(data->stack_a), &(data->stack_b));
 	pa(&(data->stack_a), &(data->stack_b));
-	return (0);
 }
 
 int	check_numbers(t_data *data)
@@ -94,5 +91,7 @@ int	check_numbers(t_data *data)
 		return (sort_four(data), 0);
 	else if (count == 5)
 		return (sort_five(data), 0);
+	else
+		return (sort_all(data), 0);
 	return (0);
 }
