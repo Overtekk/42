@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:10:17 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 16:11:00 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:45:30 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,48 @@ static	int	sort_three(t_data *data)
 static	int	sort_four(t_data *data)
 {
 	t_stack	*lowest_n;
-	int		i;
 
-	i = 2;
-	while (i > 0)
+	lowest_n = find_lowest_n(data->stack_a);
+	while (data->stack_a != lowest_n)
 	{
-		lowest_n = find_lowest_n(data->stack_a);
-		while (data->stack_a != lowest_n)
-			ra(data);
-		pb(&(data->stack_a), &(data->stack_b));
-		i--;
+		ra(data);
 	}
-	if (data->stack_a->index > data->stack_a->next->index)
-		sa(data);
-	if (data->stack_b->index < data->stack_b->next->index)
-		sb(data);
-	pa(&(data->stack_a), &(data->stack_b));
+	pb(&(data->stack_a), &(data->stack_b));
+	sort_three(data);
 	pa(&(data->stack_a), &(data->stack_b));
 	return (0);
 }
 
+static	void	move_to_top(t_data *data, int target_index)
+{
+	size_t	size;
+	size_t	pos;
+
+	while (data->stack_a->index != target_index)
+	{
+		size = list_size(data->stack_a);
+		pos = get_pos(data, target_index);
+		if (pos < (size / 2))
+			ra(data);
+		else
+			rra(data);
+	}
+}
+
 static	int	sort_five(t_data *data)
 {
-	t_stack	*biggest_n;
-	t_stack	*lowest_n;
+	int		i;
 
-	lowest_n = find_lowest_n(data->stack_a);
-	while (data->stack_a != lowest_n)
-		ra(data);
-	pb(&(data->stack_a), &(data->stack_b));
-	biggest_n = find_biggest_n(data->stack_a);
-	while (data->stack_a != biggest_n)
-		ra(data);
-	pb(&(data->stack_a), &(data->stack_b));
+	i = 0;
+	while (i < 2)
+	{
+		move_to_top(data, i);
+		pb(&(data->stack_a), &(data->stack_b));
+		i++;
+	}
+	sort_three(data);
+	pa(&(data->stack_a), &(data->stack_b));
+	pa(&(data->stack_a), &(data->stack_b));
 	return (0);
 }
 

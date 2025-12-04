@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 11:15:31 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:09:53 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_stack	*get_last_node(t_stack *list);
 size_t	list_size(t_stack *lst);
 t_stack	*find_lowest_n(t_stack *stack);
 t_stack	*find_biggest_n(t_stack *stack);
+int		get_pos(t_data *data, int target_index);
 
 //	See stack if you need
 void	debug_print(t_data *data);

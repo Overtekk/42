@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:17:57 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 11:15:49 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:09:02 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,21 @@ t_stack	*find_biggest_n(t_stack *stack)
 		stack = stack->next;
 	}
 	return (biggest);
+}
+
+int	get_pos(t_data *data, int target_index)
+{
+	t_stack	*curr;
+	int		i;
+
+	i = 0;
+	curr = data->stack_a;
+	while (curr != NULL)
+	{
+		if (curr->index == target_index)
+			return (i);
+		i++;
+		curr = curr->next;
+	}
+	return (-1);
 }
