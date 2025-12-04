@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:10:17 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 14:56:02 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:11:00 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 static	int	sort_three(t_data *data)
 {
-	t_stack	*lowest_n;
+	t_stack	*big;
 
-	lowest_n = find_lowest_n(data->stack_a);
-	while (data->stack_a != lowest_n)
+	big = find_biggest_n(data->stack_a);
+	if (data->stack_a->index == big->index)
 		ra(data);
-	pb(&(data->stack_a), &(data->stack_b));
+	else if (data->stack_a->next->index == big->index)
+	{
+		sa(data);
+		ra(data);
+	}
 	if (data->stack_a->index > data->stack_a->next->index)
 		sa(data);
-	pa(&(data->stack_a), &(data->stack_b));
 	return (0);
 }
 
@@ -49,6 +52,22 @@ static	int	sort_four(t_data *data)
 	return (0);
 }
 
+static	int	sort_five(t_data *data)
+{
+	t_stack	*biggest_n;
+	t_stack	*lowest_n;
+
+	lowest_n = find_lowest_n(data->stack_a);
+	while (data->stack_a != lowest_n)
+		ra(data);
+	pb(&(data->stack_a), &(data->stack_b));
+	biggest_n = find_biggest_n(data->stack_a);
+	while (data->stack_a != biggest_n)
+		ra(data);
+	pb(&(data->stack_a), &(data->stack_b));
+	return (0);
+}
+
 int	check_numbers(t_data *data)
 {
 	size_t	count;
@@ -64,5 +83,7 @@ int	check_numbers(t_data *data)
 		return (sort_three(data), 0);
 	else if (count == 4)
 		return (sort_four(data), 0);
+	else if (count == 5)
+		return (sort_five(data), 0);
 	return (0);
 }
