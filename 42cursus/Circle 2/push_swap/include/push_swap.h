@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 19:02:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/04 11:15:31 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int		convert_argv(int argc, char **argv, t_data *data);
 void	init_index(t_data *data);
 //	Check if sort is needed
 int		is_already_sort(t_data *data);
+//	Check what algo to use
+int		check_numbers(t_data *data);
 
 // ======================
 //	PROTOTYPE UTILS
@@ -61,10 +63,12 @@ void	ft_double_lstadd_back(t_stack **lst, t_stack *node);
 void	ft_double_lstadd_front(t_stack **lst, t_stack *node);
 void	ft_double_lstclear(t_stack **stack);
 t_stack	*get_last_node(t_stack *list);
+size_t	list_size(t_stack *lst);
+t_stack	*find_lowest_n(t_stack *stack);
+t_stack	*find_biggest_n(t_stack *stack);
 
 //	See stack if you need
 void	debug_print(t_data *data);
-void	debug_print_index(t_data *data);
 
 // ======================
 //	PROTOTYPE SORT OPTIONS

@@ -12,11 +12,13 @@ C_FILE			=	main.c					\
 					check_param.c			\
 					check_order.c			\
 					init_index.c			\
+					sort_check.c			\
 					sort/swap.c				\
 					sort/push.c				\
 					sort/rotate.c			\
 					sort/reverse_rotate.c	\
 					utils/list_management.c	\
+					utils/list_utils.c		\
 					utils/ft_error.c		\
 					utils/debug.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
