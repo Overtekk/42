@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:26:08 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 19:36:32 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/05 10:09:50 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void	debug_print(t_data *data)
 	print_stack_a(data);
 	ft_printf(1, "\n");
 	print_index_a(data);
-	print_index_b(data);
 	ft_printf(1, "\n");
 	print_stack_b(data);
+	ft_printf(1, "\n");
+	print_index_b(data);
 	ft_printf(1, "\n----------------------\n");
 }

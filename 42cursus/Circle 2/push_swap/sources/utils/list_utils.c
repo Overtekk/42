@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:17:57 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 17:09:02 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/05 12:54:27 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_stack	*find_biggest_n(t_stack *stack)
 	t_stack	*biggest;
 
 	biggest = stack;
+	if (stack == NULL)
+		return (NULL);
 	while (stack != NULL)
 	{
 		if (biggest->index < stack->index)

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 18:16:11 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/02 18:41:38 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/05 10:06:17 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ t_stack	*ft_double_lstnew(int content)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->index = 0;
+	new_node->push_cost = 0;
+	new_node->cheapest = 0;
+	new_node->middle = 0;
+	new_node->pos = 0;
+	new_node->target_node = NULL;
 	return (new_node);
 }
 

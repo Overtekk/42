@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:10:17 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 17:52:33 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/05 09:09:05 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static	void	sort_five(t_data *data)
 	pa(&(data->stack_a), &(data->stack_b));
 }
 
-int	check_numbers(t_data *data)
+int	check_sort_algo(t_data *data)
 {
 	size_t	count;
 

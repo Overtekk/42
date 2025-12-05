@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/04 17:52:25 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/05 10:22:18 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ typedef struct s_stack
 {
 	int				number;
 	int				index;
+	int				push_cost;
+	int				cheapest;
+	int				pos;
+	int				middle;
+	struct s_stack	*target_node;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -52,7 +57,7 @@ void	init_index(t_data *data);
 //	Check if sort is needed
 int		is_already_sort(t_data *data);
 //	Check what algo to use
-int		check_numbers(t_data *data);
+int		check_sort_algo(t_data *data);
 //	Sort all numbers
 void	sort_all(t_data *data);
 
@@ -69,6 +74,10 @@ size_t	list_size(t_stack *lst);
 t_stack	*find_lowest_n(t_stack *stack);
 t_stack	*find_biggest_n(t_stack *stack);
 int		get_pos(t_data *data, int target_index);
+void	set_target_node(t_data *data);
+
+// Utils functions for my algorithm
+void	set_current_position(t_stack *stack);
 
 //	See stack if you need
 void	debug_print(t_data *data);
