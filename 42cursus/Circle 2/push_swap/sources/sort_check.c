@@ -6,13 +6,13 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 09:10:17 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/05 09:09:05 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/06 18:34:17 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static	void	sort_three(t_data *data)
+void	sort_three(t_data *data)
 {
 	t_stack	*big;
 
@@ -44,14 +44,12 @@ static	void	sort_four(t_data *data)
 
 static	void	move_to_top(t_data *data, int target_index)
 {
-	size_t	size;
-	size_t	pos;
+	int	pos;
 
 	while (data->stack_a->index != target_index)
 	{
-		size = list_size(data->stack_a);
 		pos = get_pos(data, target_index);
-		if (pos < (size / 2))
+		if (pos < (data->size_a / 2))
 			ra(data);
 		else
 			rra(data);
@@ -76,20 +74,17 @@ static	void	sort_five(t_data *data)
 
 int	check_sort_algo(t_data *data)
 {
-	size_t	count;
-
-	count = list_size(data->stack_a);
-	if (count == 2)
+	if (data->size_a == 2)
 	{
 		if (data->stack_a->index > data->stack_a->next->index)
 			sa(data);
 		return (0);
 	}
-	else if (count == 3)
+	else if (data->size_a == 3)
 		return (sort_three(data), 0);
-	else if (count == 4)
+	else if (data->size_a == 4)
 		return (sort_four(data), 0);
-	else if (count == 5)
+	else if (data->size_a == 5)
 		return (sort_five(data), 0);
 	else
 		return (sort_all(data), 0);

@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/05 10:22:18 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/06 20:35:57 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 {
 	t_stack			*stack_a;
 	t_stack			*stack_b;
+	int				size_a;
+	int				size_b;
 }					t_data;
 
 // ======================
@@ -58,7 +60,8 @@ void	init_index(t_data *data);
 int		is_already_sort(t_data *data);
 //	Check what algo to use
 int		check_sort_algo(t_data *data);
-//	Sort all numbers
+//	Sort functions
+void	sort_three(t_data *data);
 void	sort_all(t_data *data);
 
 // ======================
@@ -74,10 +77,15 @@ size_t	list_size(t_stack *lst);
 t_stack	*find_lowest_n(t_stack *stack);
 t_stack	*find_biggest_n(t_stack *stack);
 int		get_pos(t_data *data, int target_index);
-void	set_target_node(t_data *data);
 
 // Utils functions for my algorithm
 void	set_current_position(t_stack *stack);
+void	set_target_node_a(t_data *data);
+void	set_target_node_b(t_data *data);
+void	push_cost(t_stack *a, int size_a, int size_b);
+t_stack	*find_cheapest(t_stack *stack);
+void	move_stack_a(t_data *data, t_stack *cheapest_node);
+void	move_stack_b(t_data *data, t_stack *cheapest_node);
 
 //	See stack if you need
 void	debug_print(t_data *data);
