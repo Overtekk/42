@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 21:26:29 by roandrie          #+#    #+#             */
-/*   Updated: 2025/11/29 21:28:08 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:58:41 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ long	ft_atol(const char *nptr)
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		result = (result * 10) + (*nptr - '0');
+		if (result > 2147483648)
+			return (result * sign);
 		nptr++;
 	}
 	return (result * sign);

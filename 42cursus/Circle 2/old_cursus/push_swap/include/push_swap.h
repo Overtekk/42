@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:37:22 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/06 20:35:57 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:41:59 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ void	rra(t_data *data);
 void	rrb(t_data *data);
 void	rrr(t_data *data);
 
-//	Error gestion
+//	Error and Memory Gestion
 int		ft_error(t_stack **stack_a, t_stack **stack_b);
+int		clear_data(t_stack **stack_a, t_stack **stack_b);
 
 #endif

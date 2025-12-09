@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:36:59 by roandrie          #+#    #+#             */
-/*   Updated: 2025/12/06 22:34:23 by roandrie         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:43:06 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	main(int argc, char **argv)
 	if (convert_argv(argc, argv, &data) == 1)
 		return (ft_error(&(data.stack_a), NULL));
 	if (is_already_sort(&(data)))
-		return (0);
+		return (clear_data(&(data.stack_a), &(data.stack_b)), 0);
 	init_index(&(data));
 	check_sort_algo(&(data));
-	ft_double_lstclear(&(data.stack_a));
-	ft_double_lstclear(&(data.stack_b));
+	clear_data(&(data.stack_a), &(data.stack_b));
 	return (0);
 }

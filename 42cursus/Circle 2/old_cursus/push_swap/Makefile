@@ -23,6 +23,7 @@ C_FILE			=	main.c					\
 					utils/algo_utils.c		\
 					utils/algo_move.c		\
 					utils/ft_error.c		\
+					utils/clear_memory.c	\
 					utils/debug.c
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(C_FILE))
 
