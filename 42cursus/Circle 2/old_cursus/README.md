@@ -5,7 +5,7 @@
 ✅ *Completed on **05/12/2025*** *1/3 bonus*
 
 *Score*\
-![so_long_score](../../assets/Scores/42cursus/Circle%202/so_long_score.png)  
+![so_long_score](../../../assets/Scores/42cursus/Circle%202/so_long_score.png)  
 
 ⭐
 #
