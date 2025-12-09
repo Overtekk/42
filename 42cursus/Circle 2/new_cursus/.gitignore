@@ -1,0 +1,14 @@
+# Editor
+.vscode/*
+*~
+\#*\#
+c_cpp_properties.json
+
+# Tester
+main.py
+
+# Python objects
+__pycache__
+
+#Other
+.DS_STORE
