@@ -1,7 +1,7 @@
-def ft_plot_area(
+def ft_plot_area():
+    length = input("Enter length: ")
+    width = input("Enter width: ")
 
+    area = int(length) + int(width)
 
-	python3 -m flake8
-
-)
-
+    print("Plot Area: ", area)
