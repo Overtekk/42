@@ -9,20 +9,19 @@ def ft_garden_security():
             print(f"{self.name} ({self.height}cm, {self.age} days)")
 
         def set_height(self, new_height):
-            self.height = new_height
-            if (self.height < 0):
+            if (new_height < 0):
                 print("Invalid operation attempted: height", end=" ")
                 print(f"{self.height} [REJECTED]")
-                self.height = temp_height
             else:
+                self.height = new_height
                 print(f"Height updated: {self.height}cm [OK]")
 
         def set_age(self, new_age):
-            self.age = new_age
-            if (self.age < 0):
+            if (new_age < 0):
                 print("Invalid operation attempted: age", end=" ")
                 print(f"{self.age} [REJECTED]")
             else:
+                self.age = new_age
                 print(f"Age updated: {self.age} days [OK]")
 
         def get_height(self):
@@ -43,12 +42,11 @@ def ft_garden_security():
             plant.get_age()
 
     plant = SecurePlant("Rose", 25, 30)
-    temp_height = plant.height
 
     print("=== Plant Security System ===")
     plant.check_security()
-    plant.set_height(-5)
-    plant.set_age(30)
+    plant.set_height(5)
+    plant.set_age(-30)
     print("\nCurrent plant:", end=" ")
     plant.get_info()
 
