@@ -14,4 +14,13 @@
 
 It's a very cool project I've wanted to do since I first heard about it. Creating your own game is always fun. I didn't really enjoy the MinilibX because there is no documentation, and it's a bit hard to handle. But the hardest part was using structures. I had never done that before, but I learned, and now I love structs. This is the way.
 
+# [push_swap](https://github.com/Overtekk/push_swap)
+###  *Because Swap_push doesn’t feel as natural*
 
+
+✅ *Completed on **13/12/2025*** *with no bonus*
+
+*Score*\
+![push_swap_score](../../../assets/Scores/42cursus/Circle%202/push_swap_score.png)
+
+⭐
