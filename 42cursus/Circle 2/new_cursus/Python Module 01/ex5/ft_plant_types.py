@@ -1,3 +1,6 @@
+import math
+
+
 def ft_plant_types():
     class Plant:
         def __init__(self, name, height, age):
@@ -6,7 +9,9 @@ def ft_plant_types():
             self.age = age
 
         def get_info(self):
-            return f"{self.name}: {self.height}cm, {self.age} days"
+            type_name = self.__class__.__name__
+            return (f"{self.name} ({type_name}): {self.height}cm, "
+                    f"{self.age} days")
 
     class Flower(Plant):
         def __init__(self, name, height, age, color, can_bloom):
@@ -30,16 +35,19 @@ def ft_plant_types():
             self.trunk_diameter = trunk_diameter
             self.produce_shade = produce_shade
 
-        def shade(self):
+        def shade_area(self):
             if self.produce_shade:
-                return f"{self.name} provides 78 square meters of shade"
+                radius = self.height / 100
+                area = math.pi * (radius ** 2)
+                return (f"{self.name} provides {int(area)} "
+                        "square meters of shade")
             else:
                 return f"{self.name} do not provides shade"
 
         def get_info(self):
             base_info = super().get_info()
             return (f"{base_info}, {self.trunk_diameter}cm diameter\n"
-                    f"{self.shade()}\n")
+                    f"{self.shade_area()}\n")
 
     class Vegetable(Plant):
         def __init__(self, name, height, age, harvest_season,
@@ -67,5 +75,5 @@ def ft_plant_types():
         print(f"{data.get_info()}")
 
 
-if __name__ == "__main__":
-    ft_plant_types()
+# if __name__ == "__main__":
+#     ft_plant_types()

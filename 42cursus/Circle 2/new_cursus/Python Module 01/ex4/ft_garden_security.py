@@ -51,5 +51,5 @@ def ft_garden_security():
     plant.get_info()
 
 
-if __name__ == "__main__":
-    ft_garden_security()
+# if __name__ == "__main__":
+#     ft_garden_security()
