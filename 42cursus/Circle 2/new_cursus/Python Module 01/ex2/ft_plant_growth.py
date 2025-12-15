@@ -1,37 +1,42 @@
 def ft_plant_growth():
     class Plant:
-        def __init__(self, name, height, days, current_day, total):
+        def __init__(self, name, height, days):
             self.name = name
             self.height = height
             self.days = days
-            self.current_day = current_day
-            self.total = total
 
         def get_info(self):
-            print(f"=== Day {self.current_day} ===")
             print(f"{self.name}: {self.height}cm, {self.days} days old")
-            if self.current_day > 1:
+            if curr_day > 1:
                 print(f"Growth this week: +{self.total}cm")
 
-        def current_days(self):
-            self.current_day += 6
+        def grow(self, growth_size):
+            self.total = growth_size
+            self.height += growth_size
+            # self.total = self.height
+            # self.height += curr_day
+            # self.total = self.height - self.total
 
-        def grow(self):
-            self.total = self.height
-            self.height += 6
-            self.total = self.height - self.total
+        def age(self, days_passed):
+            self.days += days_passed
 
-        def age(self):
-            self.days += 6
+    plant_one = Plant("Rose", 25, 30)
 
-    plant_one = Plant("Rose", 25, 30, 1, 0)
-
-    plant_one.get_info()
-    plant_one.current_days()
-    plant_one.grow()
-    plant_one.age()
+    curr_day = 1
+    print(f"=== Day {curr_day} ===")
     plant_one.get_info()
 
+    day_passed = 6
+    curr_day += day_passed
 
-# if __name__ == "__main__":
-#     ft_plant_growth()
+    print(f"=== Day {curr_day} ===")
+
+    growth_amount = 1 * day_passed
+
+    plant_one.grow(growth_amount)
+    plant_one.age(day_passed)
+    plant_one.get_info()
+
+
+if __name__ == "__main__":
+    ft_plant_growth()
