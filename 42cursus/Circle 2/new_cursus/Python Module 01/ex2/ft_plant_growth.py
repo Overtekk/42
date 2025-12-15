@@ -13,9 +13,6 @@ def ft_plant_growth():
         def grow(self, growth_size):
             self.total = growth_size
             self.height += growth_size
-            # self.total = self.height
-            # self.height += curr_day
-            # self.total = self.height - self.total
 
         def age(self, days_passed):
             self.days += days_passed
