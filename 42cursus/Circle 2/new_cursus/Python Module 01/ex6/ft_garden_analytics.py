@@ -1,138 +1,263 @@
+# +------------------------------------------------------------+
+# |                       Plant Class                          |
+# +------------------------------------------------------------+
+
 class Plant:
-    """Init Plant class"""
-    def __init__(self, name, height):
+    """Plant model with only NAME and HEIGHT"""
+
+    def __init__(self, *, name: str, height: int) -> None:
+        """Initialize a plant"""
         self.name = name
         self.height = height
 
-    """Display general information about plant"""
-    def get_info(self):
-        return (f"{self.name}: {self.height}cm")
+    def grow(self, *, increment: int = 1) -> None:
+        """Grow a plant by incrementing 1cm"""
+        self.height += increment
+
+    def get_info(self) -> str:
+        """Return a string about plant information"""
+        return f"{self.name}: {self.height}cm"
+
+
+# +------------------------------------------------------------+
+# |                     Flowering Plant Class                  |
+# +------------------------------------------------------------+
 
 
 class FloweringPlant(Plant):
-    """Init Flower class (child of Plant class)"""
-    def __init__(self, name, height, color, can_bloom):
-        super().__init__(name, height)
+    """Flowering plant with COLOR and bool: CAN_BLOOM"""
+
+    def __init__(self, *, name: str, height: int, color: str,
+                 can_bloom: bool) -> None:
+        """Initialize flowering flower"""
+        super().__init__(name=name, height=height)
         self.color = color
         self.can_bloom = can_bloom
 
-    """Check if Flower can bloom"""
-    def bloom(self):
+    def bloom(self) -> str:
+        """Check if a flower can bloom"""
         if self.can_bloom:
             return "(blooming)"
         else:
             return "(not blooming)"
 
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a string about plant information"""
         base_info = super().get_info()
         return (f"{base_info} {self.color} flowers {self.bloom()}")
 
 
+# +------------------------------------------------------------+
+# |                     Prize Flower Class                     |
+# +------------------------------------------------------------+
+
+
 class PrizeFlower(FloweringPlant):
-    """Init Prize for Flower class (child of Flower class)"""
-    def __init__(self, name, height, color, is_bloom, prize):
-        super().__init__(name, height, color, is_bloom)
+    """Prize flower with POINTS"""
+
+    def __init__(self, *, name: str, height: int, color: str,
+                 can_bloom: bool, prize: int) -> None:
+        """Initialize prize flower"""
+        super().__init__(name=name, height=height, color=color,
+                         can_bloom=can_bloom)
         self.prize = prize
 
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a string about plant information"""
         base_info = super().get_info()
-        return (f"{base_info}, Prize points: {self.prize}")
+        return f"{base_info}, Prize points: {self.prize}"
+
+
+# +------------------------------------------------------------+
+# |                     Garden Manager                         |
+# +------------------------------------------------------------+
 
 
 class GardenManager:
-    """Manage all garden information"""
-    class GardenStats:
-        """Calculate stats of each garden"""
-        def get_stats(self, data):
-            __count = 0
-            for data in data:
-                __count = __count + 1
-            print(f"\nPlant added: {__count}, Total growth:")
+    """Manage multiples gardens with nested statistics helper"""
 
-        def get_scores(self, owner_name):
-            print(f"Garden scores - {owner_name}: ")
-
-        """Calculate how many gardens"""
-        def get_total_gardens(self, data):
-            __count = 0
-            for data in data:
-                __count = __count + 1
-            print(f"Total gardens managed: {__count}")
-
-    """Init class GardenManager"""
-    def __init__(self):
-        self.stats = self.GardenStats()
+    def __init__(self) -> None:
+        """Initialize manager"""
         self.gardens = {}
 
-    """Create pre-constructed garden"""
-    @classmethod
-    def create_garden_network(cls):
-        new_manager = cls()
-        new_manager.gardens["Test"] = [
-            FloweringPlant("Carnation", 2, "pink", False),
-            FloweringPlant("Tulip", 2, "yellow", True)
-        ]
-        return new_manager
+    class GardenStats:
+        """Helper for stats of a garden (nested inside GardenManager)"""
 
-    """Check if a plant height is valid (non negative value)"""
+        def __init__(self, *, name: str) -> None:
+            """Initialize stats"""
+            self.name = name
+            self.plants = ()
+            self.added = 0
+            self.count_regular = 0
+            self.count_flowering = 0
+            self.count_prized = 0
+            self.total_growth = 0
+
+        def count_plant_type(self, *, plant_type: str) -> None:
+            """Count each plant type"""
+            if plant_type == "PrizeFlower":
+                self.count_prized += 1
+            if plant_type == "FloweringPlant":
+                self.count_flowering += 1
+            if plant_type == "Plant":
+                self.count_regular += 1
+
+    """Static Method because it's an utility function. It don't take self
+    (object), neither cls (class). It's here because we need it for
+    garden logical"""
     @staticmethod
-    def check_height(height):
+    def check_height(height: int) -> bool:
+        """Check if a plant height is valid (non negative value)"""
         if height >= 0:
             return True
         else:
             return False
 
-    """Water all plants of a specific garden"""
-    def water_plant(self, owner_name, plant_object):
-        __count = 1;
-        plant_object.height += __count
-        print(f"{plant_object.name} grew {__count}cm")
+    """Class Method, like a factory. It take the class (clc) and can create
+    a new GardenManager with cls()"""
+    @classmethod
+    def create_garden_network(cls):
+        """Create pre-constructed garden"""
+        manager = cls()
+        manager.gardens["Alice"] = []
+        manager.gardens["Bob"] = []
+        return manager
 
-    """Create new plant and add it to the owner garden"""
-    def add_plant(self, owner_name, plant_object):
-        if owner_name not in self.gardens:
-            self.gardens[owner_name] = []
-        if self.check_height(plant_object.height) is True:
-            self.gardens[owner_name].append(plant_object)
-            print(f"Added {plant_object.name} to {owner_name}'s garden")
+    def add_plant(self, *, garden_name: str, plant: Plant) -> None:
+        """Add plant to a specific garden ONLY if it's valid"""
+
+        if garden_name not in self.gardens:
+            print(f"Error: Garden {garden_name} not found")
+            return
+
+        if self.check_height(plant.height) is True:
+            print(f"Added {plant.name} to {garden_name}'s garden")
+            self.gardens[garden_name].append(plant)
         else:
-            print(f"Cannot add {plant_object.name} to {owner_name}'s "
-                  f"garden because height ({plant_object.height}) is invalid")
+            print(f"Cannot add {plant.name} to {garden_name}'s garden because"
+                  f" {plant.height} is invalid")
 
-    """Display garden information"""
-    def get_info(self, owner_name):
-        print(f"\n=== {owner_name}'s Garden Report ===\n")
-        print("Plants in garden:")
-        for plant in self.gardens[owner_name]:
-            print(f"- {plant.get_info()}")
-        self.stats.get_stats(self.gardens[owner_name])
-        self.stats.get_total_gardens(self.gardens)
-        self.stats.get_scores(owner_name)
+    def water_garden(self, *, garden_name: str) -> None:
+        """Add 1 to height of each plant of a specific garden"""
+        if garden_name not in self.gardens:
+            print(f"Error: Garden {garden_name} not found")
+            return
+
+        plant_list = self.gardens[garden_name]
+        print(f"\n{garden_name} is helping all plants grow...")
+        for plant in plant_list:
+            plant.height += 1
+            print(f"{plant.name} grew 1cm")
+
+    def get_garden_report(self, *, garden_name: str) -> str:
+        """Display summary of a specific garden"""
+
+        if garden_name not in self.gardens:
+            return "\nError: Garden not found"
+
+        header = f"\n=== {garden_name}'s Garden Report ==="
+
+        plant_list = self.gardens[garden_name]
+
+        if not plant_list:
+            return header + "\nNo plants in this garden"
+
+        stats = self.GardenStats(name=garden_name)
+
+        plant_info = "\nPlants in garden:"
+
+        height_ok = True
+        for plant in plant_list:
+            if not self.check_height(plant.height):
+                height_ok = False
+                break
+
+        for plant in plant_list:
+            plant_info += f"\n- {plant.get_info()}"
+            class_name = type(plant).__name__
+            stats.count_plant_type(plant_type=class_name)
+            stats.added += 1
+            stats.total_growth += 1
+
+        text = (
+            f"\nPlants added: {stats.added}, "
+            f"Total growth: {stats.total_growth}cm\n"
+            f"Plant types: {stats.count_regular} regular, "
+            f"{stats.count_flowering} flowering, "
+            f"{stats.count_prized} prize flowers\n\n"
+            f"Height validation test: {height_ok}"
+        )
+
+        return header + plant_info + "\n" + text
+
+    def get_network_summary(self) -> None:
+        """Display a summary of gardens network"""
+
+        print("Garden scores -", end=" ")
+
+        score = ""
+        is_first = True
+        for name in self.gardens:
+            curr_score = 0
+            for plant in self.gardens[name]:
+                curr_score += plant.height
+                class_name = plant.__class__.__name__
+                if class_name == "PrizeFlower":
+                    curr_score += plant.prize
+                if (class_name == "FloweringPlant" or class_name
+                        == "PrizeFlower"):
+                    if plant.can_bloom is True:
+                        curr_score += 15
+            entry = f"{name}: {curr_score}"
+            if is_first:
+                score = entry
+                is_first = False
+            else:
+                score += ", " + entry
+
+        count = 0
+        for i in self.gardens:
+            count += 1
+
+        print(f"{score}")
+        print(f"Total gardens managed: {count}")
 
 
-def ft_garden_analytics():
-    """Manage multiple gardens, analyze informations and print all
-    informations about them"""
+# +------------------------------------------------------------+
+# |                     Main Function                          |
+# +------------------------------------------------------------+
+
+
+def ft_garden_analytics() -> None:
+    """Main function for managing multiple gardens"""
 
     manager = GardenManager.create_garden_network()
+
     garden_list_alice = [
-        Plant("Oak Tree", 101),
-        FloweringPlant("Rose", 26, "red", True),
-        PrizeFlower("Sunflower", 51, "yellow", True, 10)
+        Plant(name="Oak Tree", height=100),
+        FloweringPlant(name="Rose", height=25, color="red", can_bloom=True),
+        PrizeFlower(name="Sunflower", height=50, color="yellow",
+                    can_bloom=True, prize=10)
     ]
-    # garden_list_romain = [
-    #     FloweringPlant("Amaryllis", 23, "white", False),
-    #     FloweringPlant("Chrysanthemum", 69, "pink", True)
-    # ]
+    garden_list_bob = [
+        FloweringPlant(name="Amaryllis", height=23, color="white",
+                       can_bloom=False),
+        FloweringPlant(name="Chrysanthemum", height=69, color="pink",
+                       can_bloom=False),
+        Plant(name="Cactus", height=-1)
+    ]
 
     print("=== Garden Management System Demo ===\n")
+
     for data in garden_list_alice:
-        manager.add_plant("Alice", data)
-    # for data in garden_list_romain:
-    #     manager.add_plant("Romain", data)
-    for data in garden_list_alice:
-        manager.water_plant("Alice", data)
-    manager.get_info("Alice")
+        manager.add_plant(garden_name="Alice", plant=data)
+    for data in garden_list_bob:
+        manager.add_plant(garden_name="Bob", plant=data)
+
+    manager.water_garden(garden_name="Alice")
+
+    print(manager.get_garden_report(garden_name="Alice"))
+    manager.get_network_summary()
 
 
 if __name__ == "__main__":
