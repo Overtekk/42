@@ -152,6 +152,7 @@ class GardenManager:
 
     def water_garden(self, *, garden_name: str) -> None:
         """Add 1 to height of each plant of a specific garden"""
+
         if garden_name not in self.gardens:
             print(f"Error: Garden {garden_name} not found")
             return
