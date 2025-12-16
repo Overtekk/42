@@ -2,48 +2,62 @@ import math
 
 
 class Plant:
-    """Init Plant class"""
-    def __init__(self, name, height, age):
+    """Plant model with only NAME, HEIGHT and AGE"""
+
+    def __init__(self, *, name: str, height: int, age: int) -> None:
+        """Initialize a plant"""
+
         self.name = name
         self.height = height
         self.age = age
 
-    """Display general information"""
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a string about plant information"""
+
         type_name = self.__class__.__name__
-        return (f"{self.name} ({type_name}): {self.height}cm, "
-                f"{self.age} days")
+        return f"{self.name} ({type_name}): {self.height}cm, {self.age} days"
 
 
 class Flower(Plant):
-    """Init Flower class (Plant child class)"""
-    def __init__(self, name, height, age, color, can_bloom):
-        super().__init__(name, height, age)
+    """Flowering plant with COLOR and bool: CAN_BLOOM"""
+
+    def __init__(self, *, name: str, height: int, age: int, color: str,
+                 can_bloom: bool) -> None:
+        """Initialize flowering flower"""
+
+        super().__init__(name=name, height=height, age=age)
         self.color = color
         self.can_bloom = can_bloom
 
-    """Check if Flower can bloom"""
-    def bloom(self):
+    def bloom(self) -> str:
+        """Check if a flower can bloom"""
+
         if self.can_bloom:
             return f"{self.name} is blooming beautifully!"
         else:
             return f"{self.name} is not blooming"
 
-    """Display information about Flower"""
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a string about plant information"""
+
         base_info = super().get_info()
-        return f"{base_info}, {self.color} color\n{self.bloom()}\n"
+        return f"{base_info}, {self.color} color\n{self.bloom()}"
 
 
 class Tree(Plant):
-    """Init Tree class (Plant child class)"""
-    def __init__(self, name, height, age, trunk_diameter, produce_shade):
-        super().__init__(name, height, age)
+    """Tree plant with TRUNK DIAMETER and PRODUCE SHADE"""
+
+    def __init__(self, *, name: str, height: int, age: int,
+                 trunk_diameter: int, produce_shade: bool) -> None:
+        """Initialize tree"""
+
+        super().__init__(name=name, height=height, age=age)
         self.trunk_diameter = trunk_diameter
         self.produce_shade = produce_shade
 
-    """Check if Tree produce shade and calcule the radius"""
-    def shade_area(self):
+    def shade_area(self) -> str:
+        """Check if Tree produce shade and calcule the radius"""
+
         if self.produce_shade:
             radius = self.height / 100
             area = math.pi * (radius ** 2)
@@ -52,42 +66,54 @@ class Tree(Plant):
         else:
             return f"{self.name} do not provides shade"
 
-    """Display information about Tree"""
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a string about plant information"""
+
         base_info = super().get_info()
         return (f"{base_info}, {self.trunk_diameter}cm diameter\n"
-                f"{self.shade_area()}\n")
+                f"{self.shade_area()}")
 
 
 class Vegetable(Plant):
-    """Init Vegetable class (Plant child class)"""
-    def __init__(self, name, height, age, harvest_season, nutritional_value):
-        super().__init__(name, height, age)
+    """Vegetable plant with HARVEST SEASON and NUTRITIONAL VALUE"""
+
+    def __init__(self, *, name: str, height: int, age: int,
+                 harvest_season: str, nutritional_value: str) -> None:
+        """Initialize vegetable"""
+
+        super().__init__(name=name, height=height, age=age)
         self.harvest_season = harvest_season
         self.nutrional_value = nutritional_value
 
-    """Display information about Vegetable"""
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a string about plant information"""
+
         base_info = super().get_info()
         return (f"{base_info}, {self.harvest_season} harvest\n"
-                f"{self.name} is rich in {self.nutrional_value}\n")
+                f"{self.name} is rich in {self.nutrional_value}")
 
 
 def ft_plant_types():
     """Create different type of plant"""
 
     garden_list = [
-        Flower("Rose", 25, 30, "red", True),
-        Flower("Poppy", 10, 14, "yellow", False),
-        Tree("Oak", 500, 1825, 50, True),
-        Tree("Birch", 350, 1296, 41, False),
-        Vegetable("Tomato", 80, 90, "summer", "vitamin C"),
-        Vegetable("Carrot", 5, 6, "summer", "vitamin A")
+        Flower(name="Rose", height=25, age=30, color="red", can_bloom=True),
+        Flower(name="Poppy", height=10, age=14, color="yellow",
+               can_bloom=False),
+        Tree(name="Oak", height=500, age=1825, trunk_diameter=50,
+             produce_shade=True),
+        Tree(name="Birch", height=350, age=1296, trunk_diameter=41,
+             produce_shade=False),
+        Vegetable(name="Tomato", height=80, age=90, harvest_season="summer",
+                  nutritional_value="vitamin C"),
+        Vegetable(name="Carrot", height=5, age=6, harvest_season="summer",
+                  nutritional_value="vitamin A")
     ]
 
     print("=== Garden Plant Types ===\n")
     for data in garden_list:
         print(f"{data.get_info()}")
+        print("")
 
 
 if __name__ == "__main__":

@@ -7,15 +7,18 @@ class Plant:
 
     def __init__(self, *, name: str, height: int) -> None:
         """Initialize a plant"""
+
         self.name = name
         self.height = height
 
     def grow(self, *, increment: int = 1) -> None:
         """Grow a plant by incrementing 1cm"""
+
         self.height += increment
 
     def get_info(self) -> str:
         """Return a string about plant information"""
+
         return f"{self.name}: {self.height}cm"
 
 
@@ -30,12 +33,14 @@ class FloweringPlant(Plant):
     def __init__(self, *, name: str, height: int, color: str,
                  can_bloom: bool) -> None:
         """Initialize flowering flower"""
+
         super().__init__(name=name, height=height)
         self.color = color
         self.can_bloom = can_bloom
 
     def bloom(self) -> str:
         """Check if a flower can bloom"""
+
         if self.can_bloom:
             return "(blooming)"
         else:
@@ -43,6 +48,7 @@ class FloweringPlant(Plant):
 
     def get_info(self) -> str:
         """Return a string about plant information"""
+
         base_info = super().get_info()
         return (f"{base_info} {self.color} flowers {self.bloom()}")
 
@@ -58,12 +64,14 @@ class PrizeFlower(FloweringPlant):
     def __init__(self, *, name: str, height: int, color: str,
                  can_bloom: bool, prize: int) -> None:
         """Initialize prize flower"""
+
         super().__init__(name=name, height=height, color=color,
                          can_bloom=can_bloom)
         self.prize = prize
 
     def get_info(self) -> str:
         """Return a string about plant information"""
+
         base_info = super().get_info()
         return f"{base_info}, Prize points: {self.prize}"
 
@@ -78,6 +86,7 @@ class GardenManager:
 
     def __init__(self) -> None:
         """Initialize manager"""
+
         self.gardens = {}
 
     class GardenStats:
@@ -85,6 +94,7 @@ class GardenManager:
 
         def __init__(self, *, name: str) -> None:
             """Initialize stats"""
+
             self.name = name
             self.plants = ()
             self.added = 0
@@ -95,6 +105,7 @@ class GardenManager:
 
         def count_plant_type(self, *, plant_type: str) -> None:
             """Count each plant type"""
+
             if plant_type == "PrizeFlower":
                 self.count_prized += 1
             if plant_type == "FloweringPlant":
@@ -108,6 +119,7 @@ class GardenManager:
     @staticmethod
     def check_height(height: int) -> bool:
         """Check if a plant height is valid (non negative value)"""
+
         if height >= 0:
             return True
         else:
@@ -118,6 +130,7 @@ class GardenManager:
     @classmethod
     def create_garden_network(cls):
         """Create pre-constructed garden"""
+
         manager = cls()
         manager.gardens["Alice"] = []
         manager.gardens["Bob"] = []
