@@ -34,7 +34,7 @@ def test_temperature_input() -> None:
 
     for data in input:
         print(f"Testing temperature: {data}")
-        check_temperature(data)
+        check_temperature(temp_str=data)
         print("")
 
     print("All tests completed - program didn't crash!")
