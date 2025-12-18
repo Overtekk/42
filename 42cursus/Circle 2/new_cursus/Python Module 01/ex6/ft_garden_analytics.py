@@ -11,11 +11,6 @@ class Plant:
         self.name = name
         self.height = height
 
-    def grow(self, *, increment: int = 1) -> None:
-        """Grow a plant by incrementing 1cm"""
-
-        self.height += increment
-
     def get_info(self) -> str:
         """Return a string about plant information"""
 
@@ -157,11 +152,13 @@ class GardenManager:
             print(f"Error: Garden {garden_name} not found")
             return
 
+        value = 1
+
         plant_list = self.gardens[garden_name]
         print(f"\n{garden_name} is helping all plants grow...")
         for plant in plant_list:
-            plant.height += 1
-            print(f"{plant.name} grew 1cm")
+            plant.height += value
+            print(f"{plant.name} grew {value}cm")
 
     def get_garden_report(self, *, garden_name: str) -> str:
         """Display summary of a specific garden"""
