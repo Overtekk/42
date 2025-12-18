@@ -9,5 +9,10 @@
 # [Python Module 01](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2001)
 ###  *Object-Oriented Garden Systems*
 
+✅ *Completed on **18/12/2025***
+
+*Score*\
+![python_module0_score](../../../assets/Scores/42cursus/Circle%202/python_module1_score.png)
+
 # [Python Module 02](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2002)
 ###  *Data Engineering for Smart Agriculture*
