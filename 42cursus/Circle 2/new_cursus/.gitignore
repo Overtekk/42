@@ -6,6 +6,10 @@ c_cpp_properties.json
 
 # Tester
 main.py
+advanced_data_helper.py
+data_generator.py
+exercise_0_help.py
+exercise_1_helper.py
 
 # Python objects
 __pycache__

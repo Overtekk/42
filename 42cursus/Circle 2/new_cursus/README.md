@@ -16,3 +16,6 @@
 
 # [Python Module 02](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2002)
 ###  *Data Engineering for Smart Agriculture*
+
+# [Python Module 03](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2003)
+###  *Mastering Python Collections for Data Engineering*
