@@ -1,7 +1,5 @@
 def check_temperature(temp_str: str) -> int | None:
-    """Check the temperature and return it if it's valid.
-    We put "#noqa: E722" after "except", since we can't use specific error
-    type (not allowed on the subject), and flake8 doesn't like empty except"""
+    """Check the temperature and return it if it's valid."""
 
     try:
         temperature = int(temp_str)
