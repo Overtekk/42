@@ -38,7 +38,7 @@ def ft_custom_errors() -> None:
 
     # === Test 1: PlantError ===
     status = "wilting"
-    print("\nTestint PlantError...")
+    print("\nTesting PlantError...")
     try:
         if status == "wilting":
             raise PlantError("The tomato plant is wilting!")
