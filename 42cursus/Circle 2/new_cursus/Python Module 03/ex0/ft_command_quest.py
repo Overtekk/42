@@ -2,7 +2,18 @@ import sys
 
 
 def ft_command_quest() -> None:
-    """Use arguments send by user to demonstrate how to use them"""
+    """Processes and displays command line arguments provided by the user.
+
+    === Arguments ===
+        - No arguments requiered
+
+    === Returns ===
+        - None: This function only prints to stdout
+
+    This function reads directly from 'sys.argv' to demonstre how argument
+    works. There is 3 examples based on the number of arguments: no
+    arguments, a single argument, or multiple arguments.
+    """
 
     print("=== Command Quest ===")
 
@@ -29,8 +40,6 @@ def ft_command_quest() -> None:
         for arg in sys.argv[1:]:
             print(f"Argument {i}: {arg}")
             i += 1
-
-    # === Total argument ===
 
     print(f"Total arguments: {len(sys.argv)}")
 
