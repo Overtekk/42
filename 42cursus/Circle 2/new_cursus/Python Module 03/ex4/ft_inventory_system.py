@@ -44,14 +44,24 @@ def ft_inventory_system(inventory: dict, username: str) -> None:
     print(f"\n=== Transaction: {username} gives Bob 2 potions ===")
 
     potion_data = inv.get("potion")
+    potion_quantity = potion_data.get("quantity")
+
     player_bob = inventory.get("Bob")
     inv_bob = player_bob.get("inventory")
     potions_bob = inv_bob.get("potions")
 
-    if potion_data.get("quantity", 0) >= 2:
+    if potion_quantity >= 2:
         print("Transaction successful!\n")
     else:
         print("Transaction failed...\n")
+
+    changes = {
+        "quantity": 2
+    }
+    potions_bob["potion"].update(changes)
+
+    print("=== Updated Inventories ===")
+    print(f"{username} potions: {potion_quantity}")
 
 
 if __name__ == "__main__":
