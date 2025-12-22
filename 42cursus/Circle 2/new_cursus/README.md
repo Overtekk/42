@@ -12,10 +12,15 @@
 ✅ *Completed on **18/12/2025***
 
 *Score*\
-![python_module0_score](../../../assets/Scores/42cursus/Circle%202/python_module1_score.png)
+![python_module1_score](../../../assets/Scores/42cursus/Circle%202/python_module1_score.png)
 
 # [Python Module 02](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2002)
 ###  *Data Engineering for Smart Agriculture*
+
+✅ *Completed on **22/12/2025***
+
+*Score*\
+![python_module2_score](../../../assets/Scores/42cursus/Circle%202/python_module2_score.png)
 
 # [Python Module 03](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2003)
 ###  *Mastering Python Collections for Data Engineering*
