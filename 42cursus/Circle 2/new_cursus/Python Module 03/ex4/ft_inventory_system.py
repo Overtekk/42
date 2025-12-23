@@ -163,4 +163,4 @@ if __name__ == "__main__":
         },
     }
 
-    ft_inventory_system(players, "Alice")
+    ft_inventory_system(inventory=players, username="Alice")

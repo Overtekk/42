@@ -69,4 +69,4 @@ if __name__ == "__main__":
         "collector"
     ]
 
-    ft_achievement_tracker(achievement_list)
+    ft_achievement_tracker(achievements=achievement_list)

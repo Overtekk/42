@@ -60,8 +60,8 @@ if __name__ == "__main__":
     print(f"Distance between {coord_pos_base} and {coord_pos}: "
           f"{coord_distance:.2f}\n")
 
-    coord_player = input_coordinate("3,4,0")
-    input_coordinate("abc,def,ghi")  # Bad input to show error
+    coord_player = input_coordinate(coord_str="3,4,0")
+    input_coordinate(coord_str="abc,def,ghi")  # Bad input to show error
 
     x3, y3, z3 = coord_player
 
