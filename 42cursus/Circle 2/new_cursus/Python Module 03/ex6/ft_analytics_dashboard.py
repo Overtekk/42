@@ -101,11 +101,16 @@ def set_comprehension(data: dict) -> str:
 
     target_player = ["alice", "bob", "charlie", "diana"]
 
-    unique_player = {}
+    unique_player = {name for name in data['player']
+                     if name in target_player}
 
-    unique_success = {}
+    all_owned_achievements = [success for details in data['player'].values()
+                              for success in details['achievements']]
+    unique_success = {success for success in all_owned_achievements
+                      if all_owned_achievements.count(success) == 1}
 
-    active_regions = {}
+    active_regions = {region for details in data['player'].values()
+                      for region in details['region']}
 
     message = (
         f"Unique players: {unique_player}\n"
@@ -148,12 +153,14 @@ if __name__ == "__main__":
                 "active": True,
                 "achievements": {"first_kill", "level_master",
                                  "we_need_to_go_deeper", "potions_master",
-                                 "lover"}
+                                 "lover"},
+                "region": "north"
             },
             "bob": {
                 "score": 1800,
                 "active": True,
-                "achievements": {"level_10", "sky_limits", "catch_first_fish"}
+                "achievements": {"level_10", "sky_limits", "catch_first_fish"},
+                "region": "central"
             },
             "charlie": {
                 "score": 2150,
@@ -161,21 +168,26 @@ if __name__ == "__main__":
                 "achievements": {"boss_slayer", "we_need_to_go_deeper",
                                  "potions_master", "sky_limits",
                                  "catch_first_fish", "find_a_grave",
-                                 "kill_rat"}
+                                 "kill_rat"},
+                "region": "central"
             },
             "diana": {
                 "score": 2050,
-                "active": False
+                "active": False,
+                "achievements": {"level_master", "kill_rat", "find_a_grave"},
+                "region": "east"
             },
             "remy": {
                 "score": 1,
                 "active": True,
-                "achievements": {"your_first_mariage"}
+                "achievements": {"your_first_mariage"},
+                "region": "north"
             },
             "manu": {
                 "score": 1692,
                 "active": False,
-                "achievements": {"your_first_mariage", "lover"}
+                "achievements": {"your_first_mariage", "lover"},
+                "region": "north"
             }
         },
         "achievements": [
@@ -189,7 +201,8 @@ if __name__ == "__main__":
             "lover",
             "your_first_mariage",
             "find_a_grave",
-            "kill_rat"
+            "kill_rat",
+            "ft_printf"
         ]
     }
 
