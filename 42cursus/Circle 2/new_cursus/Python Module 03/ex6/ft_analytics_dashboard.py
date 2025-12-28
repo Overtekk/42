@@ -97,6 +97,11 @@ def set_comprehension(data: dict) -> str:
         - str: A formatted string displaying the results of the set
         comprehensions (unique players, unique achievements, and active
         regions).
+
+    This function applies three types of set comprehensions:
+    1. Select target players to print unique players.
+    2. Print unique achievements own by only one player.
+    3. Show active regions.
     """
 
     target_player = ["alice", "bob", "charlie", "diana"]
@@ -109,13 +114,57 @@ def set_comprehension(data: dict) -> str:
     unique_success = {success for success in all_owned_achievements
                       if all_owned_achievements.count(success) == 1}
 
-    active_regions = {region for details in data['player'].values()
-                      for region in details['region']}
+    active_regions = {details['region'] for details in data['player'].values()}
 
     message = (
         f"Unique players: {unique_player}\n"
         f"Unique achievements: {unique_success}\n"
         f"Active regions: {active_regions}"
+    )
+
+    return message
+
+
+def combined_analysis(data: dict) -> str:
+    """Use differents knowledges to get some analysis.
+
+    === Arguments ===
+        - data (dict): A dictionary containing player information, including
+          scores and active status.
+
+    === Returns ===
+        - str: A formatted string displaying the results (total players,
+        total unique achievements, average score and top player).
+
+    This function get 3 analytics
+    1. Select target players to have number of total players.
+    2. Get number of total achievements.
+    3. Show the average score of targer players.
+    4. Get the top player of targeted players.
+    """
+
+    target_player = ["alice", "bob", "charlie", "diana"]
+
+    total_players = sum(1 for player in data['player']
+                        if player in target_player)
+
+    total_success = len(data['achievements'])
+
+    total_score = sum(details['score'] for player, details in
+                      data['player'].items() if player in target_player)
+    average_score = total_score / total_players if total_players > 0 else 0
+
+    top_player = max(target_player, key=lambda player:
+                     data['player'][player]['score'])
+    top_player_score = data['player'][top_player]['score']
+    top_player_success = len(data['player'][top_player]['achievements'])
+
+    message = (
+        f"Total players: {total_players}\n"
+        f"Total unique achievements: {total_success}\n"
+        f"Average score: {average_score}\n"
+        f"Top performer: {top_player} ({top_player_score} points, "
+        f"{top_player_success} achievements)"
     )
 
     return message
@@ -142,6 +191,9 @@ def ft_analytics_dashboard(data: dict) -> None:
 
     print("===Set Comprehension Examples ===")
     print(f"{set_comprehension(data=data)}\n")
+
+    print("=== Combined Analysis ===")
+    print(f"{combined_analysis(data=data)}")
 
 
 if __name__ == "__main__":
