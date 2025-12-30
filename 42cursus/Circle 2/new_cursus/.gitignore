@@ -5,7 +5,7 @@
 c_cpp_properties.json
 
 # Tester
-main.py
+Python Module 00/main.py
 advanced_data_helper.py
 data_generator.py
 exercise_0_help.py
