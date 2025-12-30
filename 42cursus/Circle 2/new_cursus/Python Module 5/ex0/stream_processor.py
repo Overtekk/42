@@ -8,31 +8,33 @@ class DataProcessor(ABC):
     @abstractmethod
     def process(self, data: Any) -> str:
         """Abstract method for processing"""
-
         pass
 
     @abstractmethod
     def validate(self, data: Any) -> bool:
         """Abstract method for validating input"""
-
         pass
 
     def format_output(self, result: str) -> str:
         """Format method ouput"""
-
         return f"Output: {result}"
 
 
 class NumericProcessor(DataProcessor):
     """Class for numeric"""
 
-    def validate(self, data: Any) -> bool:
+    def validate(self, data: List[int]) -> bool:
 
         try:
             isinstance(data, list)
         except ValueError:
             print("ERROR: Data send is not a list")
             return False
+
+        try:
+            len(data)
+        except ValueError:
+            print("ERROR: Data is empty")
 
         try:
             for number in data:
@@ -55,10 +57,10 @@ class NumericProcessor(DataProcessor):
 
         avg = sum / len(data)
 
-        sum_txt = f"sum={sum}, "
-        avg_txt = f"avg={avg}"
+        return f"Processed {len(data)} numeric values, sum={sum}, avg={avg}"
 
-        return sum_txt + avg_txt
+    def format_output(self, result: str) -> str:
+        return f"Output: {result}"
 
 
 class TextProcessor(DataProcessor):
@@ -78,7 +80,9 @@ def main() -> None:
 
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
 
+    print("Initializing Numeric Processor...")
     data_num = [1, 2, 3, 4, 5]
+    print(f"Processing data: {data_num}")
     processor = NumericProcessor()
     result = processor.process(data_num)
     print(result)
