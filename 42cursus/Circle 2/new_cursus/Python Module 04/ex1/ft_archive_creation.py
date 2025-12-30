@@ -1,6 +1,3 @@
-import os
-
-
 def file_writer(filename: str) -> None:
     """
     Read the file passed in parameters and write on it.
@@ -26,9 +23,10 @@ def file_writer(filename: str) -> None:
     print(f"Initializing new storage unit: {filename}")
 
     file = open(filename, "w+", encoding='utf-8')
-
-    file.write(text)
     print("Storage unit created successfully...\n")
+
+    print("Inscribing preservation data...")
+    file.write(text)
 
     file.seek(0)
     content = file.read()
@@ -45,11 +43,6 @@ def main() -> None:
     """
 
     print("=== CYBER ARCHIVES - PRESERVATION SYSTEM ===\n")
-
-    if os.path.exists('new_discovery.txt'):
-        print("ERROR: File already exist. Replacing it...")
-        os.remove('new_discovery.txt')
-        print("File is now fresh to write on!\n")
 
     file_writer('new_discovery.txt')
 
