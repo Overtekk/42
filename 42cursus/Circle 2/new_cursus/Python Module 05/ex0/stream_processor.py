@@ -46,6 +46,18 @@ class DataProcessor(ABC):
         """
         return f"Output: {result}"
 
+    def validation_output(self, result: str) -> str:
+        """
+        Formats the validation output with a standard prefix.
+
+        == Args ==
+            - result (str): The raw validation string from validate.
+
+        == Returns ==
+            - str: The formatted string ready for display.
+        """
+        return f"Validation: {result}"
+
 
 class NumericProcessor(DataProcessor):
     """
@@ -71,7 +83,7 @@ class NumericProcessor(DataProcessor):
                 print("ERROR: Data send is not numeric")
                 return False
 
-        print("Validation: Numeric data verified")
+        print(self.validation_output("Numeric data verified"))
         return True
 
     def process(self, data: List[int]) -> str:
@@ -92,6 +104,12 @@ class NumericProcessor(DataProcessor):
                       f"avg={avg}")
         return self.format_output(result_str)
 
+    def format_output(self, result: str) -> str:
+        """
+        Formats the output specifically for Numeric data.
+        """
+        return f"Output: {result}"
+
 
 class TextProcessor(DataProcessor):
     """
@@ -109,6 +127,8 @@ class TextProcessor(DataProcessor):
             print("ERROR: Data send a text")
             return False
 
+    print("Validation: Text data verified")
+
     def process(self, data: List[int]) -> str:
         """
         Calculates characters and words of a string.
@@ -117,6 +137,13 @@ class TextProcessor(DataProcessor):
         result_str = "lol"
 
         return result_str
+
+    def format_output(self, result: str) -> str:
+        """
+        Formats the output specifically for Text data.
+        """
+        return f"Output: {result}"
+
 
 class LogProcessor(DataProcessor):
     """Class for log"""
