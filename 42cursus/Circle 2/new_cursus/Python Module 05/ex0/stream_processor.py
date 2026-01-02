@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union, Optional
+from typing import Any, List, Dict, Union, Optional  # noqa: F401
 
 
 class DataProcessor(ABC):
@@ -46,18 +46,6 @@ class DataProcessor(ABC):
         """
         return f"Output: {result}"
 
-    def validation_output(self, result: str) -> str:
-        """
-        Formats the validation output with a standard prefix.
-
-        == Args ==
-            - result (str): The raw validation string from validate.
-
-        == Returns ==
-            - str: The formatted string ready for display.
-        """
-        return f"Validation: {result}"
-
 
 class NumericProcessor(DataProcessor):
     """
@@ -68,22 +56,25 @@ class NumericProcessor(DataProcessor):
         """
         Checks if data is a non-empty list of numbers.
         """
-        if not isinstance(data, list):
-            print("ERROR: Data send is not a list")
+
+        try:
+            if not isinstance(data, list):
+                raise ValueError
+        except ValueError:
+            print("[ERROR] Data send is not a list")
             return False
 
         if len(data) == 0:
-            print("ERROR: Data is empty")
+            print("[ERROR] Data is empty")
             return False
 
         for number in data:
             try:
                 float(number)
             except (ValueError, TypeError):
-                print("ERROR: Data send is not numeric")
+                print("[ERROR] Data send is not numeric")
                 return False
 
-        print(self.validation_output("Numeric data verified"))
         return True
 
     def process(self, data: List[int]) -> str:
@@ -91,12 +82,11 @@ class NumericProcessor(DataProcessor):
         Calculates sum and average of the numeric list.
         """
         if not self.validate(data):
-            result_str = "Error detected. Stopping."
-            return self.format_output(result_str)
+            return self.format_output("Error detected. Stopping.")
 
         total = 0
         for number in data:
-            total += number
+            total += float(number)
 
         avg = total / len(data)
 
@@ -122,21 +112,30 @@ class TextProcessor(DataProcessor):
         """
 
         try:
-            str(data)
-        except (ValueError, TypeError):
-            print("ERROR: Data send a text")
+            if not isinstance(data, str):
+                raise ValueError
+        except ValueError:
+            print("ERROR: Data is not a string")
             return False
 
-    print("Validation: Text data verified")
+        return True
 
-    def process(self, data: List[int]) -> str:
+    def process(self, data: str) -> str:
         """
         Calculates characters and words of a string.
         """
 
-        result_str = "lol"
+        if not self.validate(data):
+            result_str = "Error detected. Stopping."
+            return self.format_output(result_str)
 
-        return result_str
+        characters_count = len(data)
+        words_count = len(data.split())
+
+        result_str = (f"Processed text: {characters_count} characters, "
+                      f"{words_count} words")
+
+        return self.format_output(result_str)
 
     def format_output(self, result: str) -> str:
         """
@@ -147,7 +146,61 @@ class TextProcessor(DataProcessor):
 
 class LogProcessor(DataProcessor):
     """Class for log"""
-    pass
+
+    def validate(self, data: str) -> bool:
+        """
+        Checks if data is a string.
+        """
+
+        try:
+            if not isinstance(data, str):
+                raise ValueError
+        except ValueError:
+            print("ERROR: Data is not a string")
+            return False
+
+        if ":" not in data:
+            print("ERROR: Invalid format. Missing ':' separator. Please use: "
+                  "'LOGTYPE': [msg]\nValid 'LOGTYPE' = 'ERROR','WARN','INFO',"
+                  "'DEBUG','LOG'")
+            return False
+
+        valid_logtype = ["ERROR", "INFO", "WARN", "DEBUG", "LOG"]
+        alert = data.split(":")
+        log_type = alert[0].strip()
+        if log_type not in valid_logtype:
+            print("ERROR: Data is not log type. Please use: 'LOGTYPE': [msg]"
+                  "\nValid 'LOGTYPE' = 'ERROR','WARN','INFO','DEBUG','LOG'")
+            return False
+
+        return True
+
+    def process(self, data: str) -> str:
+        """
+        Proceed correct log entry.
+        """
+
+        if not self.validate(data):
+            result_str = "Error detected. Stopping."
+            return self.format_output(result_str)
+
+        alert = data.split(":")
+        logtype_alert = ["ERROR", "WARN"]
+
+        if alert[0] in logtype_alert:
+            alert_type = "[ALERT]"
+        else:
+            alert_type = "[INFO]"
+
+        result_str = f"{alert_type} {alert[0]} level detected:{alert[1]}"
+
+        return self.format_output(result_str)
+
+    def format_output(self, result: str) -> str:
+        """
+        Formats the output specifically for Log data.
+        """
+        return f"Output: {result}"
 
 
 def errors_tester(tester: str) -> None:
@@ -170,34 +223,121 @@ def errors_tester(tester: str) -> None:
         data_num = [1, 2, "abc", 4, 5]
         print(f"Processing data: {data_num}")
         processor = NumericProcessor()
-        result = processor.process(data_num)
-        print(f"{result}\n")
+
+        print("Validation", end=": ")
+        if processor.validate(data_num):
+            print("Numeric data verified")
+            print(processor.process(data_num))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
 
         # Empty data
         print("Initializing Numeric Processor (*empty list*)...")
         data_num = []
         print(f"Processing data: {data_num}")
         processor = NumericProcessor()
-        result = processor.process(data_num)
-        print(f"{result}\n")
+
+        print("Validation", end=": ")
+        if processor.validate(data_num):
+            print("Numeric data verified")
+            print(processor.process(data_num))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
 
         # Not sending list
         print("Initializing Numeric Processor (*not a list*)...")
         data_num = "bonjour toi"
         print(f"Processing data: {data_num}")
         processor = NumericProcessor()
-        result = processor.process(data_num)
-        print(f"{result}")
+
+        print("Validation", end=": ")
+        if processor.validate(data_num):
+            print("Numeric data verified")
+            print(processor.process(data_num))
+        else:
+            print(processor.format_output("Error detected. Stopping."))
 
     # === Testing Text Processor === #
     elif tester == "text":
         # Invalid data
-        print("\nInitializing Text Processor (*invalid data*)...")
-        data_txt = [1, 2, "abc", 4, 5]
+        print("Initializing Text Processor (*invalid data*)...")
+        data_txt = [1, 2, 'abc', 4, 5]
         print(f"Processing data: {data_txt}")
         processor = TextProcessor()
-        result = processor.process(data_txt)
-        print(f"{result}\n")
+
+        print("Validation", end=": ")
+        if processor.validate(data_txt):
+            print("Text data verified")
+            print(processor.process(data_txt))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
+
+        # Empty string (Valid)
+        print("Initializing Text Processor (*empty data*)...")
+        data_txt = ""
+        print(f"Processing data: {data_txt}")
+        processor = TextProcessor()
+
+        print("Validation", end=": ")
+        if processor.validate(data_txt):
+            print("Text data verified")
+            print(processor.process(data_txt))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
+
+    # === Testing Log Processor === #
+    elif tester == "log":
+        # Invalid data
+        print("Initializing Log Processor (*invalid data*)...")
+        data_log = [1, 2, 'abc', 4, 5]
+        print(f"Processing data: {data_log}")
+        processor = LogProcessor()
+
+        print("Validation", end=": ")
+        if processor.validate(data_log):
+            print("Log entry verified")
+            print(processor.process(data_log))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
+
+        # Invalid Log Type
+        print("Initializing Log Processor (*invalid log type*)...")
+        data_log = "\"EROR: Hello Word\""
+        print(f"Processing data: {data_log}")
+        processor = LogProcessor()
+
+        print("Validation", end=": ")
+        if processor.validate(data_log):
+            print("Log entry verified")
+            print(processor.process(data_log))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
+
+        # No Log Type
+        print("Initializing Log Processor (*no log type*)...")
+        data_log = ""
+        print(f"Processing data: {data_log}")
+        processor = LogProcessor()
+
+        print("Validation", end=": ")
+        if processor.validate(data_log):
+            print("Log entry verified")
+            print(processor.process(data_log))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
+
+        # Bad log type
+        print("Initializing Log Processor (*bad log type*)...")
+        data_log = " ERROR Connection timeout"
+        print(f"Processing data: {data_log}")
+        processor = LogProcessor()
+
+        print("Validation", end=": ")
+        if processor.validate(data_log):
+            print("Log entry verified")
+            print(processor.process(data_log))
+        else:
+            print(processor.format_output("Error detected. Stopping.\n"))
 
     else:
         print("Invalid name. Please use: 'numeric', 'text', 'log' or "
@@ -217,8 +357,13 @@ def main() -> None:
     data_num = [1, 2, 3, 4, 5]
     print(f"Processing data: {data_num}")
     processor = NumericProcessor()
-    result = processor.process(data_num)
-    print(f"{result}")
+    print("Validation", end=": ")
+    if processor.validate(data_num):
+        print("Numeric data verified")
+        result = processor.process(data_num)
+        print(result)
+    else:
+        print(processor.format_output("Error detected. Stopping."))
 
     # If you want to test errors, remove the comment from the function call.
     # errors_tester("numeric")
@@ -227,13 +372,53 @@ def main() -> None:
 
     print("\nInitializing Text Processor...")
     data_txt = "Hello Nexus World"
-    print(f"Processing data: {data_txt}")
+    print(f"Processing data: \"{data_txt}\"")
     processor = TextProcessor()
-    result = processor.process(data_txt)
-    print(f"{result}")
+    print("Validation", end=": ")
+    if processor.validate(data_txt):
+        print("Text data verified")
+        result = processor.process(data_txt)
+        print(result)
+    else:
+        print(processor.format_output("Error detected. Stopping."))
 
     # If you want to test errors, remove the comment from the function call.
-    errors_tester("text")
+    # errors_tester("text")
+
+    # === Testing Log Processor === #
+
+    print("\nInitializing Log Processor...")
+    data_log = "ERROR: Connection timeout"
+    print(f"Processing data: \"{data_log}\"")
+    processor = LogProcessor()
+
+    print("Validation", end=": ")
+    if processor.validate(data_log):
+        print("Log entry verified")
+        result = processor.process(data_log)
+        print(result)
+    else:
+        print(processor.format_output("Error detected. Stopping."))
+
+    # If you want to test errors, remove the comment from the function call.
+    # errors_tester("log")
+
+    print("\n=== Polymorphic Processing Demo ===")
+    print("Processing multiple data types through same interface...")
+
+    data = [
+        (NumericProcessor(), [3, 2, 1]),
+        (TextProcessor(), "Hey Mouse!!!"),
+        (LogProcessor(), "INFO: System ready")
+    ]
+
+    i = 1
+    for processor, data in data:
+        result = processor.process(data)
+        print(f"Result {i}: {result}")
+        i += 1
+
+    print("\nFoundation systems online. Nexus ready for advanced streams.")
 
 
 if __name__ == "__main__":
