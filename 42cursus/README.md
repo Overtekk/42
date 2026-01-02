@@ -10,10 +10,17 @@
 | **5** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 4** | 🔴 |
 | **6** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 3** | 🔴 |
 
-### ⏱️ Tracked Logtime (2025)
+### ⏱️ Tracked Logtime (2026)
 
 | Month | Hours | Status |
 | :--- | :---: | :---: |
-| **December** | 115h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **January** | 00h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+
+### ⏱️ Tracked Logtime (2025)
+Total: 346h 🐨
+
+| Month | Hours | Status |
+| :--- | :---: | :---: |
+| **December** | 132h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
 | **November** | 118h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
 | **October** | 96h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
