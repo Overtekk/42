@@ -340,8 +340,7 @@ def errors_tester(tester: str) -> None:
             print(processor.format_output("Error detected. Stopping.\n"))
 
     else:
-        print("Invalid name. Please use: 'numeric', 'text', 'log' or "
-              "'polymorphic'.")
+        print("Invalid name. Please use: 'numeric', 'text' or 'log'.")
 
 
 def main() -> None:
