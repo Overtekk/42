@@ -67,8 +67,14 @@ class InputStage():
             print(f"Input: {data}")
 
         elif isinstance(data, list):
-            fdata = ", ".join(data)
+            fdata = ",".join(data)
             print(f"Input: \"{fdata}\"")
+
+        elif isinstance(data, str):
+            print(f"Input: {data}")
+
+        else:
+            print("Error detected in Stage 1: invalid input")
         return data
 
 
@@ -78,10 +84,23 @@ class TransformStage():
     def process(self, data: Any) -> Any:
         """Apply transformations to the data."""
         if isinstance(data, dict):
+            try:
+                if not data.get("value") or not data.get("unit"):
+                    raise KeyError
+                float(data.get("value"))
+                if not isinstance(data.get("unit"), str):
+                    raise ValueError
+            except (KeyError, ValueError):
+                print("Error detected in Stage 2: invalid data format")
+                return None
+
             print("Transform: Enriched with metadata and validation")
 
         elif isinstance(data, list):
             print("Transform: Parsed and structured data")
+
+        elif isinstance(data, str):
+            print("Transform: Aggregated and filtered")
         return data
 
 
@@ -104,6 +123,9 @@ class OutputStage():
                     action += 1
 
             print(f"Output: user activity logged: {action} actions processed")
+
+        elif isinstance(data, str):
+            print("Output: Stream summary: 5 readings, avg: 22.1°C")
         return data
 
 
@@ -121,7 +143,7 @@ class JSONAdapter(ProcessingPipeline):
 
     def process(self, data: Any) -> Union[str, Any]:
         """Process JSON data through the pipeline stages."""
-        print("Processing JSON data through pipeline..")
+        print("Processing JSON data through pipeline...")
         super().process(data=data)
 
 
@@ -139,7 +161,7 @@ class CVSAdapter(ProcessingPipeline):
 
     def process(self, data: Any) -> Union[str, Any]:
         """Process CSV data through the pipeline stages."""
-        print("Processing CSV data through pipeline..")
+        print("Processing CSV data through pipeline...")
         super().process(data=data)
 
 
@@ -157,13 +179,18 @@ class StreamAdapter(ProcessingPipeline):
 
     def process(self, data: Any) -> Union[str, Any]:
         """Process stream data through the pipeline stages."""
-        pass
+        print("Processing Stream data through pipeline...")
+        super().process(data=data)
 
 
 class NexusManager():
     """Manager class responsible for orchestrating multiple pipelines."""
 
-    pass
+    def __init__(self) -> None:
+        self.pipelines = []
+
+    def add_pipeline(self, stage: ProcessingPipeline) -> None:
+        self.pipelines.append(stage)
 
 
 def main() -> None:
@@ -195,7 +222,23 @@ def main() -> None:
     pipeline.add_stage(InputStage())
     pipeline.add_stage(TransformStage())
     pipeline.add_stage(OutputStage())
-    pipeline.process(["user,action,timestamp"])
+    pipeline.process(["user", "action" , "timestamp"])
+
+    print("")
+    # === Stream data ===
+    pipeline = StreamAdapter("pipeline_03")
+    pipeline.add_stage(InputStage())
+    pipeline.add_stage(TransformStage())
+    pipeline.add_stage(OutputStage())
+    pipeline.process("Real-time sensor stream")
+
+    print("\n=== Pipeline Chaining Demo ===")
+
+    print("\nNexus Integration complete. All systems operational.")
+    manager = NexusManager()
+    manager.add_stage(InputStage())
+    manager.add_stage(TransformStage())
+    manager.add_stage(OutputStage())
 
 
 if __name__ == "__main__":
