@@ -1,5 +1,7 @@
+import random
+import math
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union, Optional, Protocol
+from typing import Any, List, Dict, Union, Optional, Protocol  # noqa: F401
 
 
 class ProcessingStage(Protocol):
@@ -67,8 +69,8 @@ class InputStage():
             print(f"Input: {data}")
 
         elif isinstance(data, list):
-            fdata = ",".join(data)
-            print(f"Input: \"{fdata}\"")
+            #fdata = ",".join(data)
+            print(f"Input: \"{data}\"")
 
         elif isinstance(data, str):
             print(f"Input: {data}")
@@ -187,10 +189,22 @@ class NexusManager():
     """Manager class responsible for orchestrating multiple pipelines."""
 
     def __init__(self) -> None:
+        """Initialize the manager"""
         self.pipelines = []
 
     def add_pipeline(self, stage: ProcessingPipeline) -> None:
+        """
+        Add a ProcessingPipeline object to the pipeline's list
+
+        === Args ===
+            - stage (ProcessingPipeline): the pipeline to add
+        """
         self.pipelines.append(stage)
+
+    def process_chain(self, data: Any) -> None:
+        """Process pipeline to each other"""
+        for pipeline in self.pipelines:
+            data = pipeline.process(data)
 
 
 def main() -> None:
@@ -209,36 +223,47 @@ def main() -> None:
 
     print("\n=== Multi-Format Data Processing ===")
 
+    stage_list = [InputStage(), TransformStage(), OutputStage()]
+
     # === JSON data ===
     pipeline = JSONAdapter("pipeline_01")
-    pipeline.add_stage(InputStage())
-    pipeline.add_stage(TransformStage())
-    pipeline.add_stage(OutputStage())
+    for stage in stage_list:
+        pipeline.add_stage(stage)
     pipeline.process({"sensor": "temp", "value": 23.5, "unit": "C"})
 
     print("")
     # === CSV data ===
     pipeline = CVSAdapter("pipeline_02")
-    pipeline.add_stage(InputStage())
-    pipeline.add_stage(TransformStage())
-    pipeline.add_stage(OutputStage())
-    pipeline.process(["user", "action" , "timestamp"])
+    for stage in stage_list:
+        pipeline.add_stage(stage)
+    pipeline.process(["user", "action", "timestamp"])
 
     print("")
     # === Stream data ===
     pipeline = StreamAdapter("pipeline_03")
-    pipeline.add_stage(InputStage())
-    pipeline.add_stage(TransformStage())
-    pipeline.add_stage(OutputStage())
+    for stage in stage_list:
+        pipeline.add_stage(stage)
     pipeline.process("Real-time sensor stream")
 
     print("\n=== Pipeline Chaining Demo ===")
 
     print("\nNexus Integration complete. All systems operational.")
     manager = NexusManager()
-    manager.add_stage(InputStage())
-    manager.add_stage(TransformStage())
-    manager.add_stage(OutputStage())
+
+    data = random.sample(range(1, 500), 100)
+    pipeline_a = JSONAdapter("pipeline_01")
+    pipeline_b = CVSAdapter("pipeline_02")
+    pipeline_c = StreamAdapter("pipeline_03")
+    manager.add_pipeline(pipeline_a)
+    manager.add_pipeline(pipeline_b)
+    manager.add_pipeline(pipeline_c)
+
+    for stage in stage_list:
+        pipeline_a.add_stage(stage)
+        pipeline_b.add_stage(stage)
+        pipeline_c.add_stage(stage)
+
+    manager.process_chain(data)
 
 
 if __name__ == "__main__":
