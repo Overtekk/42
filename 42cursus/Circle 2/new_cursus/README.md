@@ -24,3 +24,14 @@
 
 # [Python Module 03](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2003)
 ###  *Mastering Python Collections for Data Engineering*
+
+✅ *Completed on **06/01/2026***
+
+*Score*\
+![python_module3_score](../../../assets/Scores/42cursus/Circle%202/python_module3_score.png)
+
+# [Python Module 04](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2004)
+###  *Archivist Training Protocol*
+
+# [Python Module 05](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2005)
+###  *Polymorphic Data Streams in the Digital Matrix*
