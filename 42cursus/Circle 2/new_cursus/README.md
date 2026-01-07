@@ -35,3 +35,18 @@
 
 # [Python Module 05](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2005)
 ###  *Polymorphic Data Streams in the Digital Matrix*
+
+# [Python Module 06](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2006)
+###  *Mastering Python’s Import Mysteries*
+
+# [Python Module 07](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2007)
+###  *Master the Art of Abstract Card Architecture*
+
+# [Python Module 08](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2008)
+###  *Welcome to the Real World of Data Engineering*
+
+# [Python Module 09](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2009)
+###  *Discover Pydantic Models & Validation*
+
+# [Python Module 10](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2010)
+###  *Master the Ancient Arts of Functional Programming*
