@@ -25,8 +25,8 @@ for name in func_list:
     try:
         func = getattr(alchemy, name)
         print(func())
-    except AttributeError:
-        print("AttributeError - not exposed")
+    except AttributeError as e:
+        print(f"{type(e).__name__} - not exposed")
 
 print("\nPackage metadata:")
 print(f"Version: {alchemy.__version__}")
