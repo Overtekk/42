@@ -158,7 +158,7 @@ class JSONAdapter(ProcessingPipeline):
         return super().process(data=data, verbose=verbose)
 
 
-class CVSAdapter(ProcessingPipeline):
+class CSVAdapter(ProcessingPipeline):
     """Pipeline adapter specialized for CSV data handling."""
 
     def __init__(self, pipeline_id: str) -> None:
@@ -256,7 +256,7 @@ def main() -> None:
 
     print("")
     # === CSV data ===
-    pipeline = CVSAdapter("pipeline_02")
+    pipeline = CSVAdapter("pipeline_02")
     for stage in stage_list:
         pipeline.add_stage(stage)
     pipeline.process(["user", "action", "timestamp"])
@@ -273,7 +273,7 @@ def main() -> None:
 
     data = random.sample(range(1, 500), 100)
     pipeline_a = JSONAdapter("Pipeline A")
-    pipeline_b = CVSAdapter("Pipeline B")
+    pipeline_b = CSVAdapter("Pipeline B")
     pipeline_c = StreamAdapter("Pipeline C")
     manager.add_pipeline(pipeline_a)
     manager.add_pipeline(pipeline_b)
