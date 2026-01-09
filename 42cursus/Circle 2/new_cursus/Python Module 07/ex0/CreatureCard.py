@@ -10,10 +10,10 @@ class CreatureCard(Card):
 
         === Args ===
             - name (str): The name of the card.
-            - cost (int): Cost of the card (positive only).
+            - cost (int): Cost of the card.
             - rarity (str): Rarity of the card.
-            - attack (int): Attack value of the card.
-            - health (int): Health of the card.
+            - attack (int): Attack value of the card (positive only).
+            - health (int): Health of the card (positive only).
         """
         if health <= 0:
             raise ValueError("ERROR: Health must be positive.")
@@ -54,11 +54,10 @@ class CreatureCard(Card):
                 "mana_used": self.cost,
                 "effect": "Creature summoned to battlefield"
             })
-        elif self.is_playable(game_state.get("mana_left")) is False:
-            return ({
-                "card": self.name,
-                "effect": "Not enought mana."
-            })
+        return ({
+            "card": self.name,
+            "effect": "Not enought mana."
+        })
 
     def attack_target(self, target: Card) -> dict:
         """Attack a target with a card
@@ -71,6 +70,7 @@ class CreatureCard(Card):
         """
         if target is None:
             raise ValueError("Target is missing")
+        target.health -= self.attack
         return ({
             "attacker": self.name,
             "target": target.name,
