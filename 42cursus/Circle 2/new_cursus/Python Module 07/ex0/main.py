@@ -4,10 +4,14 @@ from .CreatureCard import CreatureCard
 print("=== DataDeck Card Foundation ===")
 print("\nTesting Abstract Base Class Design:\n")
 
-card_fire_dragon = CreatureCard(name="Fire Dragon", cost=5, rarity="Legendary",
-                                attack=7, health=5)
-card_goblin_warrior = CreatureCard(name="Goblin Warrior", cost=3,
-                                   rarity="Common", attack=5, health=3)
+try:
+    card_fire_dragon = CreatureCard(name="Fire Dragon", cost=5,
+                                    rarity="Legendary", attack=7, health=5)
+    card_goblin_warrior = CreatureCard(name="Goblin Warrior", cost=3,
+                                       rarity="Common", attack=5, health=3)
+except ValueError as e:
+    print(e)
+    exit(2)
 
 print(f"CreatureCard Info:\n{card_fire_dragon.get_card_info()}")
 
