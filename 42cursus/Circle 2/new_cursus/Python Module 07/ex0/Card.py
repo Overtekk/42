@@ -49,6 +49,12 @@ class Card(ABC):
         === Return ===
             - bool: True if card can be played, otherwise False.
         """
+        try:
+            int(available_mana)
+        except ValueError:
+            print("\nERROR: available_mana need an int to works.")
+            exit(2)
+
         if available_mana >= self.cost:
             return True
         return False
