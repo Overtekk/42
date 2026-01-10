@@ -33,6 +33,11 @@
 # [Python Module 04](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2004)
 ###  *Archivist Training Protocol*
 
+✅ *Completed on **10/01/2026***
+
+*Score*\
+![python_module4_score](../../../assets/Scores/42cursus/Circle%202/python_module4_score.png)
+
 # [Python Module 05](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2005)
 ###  *Polymorphic Data Streams in the Digital Matrix*
 
