@@ -31,7 +31,7 @@ deck_test = Deck()
 deck = Deck()
 deck.add_card(card_fire_dragon)
 deck.add_card(card_lightning_bolt)
-# deck.add_card(card_mana_crystal)
+deck.add_card(card_mana_crystal)
 # deck.add_card(card_goblin_crown)
 # deck.add_card(card_heal_potion)
 # deck.add_card(card_grandma_cookie)
@@ -61,7 +61,7 @@ game = {
 turn = 1
 while (len(deck.deck)):
     print(f"\n==Turn {turn}==")
-    print(f"Mana left: {game.get("mana_left")}")
+    print(f"Mana left: {game.get('mana_left')}")
     card = deck.draw_card()
     if card is not None:
         print(f"Drew: {card.name} ({card.type})")
