@@ -27,7 +27,6 @@ card_goblin_crown = ArtifactCard(name="Goblin Crown", cost=4, rarity="Rare",
 card_remy = CreatureCard(name="Remy the Rat Slayer", cost=10, rarity="Unique",
                          attack=14, health=23)
 
-deck_test = Deck()
 deck = Deck()
 deck.add_card(card_fire_dragon)
 deck.add_card(card_lightning_bolt)
