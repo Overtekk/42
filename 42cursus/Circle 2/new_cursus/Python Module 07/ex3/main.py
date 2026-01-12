@@ -58,12 +58,12 @@ def main() -> None:
     print("")
 
     enemy_player = CreatureCard("Enemy Player", 3, "Common", 1, 8)
-    white_dragon = CreatureCard("The White Dragon with blue eyes", 8,
-                                "Holographic", 3, 100)
+    # white_dragon = CreatureCard("The White Dragon with blue eyes", 8,
+    #                             "Holographic", 3, 100)
     # invincible_dragon = CreatureCard("The Invincible Dragon", 8,
     #                                  "Holographic", 5, 200)
 
-    game.battlefield.append(white_dragon)
+    # game.battlefield.append(white_dragon)
     # game.battlefield.append(invincible_dragon)
     game.battlefield.append(enemy_player)
     game.hand = deck

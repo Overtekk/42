@@ -22,27 +22,58 @@ class AggresiveStrategy(GameStrategy):
         """
         player_hand = []
         cards_played = []
+        total_mana = 0
+        total_damage = 0
+
         for cards_list in hand.values():
             player_hand.extend(cards_list)
 
         if len(player_hand) <= 0 or len(battlefield) <= 0:
             return ({
                 "cards_played": [],
-                "mana_used": 0,
+                "mana_used": total_mana,
                 "targets_attacked": [],
-                "damage_dealt": 0
+                "damage_dealt": total_damage
             })
 
+        target_index = 0
+        actual_targets_hit = set()
+
         targets = self.prioritize_targets(battlefield)
+        sorted_hand = sorted(player_hand, key=self.card_sort_order)
+
+        for card in sorted_hand:
+            cards_played += card.cost
+            total_mana += card.cost
+            while target_index < len(targets) and targets[target_index].health <= 0:
+                target_index += 1
+                if target_index >= len(targets):
+                    break
+                current_target = targets[target_index]
+                if hasattr(card, "attack"):
+                    current_target.health -= card.attack
+                    total_damage += card.attack
+                    actual_targets_hit.add(current_target.name)
+
 
 
 
         return ({
             "cards_played": [card.name for card in cards_played],
-            "mana_used": 0,
-            "targets_attacked": [ennemy.name for ennemy in targets],
-            "damage_dealt": 0
+            "mana_used": total_mana,
+            "targets_attacked": list(actual_targets_hit),
+            "damage_dealt": total_damage
             })
+
+    def card_sort_order(self, card):
+        if "Creature" in card.__class__.__name__:
+            type_score = 1
+        elif "Spell" in card.__class__.__name__:
+            type_score = 2
+        else:
+            type_score = 3
+
+        return (type_score, card.cost)
 
     def get_strategy_name(self) -> str:
         """Retrieve the name of the current strategy.
