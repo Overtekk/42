@@ -57,19 +57,31 @@ def main() -> None:
     print("]")
     print("")
 
-    enemy_player = CreatureCard("Enemy Player", 3, "Common", 1, 8)
-    # white_dragon = CreatureCard("The White Dragon with blue eyes", 8,
-    #                             "Holographic", 3, 100)
+    enemy_player = CreatureCard("Ennemy Player", 3, "Common", 1, 10)
+    white_dragon = CreatureCard("The White Dragon with blue eyes", 8,
+                                "Holographic", 3, 10)
     # invincible_dragon = CreatureCard("The Invincible Dragon", 8,
-    #                                  "Holographic", 5, 200)
+    #                                  "Holographic", 5, 100)
 
-    # game.battlefield.append(white_dragon)
+    game.battlefield.append(white_dragon)
     # game.battlefield.append(invincible_dragon)
     game.battlefield.append(enemy_player)
     game.hand = deck
 
-    print(f"{game.simulate_turn()}")
+    print("Enemy Hand: [", end="")
+    for i, card in enumerate(game.battlefield):
+        print(f"{card.name} - HP:{card.health}", end="")
+        if i < len(game.battlefield) - 1:
+            print(", ", end="")
+    print("]")
+    print("")
 
+    print(f"Turn execution:\nStrategy: {game.strategy.strategy_name}")
+    # number_of_turn = 5
+    # for number_of_turn in range(number_of_turn):
+    #     print(f"Actions: {game.simulate_turn()}")
+
+    print(f"Actions: {game.simulate_turn()}")
     print(f"\nGame Report:\n{game.get_engine_status()}")
 
     print("\nAbstract Factory + Strategy Pattern: Maximum flexibility "

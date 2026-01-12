@@ -43,20 +43,23 @@ class AggresiveStrategy(GameStrategy):
         sorted_hand = sorted(player_hand, key=self.card_sort_order)
 
         for card in sorted_hand:
-            cards_played += card.cost
-            total_mana += card.cost
-            while target_index < len(targets) and targets[target_index].health <= 0:
+            while (target_index < len(targets) and
+                   targets[target_index].health <= 0):
                 target_index += 1
-                if target_index >= len(targets):
-                    break
-                current_target = targets[target_index]
-                if hasattr(card, "attack"):
-                    current_target.health -= card.attack
-                    total_damage += card.attack
+            if target_index >= len(targets):
+                break
+            cards_played.append(card)
+            total_mana += card.cost
+            current_target = targets[target_index]
+            if hasattr(card, "attack"):
+                current_target.health -= card.attack
+                total_damage += card.attack
+                actual_targets_hit.add(current_target.name)
+            elif hasattr(card, "effect_type"):
+                if card.effect_type == "damage":
+                    current_target.health -= 3
+                    total_damage += 3
                     actual_targets_hit.add(current_target.name)
-
-
-
 
         return ({
             "cards_played": [card.name for card in cards_played],
@@ -66,13 +69,26 @@ class AggresiveStrategy(GameStrategy):
             })
 
     def card_sort_order(self, card):
+        """Determine the sorting priority of a card.
+
+        The sorting logic is defined as follows:
+        1. Primary sort key: Card Type (Creature < Spell < Artifact).
+        2. Secondary sort key: Mana Cost (Ascending).
+
+        === Args ===
+            - card (object): The card instance to evaluate.
+
+        === Return ===
+            - tuple: A tuple (type_priority, cost) used by the sorted()
+                     function.
+                     1 = Creature, 2 = Spell, 3 = Artifact.
+        """
         if "Creature" in card.__class__.__name__:
             type_score = 1
         elif "Spell" in card.__class__.__name__:
             type_score = 2
         else:
             type_score = 3
-
         return (type_score, card.cost)
 
     def get_strategy_name(self) -> str:
