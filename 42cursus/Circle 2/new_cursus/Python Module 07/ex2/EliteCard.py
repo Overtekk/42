@@ -18,10 +18,8 @@ class EliteCard(Card, Combatable, Magical):
             - health (int): Health points.
             - defense (int): The defense point of the card
         """
-        super().__init__(name, cost, rarity)
-        self.attack_val = attack
-        self.health = health
-        self.defense = defense
+        Card.__init__(self, name, cost, rarity)
+        Combatable.__init__(self, attack, health, defense)
         self.type = "Elite"
 
     def play(self, game_state: dict) -> dict:

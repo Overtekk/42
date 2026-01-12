@@ -3,6 +3,17 @@ from abc import abstractmethod, ABC
 
 class Combatable(ABC):
     """Abstract interface for cards that can participate in combat."""
+    def __init__(self, attack: int, health: int, defense: int) -> None:
+        """Init a Combatable card with default mandatory value.
+
+        === Args ===
+            - attack_val (int): The attack value of the card.
+            - health (int): The HP of the card.
+            - defense (str): The defense points of the card.
+        """
+        self.attack_val = attack
+        self.health = health
+        self.defense = defense
 
     @abstractmethod
     def attack(self, target: 'Combatable') -> dict:
