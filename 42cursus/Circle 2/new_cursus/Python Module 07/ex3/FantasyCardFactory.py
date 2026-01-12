@@ -33,7 +33,8 @@ class FantasyCardFactory(CardFactory):
             "Goblin": {"cost": 4, "rare": "Common", "atk": 3, "hp": 6},
             "Rat": {"cost": 2, "rare": "Common", "atk": 1, "hp": 3},
             "Zombie": {"cost": 3, "rare": "Common", "atk": 1, "hp": 5},
-            "Worm": {"cost": 1, "rare": "Common", "atk": 1, "hp": 1}
+            "Worm": {"cost": 1, "rare": "Common", "atk": 1, "hp": 1},
+            "Acarian": {"cost": 0, "rare": "Bad", "atk": 0, "hp": 1}
         }
 
         self.spell_stats = {
@@ -56,6 +57,8 @@ class FantasyCardFactory(CardFactory):
             "Mana": {"cost": 7, "rare": "Rare", "durability": 1,
                      "effect": "mana"}
         }
+
+        self.size_of_deck = 0
 
     def create_creature(self, name_or_power: str) -> Card:
         """Create cards of type Creature.
@@ -136,6 +139,7 @@ class FantasyCardFactory(CardFactory):
             "artifacts": []
         }
         artifacts_n = 0
+        self.size_of_deck = size
 
         if size == 1:
             deck["creatures"].append(self.create_creature
