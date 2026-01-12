@@ -7,8 +7,10 @@ import random
 
 
 class FantasyCardFactory(CardFactory):
+    """Create set of cards based of the Fantasy Theme."""
 
     def __init__(self):
+        """Initialize types of cards and stats of each cards."""
         self.types = {
             "creatures": ["Dragon", "Goblin", "Rat", "Skeleton", "Zombie",
                           "Worm", "Troll", "Licorn", "Clown", "Vampire",
@@ -56,6 +58,14 @@ class FantasyCardFactory(CardFactory):
         }
 
     def create_creature(self, name_or_power: str) -> Card:
+        """Create cards of type Creature.
+
+        === Args ===
+            - name_or_power (str): The name of the card.
+
+        === Return ===
+            - Card: The card created
+        """
         stats = self.creature_stats.get(name_or_power, {
             "cost": 1, "rare": "Common", "atk": 1, "hp": 1})
 
@@ -68,6 +78,14 @@ class FantasyCardFactory(CardFactory):
         )
 
     def create_spell(self, name_or_power: str) -> Card:
+        """Create cards of type Spell.
+
+        === Args ===
+            - name_or_power (str): The name of the card.
+
+        === Return ===
+            - Card: The card created
+        """
         stats = self.spell_stats.get(name_or_power, {
             "cost": 1, "rare": "Common", "effect": "damage"})
 
@@ -79,6 +97,14 @@ class FantasyCardFactory(CardFactory):
         )
 
     def create_artifact(self, name_or_power: str) -> Card:
+        """Create cards of type Artifact.
+
+        === Args ===
+            - name_or_power (str): The name of the card.
+
+        === Return ===
+            - Card: The card created
+        """
         stats = self.artifact_stats.get(name_or_power, {
             "cost": 1, "rare": "Common", "durability": 1, "effect": "mana"})
 
@@ -91,6 +117,19 @@ class FantasyCardFactory(CardFactory):
         )
 
     def create_themed_deck(self, size: int) -> dict:
+        """Create the theme deck with a size choosed by the user.
+
+        === Args ===
+            - size (int): The size of the deck.
+
+        === Return ===
+            - dict: The deck in dict format.
+
+        Depending of the size, a number of cards will be predetermined. If the
+        size is between 1 and 3, only CreatureCard will be created. For a
+        higher size, the number left will be for SpellCard. Only 1 ArtifactCard
+        will be created in total.
+        """
         deck = {
             "creatures": [],
             "spells": [],
@@ -132,4 +171,9 @@ class FantasyCardFactory(CardFactory):
         return deck
 
     def get_supported_types(self) -> dict:
+        """Return the supported types.
+
+        === Return ===
+            - dict: Available types of cards (self.types)
+        """
         return self.types
