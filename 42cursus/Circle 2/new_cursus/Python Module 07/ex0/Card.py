@@ -12,6 +12,8 @@ class Card(ABC):
             - cost (int): Cost of the card (positive only).
             - rarity (str): Rarity of the card.
         """
+        if cost < 0:
+            raise ValueError("ERROR: Cost must be positive.")
         self.name = name
         self.cost = cost
         self.rarity = rarity
