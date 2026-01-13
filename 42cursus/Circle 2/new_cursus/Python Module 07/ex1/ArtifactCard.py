@@ -21,6 +21,11 @@ class ArtifactCard(Card):
             raise ValueError(f"{effect} is not a valid effect.")
 
         super().__init__(name, cost, rarity)
+        try:
+            int(durability)
+        except ValueError:
+            raise ValueError("ERROR: Durability must be an int.")
+
         self.durability = durability
         self.effect = effect
         self.type = "Artifact"
@@ -40,6 +45,8 @@ class ArtifactCard(Card):
         === Return ===
             - dict: Result of the play action.
         """
+        if "mana_left" not in game_state:
+            raise KeyError("'mana_left' key is missing")
         if self.is_playable(game_state.get("mana_left")):
             deck = game_state.get("deck")
             if deck is not None:

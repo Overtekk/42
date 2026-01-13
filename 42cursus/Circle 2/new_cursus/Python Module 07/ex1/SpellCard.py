@@ -42,6 +42,8 @@ class SpellCard(Card):
         === Return ===
             - dict: Result of the play action or error message.
         """
+        if "mana_left" not in game_state:
+            raise KeyError("'mana_left' key is missing")
         if self.is_playable(game_state.get("mana_left")):
             target = game_state.get("targets")
             if target is not None:
