@@ -12,6 +12,10 @@ class Card(ABC):
             - cost (int): Cost of the card (positive only).
             - rarity (str): Rarity of the card.
         """
+        try:
+            int(cost)
+        except ValueError:
+            raise ValueError("ERROR: Cost must be integer")
         if cost < 0:
             raise ValueError("ERROR: Cost must be positive.")
         self.name = name
@@ -53,9 +57,8 @@ class Card(ABC):
         """
         try:
             int(available_mana)
-        except ValueError:
-            print("\nERROR: available_mana need an int to works.")
-            exit(2)
+        except (ValueError, TypeError):
+            raise ValueError("\nERROR: available_mana need an int to works.")
 
         if available_mana >= self.cost:
             return True

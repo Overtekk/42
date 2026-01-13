@@ -15,6 +15,14 @@ class CreatureCard(Card):
             - attack (int): Attack value of the card (positive only).
             - health (int): Health of the card (positive only).
         """
+        try:
+            int(attack)
+        except ValueError:
+            raise ValueError("ERROR: Attack must be integer")
+        try:
+            int(health)
+        except ValueError:
+            raise ValueError("ERROR: Health must be integer")
         if health <= 0:
             raise ValueError("ERROR: Health must be positive.")
         if attack < 0:
@@ -48,6 +56,8 @@ class CreatureCard(Card):
         === Return ===
             - dict: Informations about the card played.
         """
+        if "mana_left" not in game_state:
+            raise KeyError("'mana_left' key is missing")
         if self.is_playable(game_state.get("mana_left")):
             return ({
                 "card_played": self.name,

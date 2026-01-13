@@ -17,11 +17,24 @@ def main() -> None:
     print(f"CreatureCard Info:\n{card_fire_dragon.get_card_info()}")
 
     print("\nPlaying Fire Dragon with 6 mana available:")
-    print(f"Playable: {card_fire_dragon.is_playable(6)}")
-    print(f"Play result: {card_fire_dragon.play({'mana_left':6})}")
+    try:
+        print(f"Playable: {card_fire_dragon.is_playable(6)}")
+    except ValueError as e:
+        print(e)
+        exit(2)
+
+    try:
+        print(f"Play result: {card_fire_dragon.play({'mana_left': 7})}")
+    except (ValueError, KeyError) as e:
+        print(e)
+        exit(2)
 
     print("\nFire Dragon attacks Goblin Warrior:")
-    print(card_fire_dragon.attack_target(card_goblin_warrior))
+    try:
+        print(card_fire_dragon.attack_target(card_goblin_warrior))
+    except ValueError as e:
+        print(e)
+        exit(2)
 
     print("\nTesting insufficient mana (3 available):")
     print(f"Playable: {card_fire_dragon.is_playable(3)}")
