@@ -133,6 +133,12 @@ class FantasyCardFactory(CardFactory):
         higher size, the number left will be for SpellCard. Only 1 ArtifactCard
         will be created in total.
         """
+        try:
+            int(size)
+        except ValueError:
+            raise ValueError("ERROR: Size must be an int.")
+        if size <= 0:
+            raise ValueError("ERROR: Size must be positive and not zero.")
         deck = {
             "creatures": [],
             "spells": [],
