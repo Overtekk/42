@@ -72,11 +72,11 @@ def main() -> None:
     print("Creating tournament match...")
     try:
         for i in range(len(participant_list)):
-                for j in range (i + 1, len(participant_list)):
-                    card1 = participant_list[i].id
-                    card2 = participant_list[j].id
-                    match = tournament.create_match(card1, card2)
-                    print(f"Match result: {match}")
+            for j in range(i + 1, len(participant_list)):
+                card1 = participant_list[i].id
+                card2 = participant_list[j].id
+                match = tournament.create_match(card1, card2)
+                print(f"Match result: {match}")
     except ValueError as e:
         print(e)
         exit(2)
