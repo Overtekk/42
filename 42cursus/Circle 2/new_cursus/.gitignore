@@ -4,7 +4,23 @@
 \#*\#
 c_cpp_properties.json
 
-# Tester
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# pip
+pip-log.txt
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+#Other
+.DS_STORE
+
+# Personnal (for this project)
 Python Module 00/main.py
 advanced_data_helper.py
 data_generator.py
@@ -12,9 +28,3 @@ exercise_0_help.py
 exercise_1_helper.py
 data-generator-tools/
 Python Module 04/ex1/*.txt
-
-# Python objects
-__pycache__
-
-#Other
-.DS_STORE
