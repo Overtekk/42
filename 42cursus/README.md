@@ -4,7 +4,7 @@
 | :---: | :--- | :---: | :---: |
 | **[0](https://github.com/Overtekk/42/tree/main/42cursus/Circle%200)** | ![Status](https://img.shields.io/badge/Status-Completed-2ea44f) | **1 / 1** | ✅ |
 | **[1](https://github.com/Overtekk/42/tree/main/42cursus/Circle%201)** | ![Status](https://img.shields.io/badge/Status-Completed-2ea44f) | **3 / 3** | ✅ |
-| **[2](https://github.com/Overtekk/42/tree/main/42cursus/Circle%202)** | ![Status](https://img.shields.io/badge/Status-In_Progress-yellow) | **8 / 14** | ⚠️ |
+| **[2](https://github.com/Overtekk/42/tree/main/42cursus/Circle%202)** | ![Status](https://img.shields.io/badge/Status-In_Progress-yellow) | **9 / 14** | ⚠️ |
 | **3** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 3** | 🔴 |
 | **4** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 4** | 🔴 |
 | **5** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 4** | 🔴 |
@@ -14,7 +14,7 @@
 
 | Month | Hours | Status |
 | :--- | :---: | :---: |
-| **January** | 20h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **January** | 46h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
 
 ### ⏱️ Tracked Logtime (2025)
 Total: 346h 🐨

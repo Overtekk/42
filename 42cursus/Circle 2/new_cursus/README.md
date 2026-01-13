@@ -41,6 +41,11 @@
 # [Python Module 05](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2005)
 ###  *Polymorphic Data Streams in the Digital Matrix*
 
+✅ *Completed on **13/01/2026***
+
+*Score*\
+![python_module5_score](../../../assets/Scores/42cursus/Circle%202/python_module5_score.png)
+
 # [Python Module 06](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2006)
 ###  *Mastering Python’s Import Mysteries*
 
