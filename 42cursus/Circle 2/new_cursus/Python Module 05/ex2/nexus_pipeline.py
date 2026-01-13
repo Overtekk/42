@@ -226,8 +226,24 @@ class NexusManager():
 
         print(f"Chain result: {len(data)} records processed throught "
               f"{len(pipeline_list)}-stage pipeline")
-        print(f"Performance: 95% efficiency, {end_time - start_time:.1f}s "
-              "total processing time")
+
+        performance = 0
+        processing_time = end_time - start_time
+        if processing_time >= 0 and processing_time <= 1:
+            performance = 100
+        elif processing_time >= 2 and processing_time <= 10:
+            performance = 75
+        elif processing_time >= 11 and processing_time <= 20:
+            performance = 50
+        elif processing_time >= 21 and processing_time <= 31:
+            performance = 25
+        elif processing_time >= 32 and processing_time <= 40:
+            performance = 5
+        else:
+            performance = 0
+
+        print(f"Performance: {performance}% efficiency, "
+              f"{processing_time:.1f}s total processing time")
 
 
 def main() -> None:
