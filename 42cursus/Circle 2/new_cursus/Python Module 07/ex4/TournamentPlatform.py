@@ -28,7 +28,7 @@ class TournamentPlatform():
         """Unregister a valid TournamentCard into the system.
 
         === Args ===
-            - card (TournamentCard): The card object to register.
+            - card (TournamentCard): The card object to unregister.
 
         === Return ===
             - str: A success message if unregistered, or an error message.
