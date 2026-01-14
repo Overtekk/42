@@ -5,7 +5,6 @@ description = "Ex1"
 authors = [
     {name = "roandrie",email = "roandrie@student.42lehavre.fr"}
 ]
-readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pandas (>=2.3.3,<3.0.0)",
