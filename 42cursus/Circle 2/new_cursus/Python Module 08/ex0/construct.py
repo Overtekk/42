@@ -1,18 +1,43 @@
 import sys
 import os
+import site
+
+
+# Get the path to the executable and the version
+python_path = sys.executable
+python_version = sys.version_info.minor
 
 
 def not_in_venv() -> None:
-    print("Should detect no virtual environment and provide instructions")
+    print("\nMATRIX STATUS: You're still plugged in\n")
+
+    print(f"Current Python: {python_path}.{python_version}")
+    print("Virtual Environment: None detected")
+
+    print("\nWARNING: You're in the global environment!")
+    print("The machines can see everything you install.\n")
+
+    print("To enter the construct, run:")
+    print("python3 -m venv matrix_env")
+    print("source matrix_env/bin/activate # On Unix")
+    print("matrix_env")
+    print("Scripts")
+    print("activate   # On Windows")
+
+    print("\nThen run this program again.")
 
 
 def in_venv() -> None:
     print("\nMATRIX STATUS: Welcome to the construct\n")
 
-    python_path = os.system
-    virtual_env = os.getcwd()
-    env_path = os.system
-    package_path = os.system
+    # Get all the path and cut before the last '/' to have the name's folder.
+    virtual_env = os.path.basename(sys.prefix)
+    env_path = sys.prefix
+
+    # site.getsitepackages() returns a list of all global site-packages
+    # directories. We select the first one [0], which is the standard location
+    # where pip installs third-party libraries in this environment.
+    package_path = site.getsitepackages()[0]
 
     print(f"Current Python: {python_path}")
     print(f"Virtual Environment: {virtual_env}")
@@ -21,7 +46,7 @@ def in_venv() -> None:
     print("\nSUCCESS: You're in an isolated environment!")
     print("Safe to install packages without affecting the global system.")
 
-    print(f"Package installation path: {package_path}")
+    print(f"\nPackage installation path: {package_path}")
 
 
 def main() -> None:
