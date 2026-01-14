@@ -16,6 +16,7 @@ pip-log.txt
 .venv/
 venv/
 env/
+matrix_env/
 
 #Other
 .DS_STORE
