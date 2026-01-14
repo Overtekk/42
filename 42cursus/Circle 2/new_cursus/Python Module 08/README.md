@@ -24,6 +24,14 @@ curl -sSL https://install.python-poetry.org | python3 -
 ```bash
 poetry init
 ```
+#### 🐐 Install dependecy with poetry
+```bash
+poetry install
+```
+#### 🐐 Run program with poetry
+```bash
+poetry run python3 *.py
+```
 
 ---
 
