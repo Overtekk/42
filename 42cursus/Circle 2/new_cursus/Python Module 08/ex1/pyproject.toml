@@ -1,0 +1,19 @@
+[project]
+name = "loading"
+version = "0.1.0"
+description = "Ex1"
+authors = [
+    {name = "roandrie",email = "roandrie@student.42lehavre.fr"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas (>=2.3.3,<3.0.0)",
+    "requests (>=2.32.5,<3.0.0)",
+    "matplotlib (>=3.10.8,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -11,7 +11,19 @@ source .venv/bin/activate
 ```bash
 deactivate
 ```
+### 📜 Create the requirements file with all packages installed and needed
+```bash
+pip freeze > requirements.txt
+```
 
+### 🐐 Install poetry
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+#### 🐐 Launch poetry
+```bash
+poetry init
+```
 
 ---
 
