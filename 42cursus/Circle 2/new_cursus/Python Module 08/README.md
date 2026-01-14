@@ -15,6 +15,10 @@ deactivate
 ```bash
 pip freeze > requirements.txt
 ```
+### 📜 Install packages INSIDE a virtual environment
+```bash
+pip install -r requirements.txt
+```
 
 ### 🐐 Install poetry
 ```bash
