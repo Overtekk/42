@@ -1,15 +1,16 @@
 import importlib.util
 from types import ModuleType
+import sys
 
 
 def check_dependency(module_name: str) -> ModuleType | None:
 
-     name = importlib.util.find_spec(module_name)
-     if name is None:
-          return None
+    name = importlib.util.find_spec(module_name)
+    if name is None:
+        return None
 
-     module = importlib.import_module(module_name)
-     return module
+    module = importlib.import_module(module_name)
+    return module
 
 
 def main() -> None:
@@ -24,9 +25,9 @@ def main() -> None:
     for object in dependecies_list:
         module = check_dependency(object)
         if module is None:
-             print(f"ERROR: {object} is not installed. Please install it using"
-                   " pip install -r requirements.txt) or Poetry "
-                   "(poetry install).")
+            print(f"ERROR: {object} is not installed. Please install it using"
+                  " pip install -r requirements.txt) or Poetry "
+                  "(poetry install).")
         else:
             dependecies_installed.append(module)
 
@@ -42,6 +43,8 @@ def main() -> None:
             print(f"[OK] {module} ({version}) - Network access ready")
         elif module == "matplotlib":
             print(f"[OK] {module} ({version}) - Visualization ready")
+
+    print(f"\nPython Executable: {sys.executable}")
 
     pandas = dependecies_installed[0]
     requests = dependecies_installed[1]
