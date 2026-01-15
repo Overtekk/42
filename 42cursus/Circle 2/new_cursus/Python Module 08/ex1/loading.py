@@ -9,8 +9,11 @@ def check_dependency(module_name: str) -> ModuleType | None:
     if name is None:
         return None
 
-    module = importlib.import_module(module_name)
-    return module
+    try:
+        module = importlib.import_module(module_name)
+        return module
+    except (ImportError, AttributeError):
+        return None
 
 
 def main() -> None:
