@@ -49,6 +49,11 @@
 # [Python Module 06](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2006)
 ###  *Mastering Python’s Import Mysteries*
 
+✅ *Completed on **15/01/2026***
+
+*Score*\
+![python_module6_score](../../../assets/Scores/42cursus/Circle%202/python_module6_score.png)
+
 # [Python Module 07](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2007)
 ###  *Master the Art of Abstract Card Architecture*
 
