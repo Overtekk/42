@@ -13,7 +13,7 @@ print("\nMethod 2 - Specific function import:")
 print(f"{create_water.__name__}(): "
       f"{create_water()}")
 
-print("\nMethod 3: - Multiple imports:")
+print("\nMethod 3: - Aliased imports:")
 print(f"heal(): {heal()}")
 
 print("\nMethod 4: - Multiple imports:")
