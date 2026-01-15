@@ -40,10 +40,13 @@ poetry run python3 *.py
 ---
 
 ### ❗ For 42, because we can't install pip
-
 ```
 python3 -m venv .venv --without-pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 rm get-pip.py
+```
+### And to make sure pip works inside the venv
+```
+python3 -m pip install --ignore-installed --no-cache-dir -r requirements.txt
 ```
