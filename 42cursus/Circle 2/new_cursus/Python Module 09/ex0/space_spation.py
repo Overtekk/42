@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, Dict
 from pydantic import BaseModel, Field, ValidationError
 from datetime import datetime
 
@@ -25,38 +25,25 @@ class SpaceStation(BaseModel):
     oxygen_level: float = Field(ge=0.0, le=100.0)
     last_maintenance: datetime
     is_operational: bool = True
-    notes: str | None = Field(min_length=0, max_length=200)
+    notes: str | None = Field(min_length=0, max_length=200, default=None)
 
 
-def create_station(data: List[Any]) -> SpaceStation | None:
-    """"Create a station if data are valids.
+def create_station(data: Dict[str, Any]) -> SpaceStation | None:
+    """"Create a station using a dictionary.
 
     === Args ===
-        - data (List[Any]): a list (7-8 objects) containing data about the
-          space station.
+        - data (Dict[str, Any]): A dictionary containing station data. Keys
+          must match the SpaceStation field names.
 
     === Returns ===
         - SpaceStation: the object if data are validated.
         - None: none if data are not validated.
     """
-    if len(data) == 7:
-        note = None
-    elif len(data) == 8:
-        note = data[7]
-    else:
-        print(f"Error: List must have 7 or 8 objects (yours {len(data)})")
-        return None
     try:
-        station = SpaceStation(station_id=data[0],
-                               name=data[1],
-                               crew_size=data[2],
-                               power_level=data[3],
-                               oxygen_level=data[4],
-                               last_maintenance=data[5],
-                               is_operational=data[6],
-                               notes=note
-                               )
+        # '**data' unpack the dict, so key and value become key='value'
+        station = SpaceStation(**data)
         return station
+
     except ValidationError as e:
         print("Invalid station created:")
         print(f"{type(e).__name__}", end=" - ")
@@ -95,22 +82,42 @@ def main() -> None:
     date_wrong = 'oui baguette'
 
     # Good values
-    station_list = ('ISS001', 'International Space Station', 6, 85.5,
-                    92.3, date, True)
-
+    station_list = {
+        'station_id': 'ISS001',
+        'name': 'International Space Station',
+        'crew_size': 6,
+        'power_level': 85.5,
+        'oxygen_level': 92.3,
+        'last_maintenance': date,
+        'is_operational': True
+    }
     # Good values (with note)
-    station_list2 = ('AMG_001', 'Polux Spaceship', 10, 66.6,
-                     23.3, date_amg, False, "There are 2 imposteurs among us")
-
+    station_list2 = {
+        'station_id': 'AMG_001',
+        'name': 'Polux Spaceship',
+        'crew_size': 10,
+        'power_level': 66.6,
+        'oxygen_level': 23.3,
+        'last_maintenance': date_amg,
+        'is_operational': False,
+        'notes': "There are 2 imposteurs among us"
+    }
     # Wrong Values
-    wrong_station = ('id_0123456789', 'I', 21, 105.00,
-                     -01.00, date_wrong, "hey", 123)
-    # Specific Wrong Values
-    almost_wrong_station = ('ERR002', 12, 1, 01.00,
-                            100.00, date_wrong, False, "test")
-
-    # Wrong list
-    bad_list = ()
+    wrong_station = {
+        'station_id': 'id_0123456789',
+        'name': 'I',
+        'crew_size': 21,
+        'power_level': 105.00,
+        'oxygen_level': -01.00,
+        'last_maintenance': date_wrong,
+        'is_operational': "hey",
+        'notes': 123
+    }
+    # Wrong Values
+    almost_wrong_station = {
+        'name': 'No ID Station',
+        'crew_size': 5
+    }
 
     print("- Creating ISS001 -")
     station = create_station(station_list)
@@ -129,11 +136,6 @@ def main() -> None:
 
     print("\n- Creating ERR002 -")
     station = create_station(almost_wrong_station)
-    if station is not None:
-        print_informations(station)
-
-    print("\n- Creating ERR003 -")
-    station = create_station(bad_list)
     if station is not None:
         print_informations(station)
 
