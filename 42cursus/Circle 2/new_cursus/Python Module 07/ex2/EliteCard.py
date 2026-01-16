@@ -1,4 +1,4 @@
-from ex0.Card import Card
+from ex0.Card import Card, Rarity
 from .Combatable import Combatable
 from .Magical import Magical
 
@@ -6,14 +6,14 @@ from .Magical import Magical
 class EliteCard(Card, Combatable, Magical):
     """Class representing an Elite card with combat and magic capabilities."""
 
-    def __init__(self, name: str, cost: int, rarity: str,
+    def __init__(self, name: str, cost: int, rarity: Rarity,
                  attack: int, health: int, defense: int) -> None:
         """Init the EliteCard with combat and magic stats.
 
         === Args ===
             - name (str): Name of the card.
             - cost (int): Mana cost to play.
-            - rarity (str): Rarity level.
+            - rarity (Rarity): Rarity level.
             - attack_val (int): Attack damage.
             - health (int): Health points.
             - defense (int): The defense point of the card

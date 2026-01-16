@@ -1,4 +1,5 @@
 from .CreatureCard import CreatureCard
+from .Card import Rarity
 
 
 def main() -> None:
@@ -7,9 +8,11 @@ def main() -> None:
 
     try:
         card_fire_dragon = CreatureCard(name="Fire Dragon", cost=5,
-                                        rarity="Legendary", attack=7, health=5)
+                                        rarity=Rarity.LEGENDARY, attack=7,
+                                        health=5)
         card_goblin_warrior = CreatureCard(name="Goblin Warrior", cost=3,
-                                           rarity="Common", attack=5, health=3)
+                                           rarity=Rarity.COMMON, attack=5,
+                                           health=3)
     except ValueError as e:
         print(e)
         exit(2)

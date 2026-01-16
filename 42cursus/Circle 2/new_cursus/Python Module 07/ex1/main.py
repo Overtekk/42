@@ -2,6 +2,7 @@ from ex0.CreatureCard import CreatureCard
 from .SpellCard import SpellCard
 from .ArtifactCard import ArtifactCard
 from .Deck import Deck
+from ex0.Card import Rarity
 
 
 def main() -> None:
@@ -10,23 +11,25 @@ def main() -> None:
     print("\nBuilding deck with different card types...")
 
     card_fire_dragon = CreatureCard(name="Fire Dragon", cost=5,
-                                    rarity="Legendary", attack=7, health=5)
+                                    rarity=Rarity.LEGENDARY, attack=7,
+                                    health=5)
     card_lightning_bolt = SpellCard(name="Lightning Bolt", cost=3,
-                                    rarity="Common", effect_type="damage")
+                                    rarity=Rarity.COMMON, effect_type="damage")
     # card_heal_potion = SpellCard(name="Heal Potion", cost=4,
-    #                              rarity="Uncommon", effect_type="heal")
+    #                              rarity=Rarity.COMMON, effect_type="heal")
     # card_grandma_cookie = SpellCard(name="Grandma's Cookie", cost=6,
-    #                                 rarity="Legendary", effect_type="buff")
-    # card_poop = SpellCard(name="Poop", cost=3, rarity="Common",
+    #                                 rarity=Rarity.LEGENDARY,
+    #                                 effect_type="buff")
+    # card_poop = SpellCard(name="Poop", cost=3, rarity=Rarity.COMMON,
     #                     effect_type="debuff")
     card_mana_crystal = ArtifactCard(name="Mana Crystal", cost=2,
-                                     rarity="Common", durability=1,
+                                     rarity=Rarity.COMMON, durability=1,
                                      effect="mana")
     # card_goblin_crown = ArtifactCard(name="Goblin Crown", cost=4,
-    #                                  rarity="Rare", durability=1,
+    #                                  rarity=Rarity.RARE, durability=1,
     #                                  effect="goblin")
     card_remy = CreatureCard(name="Remy the Rat Slayer", cost=10,
-                             rarity="Unique",  attack=14, health=23)
+                             rarity=Rarity.UNIQUE,  attack=14, health=23)
 
     deck = Deck()
     deck.add_card(card_fire_dragon)

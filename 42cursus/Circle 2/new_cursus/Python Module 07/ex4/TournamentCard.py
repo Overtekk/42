@@ -1,4 +1,4 @@
-from ex0.Card import Card
+from ex0.Card import Card, Rarity
 from ex2.Combatable import Combatable
 from .Rankable import Rankable
 
@@ -6,14 +6,14 @@ from .Rankable import Rankable
 class TournamentCard(Card, Combatable, Rankable):
     """A comprehensive card class for tournament play."""
 
-    def __init__(self, name: str, cost: int, rarity: str,
+    def __init__(self, name: str, cost: int, rarity: Rarity,
                  attak_val: int, health: int, defense: int, id: str) -> None:
         """Initialize a tournament card with all necessary attributes.
 
         === Args ===
             - name (str): The name of the card.
             - cost (int): The mana cost.
-            - rarity (str): The rarity level.
+            - rarity (Rarity): The rarity level.
             - attak_val (int): The attack power.
             - health (int): The health points.
             - defense (int): The defense reduction value.
@@ -136,7 +136,7 @@ class TournamentCard(Card, Combatable, Rankable):
         return {
             "name": self.name,
             "cost": self.cost,
-            "rarity": self.rarity,
+            "rarity": self.rarity.value,
             "health": self.health,
             "id": self.id,
             "interfaces": [Card.__name__, Combatable.__name__,

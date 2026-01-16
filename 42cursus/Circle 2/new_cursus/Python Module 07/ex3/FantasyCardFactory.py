@@ -1,5 +1,5 @@
 from .CardFactory import CardFactory
-from ex0.Card import Card
+from ex0.Card import Card, Rarity
 from ex0.CreatureCard import CreatureCard
 from ex1.ArtifactCard import ArtifactCard
 from ex1.SpellCard import SpellCard
@@ -22,39 +22,44 @@ class FantasyCardFactory(CardFactory):
         }
 
         self.creature_stats = {
-            "The Doom Slayer": {"cost": 25, "rare": "Unique", "atk": 66,
-                                "hp": 66},
-            "Dragon": {"cost": 8, "rare": "Legendary", "atk": 7, "hp": 12},
-            "Vampire": {"cost": 12, "rare": "Legendary", "atk": 4, "hp": 16},
-            "Licorn": {"cost": 5, "rare": "Epic", "atk": 2, "hp": 15},
-            "Troll": {"cost": 6, "rare": "Rare", "atk": 6, "hp": 7},
-            "Clown": {"cost": 5, "rare": "Rare", "atk": 5, "hp": 5},
-            "Skeleton": {"cost": 4, "rare": "Uncommon", "atk": 4, "hp": 5},
-            "Goblin": {"cost": 4, "rare": "Common", "atk": 3, "hp": 6},
-            "Rat": {"cost": 2, "rare": "Common", "atk": 1, "hp": 3},
-            "Zombie": {"cost": 3, "rare": "Common", "atk": 1, "hp": 5},
-            "Worm": {"cost": 1, "rare": "Common", "atk": 1, "hp": 1},
-            "Acarian": {"cost": 0, "rare": "Bad", "atk": 0, "hp": 1}
+            "The Doom Slayer": {"cost": 25, "rare": Rarity.LEGENDARY,
+                                "atk": 66, "hp": 66},
+            "Dragon": {"cost": 8, "rare": Rarity.LEGENDARY, "atk": 7,
+                       "hp": 12},
+            "Vampire": {"cost": 12, "rare": Rarity.LEGENDARY, "atk": 4,
+                        "hp": 16},
+            "Licorn": {"cost": 5, "rare": Rarity.EPIC, "atk": 2, "hp": 15},
+            "Troll": {"cost": 6, "rare": Rarity.RARE, "atk": 6, "hp": 7},
+            "Clown": {"cost": 5, "rare": Rarity.RARE, "atk": 5, "hp": 5},
+            "Skeleton": {"cost": 4, "rare": Rarity.COMMON, "atk": 4, "hp": 5},
+            "Goblin": {"cost": 4, "rare": Rarity.COMMON, "atk": 3, "hp": 6},
+            "Rat": {"cost": 2, "rare": Rarity.COMMON, "atk": 1, "hp": 3},
+            "Zombie": {"cost": 3, "rare": Rarity.COMMON, "atk": 1, "hp": 5},
+            "Worm": {"cost": 1, "rare": Rarity.COMMON, "atk": 1, "hp": 1},
+            "Acarian": {"cost": 0, "rare": Rarity.COMMON, "atk": 0, "hp": 1}
         }
 
         self.spell_stats = {
-            "Nuclear Bomb": {"cost": 7, "rare": "Legendary",
+            "Nuclear Bomb": {"cost": 7, "rare": Rarity.LEGENDARY,
                              "effect": "damage"},
-            "Demon Invokation": {"cost": 6, "rare": "Legendary",
+            "Demon Invokation": {"cost": 6, "rare": Rarity.LEGENDARY,
                                  "effect": "damage"},
-            "Lightning Bolt": {"cost": 4, "rare": "Rare", "effect": "damage"},
-            "Magic Missile": {"cost": 2, "rare": "Uncommon",
+            "Lightning Bolt": {"cost": 4, "rare": Rarity.RARE,
+                               "effect": "damage"},
+            "Magic Missile": {"cost": 2, "rare": Rarity.COMMON,
                               "effect": "damage"},
-            "Freeze": {"cost": 3, "rare": "Uncommon", "effect": "debuff"},
-            "Fireball": {"cost": 3, "rare": "Common", "effect": "damage"},
-            "Heal Potion": {"cost": 2, "rare": "Common", "effect": "heal"},
-            "Grandma's Cookie": {"cost": 3, "rare": "Common", "effect": "heal"}
+            "Freeze": {"cost": 3, "rare": Rarity.COMMON, "effect": "debuff"},
+            "Fireball": {"cost": 3, "rare": Rarity.COMMON, "effect": "damage"},
+            "Heal Potion": {"cost": 2, "rare": Rarity.COMMON,
+                            "effect": "heal"},
+            "Grandma's Cookie": {"cost": 3, "rare": Rarity.COMMON,
+                                 "effect": "heal"}
         }
 
         self.artifact_stats = {
-            "Goblin's Crown": {"cost": 7, "rare": "Legendary",
+            "Goblin's Crown": {"cost": 7, "rare": Rarity.LEGENDARY,
                                "durability": 1,  "effect": "goblin"},
-            "Mana": {"cost": 7, "rare": "Rare", "durability": 1,
+            "Mana": {"cost": 7, "rare": Rarity.RARE, "durability": 1,
                      "effect": "mana"}
         }
 
@@ -70,7 +75,7 @@ class FantasyCardFactory(CardFactory):
             - Card: The card created
         """
         stats = self.creature_stats.get(name_or_power, {
-            "cost": 1, "rare": "Common", "atk": 1, "hp": 1})
+            "cost": 1, "rare": Rarity.COMMON, "atk": 1, "hp": 1})
 
         return CreatureCard(
             name=name_or_power,
@@ -90,7 +95,7 @@ class FantasyCardFactory(CardFactory):
             - Card: The card created
         """
         stats = self.spell_stats.get(name_or_power, {
-            "cost": 1, "rare": "Common", "effect": "damage"})
+            "cost": 1, "rare": Rarity.COMMON, "effect": "damage"})
 
         return SpellCard(
             name=name_or_power,
@@ -109,7 +114,8 @@ class FantasyCardFactory(CardFactory):
             - Card: The card created
         """
         stats = self.artifact_stats.get(name_or_power, {
-            "cost": 1, "rare": "Common", "durability": 1, "effect": "mana"})
+            "cost": 1, "rare": Rarity.COMMON, "durability": 1,
+            "effect": "mana"})
 
         return ArtifactCard(
             name=name_or_power,

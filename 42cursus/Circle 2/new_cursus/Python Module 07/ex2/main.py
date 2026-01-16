@@ -1,14 +1,15 @@
 from .EliteCard import EliteCard
 from ex0.CreatureCard import CreatureCard
+from ex0.Card import Rarity
 
 
 def main() -> None:
     print("=== DataDeck Ability System ===\n")
 
-    arcane_warrior = EliteCard("Arcane Warrior", 6, "Legendary", 5, 42, 3)
-    goblin_enemy = CreatureCard("Goblin", 2, 'Common', 4, 10)
-    rat_enemy = CreatureCard("Rat", 2, 'Common', 1, 4)
-    skeleton_enemy = CreatureCard("Skeleton", 2, 'Common', 3, 7)
+    arcane_warrior = EliteCard("Arcane Warrior", 6, Rarity.COMMON, 5, 42, 3)
+    goblin_enemy = CreatureCard("Goblin", 2, Rarity.COMMON, 4, 10)
+    rat_enemy = CreatureCard("Rat", 2, Rarity.COMMON, 1, 4)
+    skeleton_enemy = CreatureCard("Skeleton", 2, Rarity.COMMON, 3, 7)
 
     game = {
         "mana_left": 50,

@@ -1,18 +1,18 @@
-from ex0.Card import Card
+from ex0.Card import Card, Rarity
 from ex0.CreatureCard import CreatureCard
 
 
 class ArtifactCard(Card):
     """Class for card of artifact type."""
 
-    def __init__(self, name: str, cost: int, rarity: str, durability: int,
+    def __init__(self, name: str, cost: int, rarity: Rarity, durability: int,
                  effect: str) -> None:
         """Init the artifact card.
 
         === Args ===
             - name (str): The name of the card.
             - cost (int): The mana cost.
-            - rarity (str): The rarity of the card.
+            - rarity (Rarity): The rarity of the card.
             - durability (int): The durability of the artifact.
             - effect (str): The effect name ("mana", "goblin").
         """

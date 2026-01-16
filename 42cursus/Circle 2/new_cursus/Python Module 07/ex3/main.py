@@ -2,6 +2,7 @@ from .GameEngine import GameEngine
 from .FantasyCardFactory import FantasyCardFactory
 from .AggressiveStrategy import AggresiveStrategy
 from ex0.CreatureCard import CreatureCard
+from ex0.Card import Rarity
 import random
 
 
@@ -57,11 +58,11 @@ def main() -> None:
     print("]")
     print("")
 
-    enemy_player = CreatureCard("Ennemy Player", 3, "Common", 1, 10)
+    enemy_player = CreatureCard("Ennemy Player", 3, Rarity.COMMON, 1, 10)
     white_dragon = CreatureCard("The White Dragon with blue eyes", 8,
-                                "Holographic", 3, 10)
+                                Rarity.LEGENDARY, 3, 10)
     # invincible_dragon = CreatureCard("The Invincible Dragon", 8,
-    #                                  "Holographic", 5, 100)
+    #                                  Rarity.LEGENDARY, 5, 100)
 
     game.battlefield.append(white_dragon)
     # game.battlefield.append(invincible_dragon)

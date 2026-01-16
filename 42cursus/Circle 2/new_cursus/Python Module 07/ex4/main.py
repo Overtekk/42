@@ -1,5 +1,6 @@
 from .TournamentPlatform import TournamentPlatform
 from .TournamentCard import TournamentCard
+from ex0.Card import Rarity
 import random
 
 
@@ -22,20 +23,21 @@ def main() -> None:
 
     print(f"Platform Report:\n{tournament.generate_tournament_report()}")
 
-    fire_dragon = TournamentCard("Fire Dragon", 6, "Legendary", 6, 7, 3,
+    fire_dragon = TournamentCard("Fire Dragon", 6, Rarity.LEGENDARY, 6, 7, 3,
                                  "dragon_001")
-    ice_wizard = TournamentCard("Ice Wizard", 5, "Rare", 4, 12, 1,
+    ice_wizard = TournamentCard("Ice Wizard", 5, Rarity.RARE, 4, 12, 1,
                                 "wizard_001")
-    obelix = TournamentCard("Obelix", 10, "Unique", 1000, 800, 40, "obelix_01")
-    duck = TournamentCard("The Greatest Duck", 3, "Legendary", 18, 18, 18,
+    obelix = TournamentCard("Obelix", 10, Rarity.LEGENDARY, 1000, 800, 40,
+                            "obelix_01")
+    duck = TournamentCard("The Greatest Duck", 3, Rarity.LEGENDARY, 18, 18, 18,
                           "duck_01")
-    remy = TournamentCard("Remy the Rat Slayer", 10, "Unique",
+    remy = TournamentCard("Remy the Rat Slayer", 10, Rarity.UNIQUE,
                           random.randint(1, 12), random.randint(1, 22),
                           random.randint(1, 10), "remy_01")
-    manu = TournamentCard("Manu the trainer", 10, "Unique",
+    manu = TournamentCard("Manu the trainer", 10, Rarity.UNIQUE,
                           random.randint(1, 12), random.randint(1, 22),
                           random.randint(1, 10), "manu_01")
-    rat = TournamentCard("Rat", 1, "Common", 1, 1, 1, "rat_01")
+    rat = TournamentCard("Rat", 1, Rarity.COMMON, 1, 1, 1, "rat_01")
 
     my_cards = [fire_dragon, ice_wizard, obelix, duck, remy, manu, rat]
     ice_wizard.elo = 1150

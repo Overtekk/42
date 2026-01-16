@@ -1,16 +1,26 @@
 from abc import ABC, abstractmethod
+from enum import Enum
+
+
+class Rarity(Enum):
+    """"Enum class for rarity type."""
+    COMMON = "Common"
+    RARE = "Rare"
+    EPIC = "Epic"
+    LEGENDARY = "Legendary"
+    UNIQUE = "Unique"
 
 
 class Card(ABC):
     """Abstract class to build the different cards."""
 
-    def __init__(self, name: str, cost: int, rarity: str) -> None:
+    def __init__(self, name: str, cost: int, rarity: Rarity) -> None:
         """Init a card with default mandatory value.
 
         === Args ===
             - name (str): The name of the card.
             - cost (int): Cost of the card (positive only).
-            - rarity (str): Rarity of the card.
+            - rarity (Rarity): Rarity of the card.
         """
         try:
             int(cost)
@@ -18,6 +28,8 @@ class Card(ABC):
             raise ValueError("ERROR: Cost must be integer")
         if cost < 0:
             raise ValueError("ERROR: Cost must be positive.")
+        if not isinstance(rarity, Rarity):
+            raise TypeError("Rarity must be an Enum of type Rarity")
         self.name = name
         self.cost = cost
         self.rarity = rarity
@@ -43,7 +55,7 @@ class Card(ABC):
         return ({
             "name": self.name,
             "cost": self.cost,
-            "rarity": self.rarity
+            "rarity": self.rarity.value
         })
 
     def is_playable(self, available_mana: int) -> bool:

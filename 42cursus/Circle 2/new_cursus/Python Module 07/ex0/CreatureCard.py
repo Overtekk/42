@@ -1,17 +1,17 @@
-from .Card import Card
+from .Card import Card, Rarity
 
 
 class CreatureCard(Card):
     """Class for Card of type Creature."""
 
-    def __init__(self, name: str, cost: int, rarity: str,
+    def __init__(self, name: str, cost: int, rarity: Rarity,
                  attack: int, health: int) -> None:
         """Init special attributes specific to a CreatureCard.
 
         === Args ===
             - name (str): The name of the card.
             - cost (int): Cost of the card.
-            - rarity (str): Rarity of the card.
+            - rarity (Rarity): Rarity of the card.
             - attack (int): Attack value of the card (positive only).
             - health (int): Health of the card (positive only).
         """
@@ -41,7 +41,7 @@ class CreatureCard(Card):
         return ({
             "name": self.name,
             "cost": self.cost,
-            "rarity": self.rarity,
+            "rarity": self.rarity.value,
             "type": self.type,
             "attack": self.attack,
             "health": self.health
