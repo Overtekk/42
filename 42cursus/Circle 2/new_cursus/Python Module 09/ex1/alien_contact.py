@@ -5,6 +5,9 @@ from enum import Enum
 
 
 class ContactType(Enum):
+    """
+    Enumeration defining the allowed methods of contact.
+    """
     RADIO = "radio"
     VISUAL = "visual"
     PHYSICAL = "physical"
@@ -12,6 +15,21 @@ class ContactType(Enum):
 
 
 class AlienContact(BaseModel):
+    """
+    Inherits from BaseModel and define a AlienContact class with specific
+    types.
+
+    contact_id: (str), 5-15 characters.
+    timestamp: (DateTime).
+    location: (str), 3-100 characters.
+    contact_type: (ContactType).
+    signal_strength: (float), 0.0-10.0.
+    duration_minutes: (int), 1-1440 minutes.
+    witness_count: (int), 1-100 people.
+    message_received: (Optional), (str), 500 characters max.
+    is_verified: (bool), defaults to False.
+
+    """
     contact_id: str = Field(min_length=5, max_length=15)
     timestamp: datetime
     location: str = Field(min_length=3, max_length=100)
@@ -25,6 +43,13 @@ class AlienContact(BaseModel):
 
     @model_validator(mode='after')
     def verification(self) -> Self:
+        """Perform custom validation checks on the model attributes. This
+        function will be called everytime we tried to create an AlienContact
+        object.
+
+        === Returns ===
+            - Self: The object itself if all validations pass.
+        """
 
         if not self.contact_id.startswith('AC'):
             raise ValueError("Contact ID must start with \"AC\""
@@ -47,6 +72,16 @@ class AlienContact(BaseModel):
 
 
 def contact_report(data: Dict[str, Any]) -> AlienContact | None:
+    """"Create a contact report using a dictionary.
+
+    === Args ===
+        - data (Dict[str, Any]): A dictionary containing contact data. Keys
+          must match the AlienContact field names.
+
+    === Returns ===
+        - AlienContact: the object if data are validated.
+        - None: none if data are not validated.
+    """
     try:
         report_result = AlienContact(**data)
         return report_result
@@ -58,6 +93,11 @@ def contact_report(data: Dict[str, Any]) -> AlienContact | None:
 
 
 def print_result(report: AlienContact) -> None:
+    """"Print informations about the AlienContact.
+
+    === Args ===
+        - report (AlienContact): The AlienContact object and validated.
+    """
     print("Valid contact report:")
     print(f"ID: {report.contact_id}")
     print(f"Last contact: {report.timestamp}")
