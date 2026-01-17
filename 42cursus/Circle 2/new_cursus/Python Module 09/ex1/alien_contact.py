@@ -19,14 +19,30 @@ class AlienContact(BaseModel):
     signal_strength: float = Field(ge=0.0, le=10.0)
     duration_minutes: int = Field(ge=1, le=1440)
     witness_count: int = Field(ge=1, le=100)
-    message_received: str | None = Field(min_length=0, max_length=500)
+    message_received: str | None = Field(min_length=0, max_length=500,
+                                         default=None)
     is_verified: bool = False
 
     @model_validator(mode='after')
     def verification(self) -> Self:
+
         if not self.contact_id.startswith('AC'):
             raise ValueError("Contact ID must start with \"AC\""
-                                  "(Alien Contact)")
+                             "(Alien Contact)")
+
+        if self.contact_type == ContactType.PHYSICAL:
+            if not self.is_verified:
+                raise ValueError("Physical contact reports must be verified")
+
+        if self.contact_type == ContactType.TELEPATHIC:
+            if not self.witness_count >= 3:
+                raise ValueError("Telepathic contact requires at least "
+                                 "3 witnesses")
+
+        if self.signal_strength > 7.0:
+            if self.message_received is None:
+                raise ValueError("Strong signals (> 7.0) should include "
+                                 "received messages")
         return self
 
 
@@ -34,7 +50,7 @@ def contact_report(data: Dict[str, Any]) -> AlienContact | None:
     try:
         report_result = AlienContact(**data)
         return report_result
-    except ValidationError as e:
+    except (ValidationError, ValueError) as e:
         print(f"Invalid contact report\n{type(e).__name__}", end=" - ")
         for item in e.errors():
             print(f"{item['loc']}: {item['msg']}")
@@ -70,6 +86,17 @@ def main() -> None:
         'witness_count': 5,
         'message_received': 'Greetings from Zeta Reticuli',
         'is_verified': True
+    }
+
+    # Good values (without message and verified)
+    contact1_bis = {
+        'contact_id': 'AC_2024_001',
+        'timestamp': '2003-04-23T22:42:06Z',
+        'contact_type': ContactType.RADIO,
+        'location': 'Area 51, Nevada',
+        'signal_strength': 2.5,
+        'duration_minutes': 45,
+        'witness_count': 5,
     }
 
     # Bad values
@@ -129,7 +156,7 @@ def main() -> None:
         'timestamp': '2003-04-23T22:42:06Z',
         'contact_type': ContactType.TELEPATHIC,
         'location': 'Area 51, Nevada',
-        'signal_strength': 2,
+        'signal_strength': 7.2,
         'duration_minutes': 45,
         'witness_count': 1,
         'is_verified': False
@@ -137,6 +164,11 @@ def main() -> None:
 
     print("-- Contact 1 --")
     report = contact_report(contact1)
+    if report is not None:
+        print_result(report)
+
+    print("\n-- Contact 1_bis --")
+    report = contact_report(contact1_bis)
     if report is not None:
         print_result(report)
 
