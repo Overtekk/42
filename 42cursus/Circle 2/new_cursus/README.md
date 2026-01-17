@@ -60,10 +60,15 @@
 ✅ *Completed on **16/01/2026***
 
 *Score*\
-![python_module7_score](../../../assets/Scores/42cursus/Circle%202/python_module6_score.png)
+![python_module7_score](../../../assets/Scores/42cursus/Circle%202/python_module7_score.png)
 
 # [Python Module 08](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2008)
 ###  *Welcome to the Real World of Data Engineering*
+
+✅ *Completed on **17/01/2026***
+
+*Score*\
+![python_module8_score](../../../assets/Scores/42cursus/Circle%202/python_module8_score.png)
 
 # [Python Module 09](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2009)
 ###  *Discover Pydantic Models & Validation*
