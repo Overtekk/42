@@ -4,11 +4,11 @@ def spell_combiner(spell1: callable, spell2: callable) -> callable:
 
 def power_amplifier(base_spell: callable, multiplier: int) -> callable:
 
-    # def wrapper(target):
+    # def power(target):
     #     result_original = base_spell(target)
     #     result_final = result_original * multiplier
     #     return result_final
-    # return wrapper
+    # return power
 
     return lambda x: (base_spell(x) * multiplier)
 
