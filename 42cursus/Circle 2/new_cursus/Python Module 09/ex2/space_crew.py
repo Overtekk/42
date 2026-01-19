@@ -1,7 +1,15 @@
 from enum import Enum
 from typing import Any, Dict, List, Self
-from pydantic import BaseModel, Field, model_validator, ValidationError
+import sys
 from datetime import datetime
+
+
+try:
+    from pydantic import BaseModel, Field, ValidationError, model_validator
+except ModuleNotFoundError as e:
+    print(f"\n{type(e).__name__}: missing dependency {e.name}.\nTry to install"
+          " it first using 'pip install pydantic'", file=sys.stderr)
+    exit(2)
 
 
 class Rank(Enum):

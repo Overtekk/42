@@ -1,7 +1,15 @@
 from typing import Any, Dict, Self
-from pydantic import BaseModel, Field, ValidationError, model_validator
 from datetime import datetime
 from enum import Enum
+import sys
+
+
+try:
+    from pydantic import BaseModel, Field, ValidationError, model_validator
+except ModuleNotFoundError as e:
+    print(f"\n{type(e).__name__}: missing dependency {e.name}.\nTry to install"
+          " it first using 'pip install pydantic'", file=sys.stderr)
+    exit(2)
 
 
 class ContactType(Enum):

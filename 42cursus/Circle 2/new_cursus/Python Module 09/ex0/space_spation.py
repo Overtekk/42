@@ -1,6 +1,14 @@
 from typing import Any, Dict
-from pydantic import BaseModel, Field, ValidationError
 from datetime import datetime
+import sys
+
+
+try:
+    from pydantic import BaseModel, Field, ValidationError
+except ModuleNotFoundError as e:
+    print(f"\n{type(e).__name__}: missing dependency {e.name}.\nTry to install"
+          " it first using 'pip install pydantic'", file=sys.stderr)
+    exit(2)
 
 
 class SpaceStation(BaseModel):
