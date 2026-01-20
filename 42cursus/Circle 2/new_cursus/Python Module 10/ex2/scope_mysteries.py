@@ -1,5 +1,6 @@
 def mage_counter() -> callable:
     count = 0
+
     def mage_counter2() -> int:
         nonlocal count
         count += 1
@@ -9,6 +10,7 @@ def mage_counter() -> callable:
 
 def spell_accumulator(initial_power: int) -> callable:
     total = initial_power
+
     def spell2(power_add: int) -> int:
         nonlocal total
         total += power_add
@@ -22,9 +24,20 @@ def enchantment_factory(enchantment_type: str) -> callable:
     return enchant
 
 
-
 def memory_vault() -> dict[str, callable]:
-    pass
+    mem = {}
+
+    def store(key: str, value: any) -> None:
+        mem.update({key: value})
+
+    def recall(key: str) -> dict[str]:
+        if mem.get(key) is None:
+            return "Memory not found"
+        return mem[key]
+    return {
+        'store': store,
+        'recall': recall
+    }
 
 
 def main() -> None:
@@ -48,6 +61,12 @@ def main() -> None:
     print(fire_enchant("Iron Sword"))
     print(knockback_enchant("Stick"))
     print(sharpness_enchant("Netherite Sword"))
+
+    print("\nTesting memory vault...")
+    memory = memory_vault()
+    memory['store']('test', 42)
+    print(memory['recall']('test'))
+    print(memory['recall']('none'))
 
 
 if __name__ == "__main__":
