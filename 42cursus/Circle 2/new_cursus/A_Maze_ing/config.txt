@@ -2,16 +2,19 @@
 WIDTH=20
 
 # Maze height
-HEIGHT=15
+HEIGHT=20
 
 # Entry coordinates (x,y)
 ENTRY=0,0
 
 # Exit coordinates (x,y)
-EXIT=19,24
+EXIT=7,1
 
 # Output filename
 OUTPUT_FILE=maze.txt
 
 # Is the maze perfect?
 PERFECT=True
+
+# The seed to use (Optional)
+# SEED=42

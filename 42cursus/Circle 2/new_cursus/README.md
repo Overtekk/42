@@ -60,7 +60,7 @@
 ✅ *Completed on **16/01/2026***
 
 *Score*\
-![python_module7_score](../../../assets/Scores/42cursus/Circle%202/python_module7_score.png)
+![python_module7_score](../../../assets/Scores/42cursus/Circle%202/python_module07_score.png)
 
 # [Python Module 08](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2008)
 ###  *Welcome to the Real World of Data Engineering*
@@ -68,7 +68,7 @@
 ✅ *Completed on **17/01/2026***
 
 *Score*\
-![python_module8_score](../../../assets/Scores/42cursus/Circle%202/python_module8_score.png)
+![python_module8_score](../../../assets/Scores/42cursus/Circle%202/python_module08_score.png)
 
 # [Python Module 09](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2009)
 ###  *Discover Pydantic Models & Validation*
@@ -76,7 +76,12 @@
 ✅ *Completed on **20/01/2026***
 
 *Score*\
-![python_module9_score](../../../assets/Scores/42cursus/Circle%202/python_module9_score.png)
+![python_module9_score](../../../assets/Scores/42cursus/Circle%202/python_module09_score.png)
 
 # [Python Module 10](https://github.com/Overtekk/Python-Module-00-10/tree/main/Python%20Module%2010)
 ###  *Master the Ancient Arts of Functional Programming*
+
+✅ *Completed on **24/01/2026***
+
+*Score*\
+![python_module10_score](../../../assets/Scores/42cursus/Circle%202/python_module10_score.png)
