@@ -5,7 +5,7 @@
 ✅ *Completed on **05/12/2025*** *1/3 bonus*
 
 *Score*\
-![so_long_score](../../../assets/Scores/42cursus/Circle%202/so_long_score.png)  
+![so_long_score](../../../assets/Scores/42cursus/Circle%202/so_long_score.png)
 
 ⭐
 #
@@ -22,5 +22,16 @@ It's a very cool project I've wanted to do since I first heard about it. Creatin
 
 *Score*\
 ![push_swap_score](../../../assets/Scores/42cursus/Circle%202/push_swap_score.png)
+
+⭐
+
+# [minitalk](https://github.com/Overtekk/minitalk)
+###  *Code a small data exchange program using UNIX signals*
+
+
+✅ *Completed on **31/01/2026*** *with bonus*
+
+*Score*\
+![push_swap_score](../../../assets/Scores/42cursus/Circle%202/minitalk_score.png)
 
 ⭐
