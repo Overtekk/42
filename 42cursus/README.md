@@ -14,7 +14,8 @@
 
 | Month | Hours | Status |
 | :--- | :---: | :---: |
-| **January** | 136h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **February** | 00h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **January** | 138h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
 
 ### ⏱️ Tracked Logtime (2025)
 Total: 346h 🐨
