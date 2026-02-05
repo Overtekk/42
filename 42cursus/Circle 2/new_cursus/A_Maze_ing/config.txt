@@ -1,14 +1,14 @@
 # Maze width (number of cells)
-WIDTH=20
+WIDTH=50
 
 # Maze height
-HEIGHT=20
+HEIGHT=40
 
 # Entry coordinates (x,y)
 ENTRY=0,0
 
 # Exit coordinates (x,y)
-EXIT=7,1
+EXIT=36,38
 
 # Output filename
 OUTPUT_FILE=maze.txt
@@ -18,3 +18,11 @@ PERFECT=True
 
 # The seed to use (Optional)
 # SEED=42
+
+# Display mode (Optional)
+# Valid = "emoji" (default) | "ascii"
+DISPLAY=emoji
+
+# Algorithm to use (Optional)
+# Valid = "rb"(recursive backtracking(DEFAULT)) | "huntandkill"
+ALGORITHM=rb

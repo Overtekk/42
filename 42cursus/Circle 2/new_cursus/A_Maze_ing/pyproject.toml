@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mazegen"
+version = "1.0.0"
+description = "Maze generator and solver with animations"
+readme = "src/maze/README.md"
+requires-python = ">=3.10"
+license = "MIT"
+
+authors = [
+  { name="roandrie", email="roandrie@student.42lehavre.fr" },
+  { name="rruiz", email="rruiz@student.42lehavre.fr"},
+]
+
+dependencies = [
+    "colorama",
+    "pydantic",
+	"typing-extensions"
+]
+
+[project.urls]
+Repository = "https://github.com/Overtekk/A_Maze_ing"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["maze*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+mazegen = ["*.md"]

@@ -1,19 +1,22 @@
 # ************************************************************************* #
 #                                                                           #
 #                                                      :::      ::::::::    #
-#  __init__.py                                       :+:      :+:    :+:    #
+#  maze_errors.py                                    :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
-#  Created: 2026/01/27 15:53:28 by roandrie        #+#    #+#               #
-#  Updated: 2026/01/27 15:54:28 by roandrie        ###   ########.fr        #
+#  Created: 2026/01/27 14:13:47 by roandrie        #+#    #+#               #
+#  Updated: 2026/01/27 16:45:44 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-from src.utils.modules_check import module_checker
-from src.utils.custom_errors import ArgumentsError
+class MazeError(Exception):
+    pass
 
-__all__ = [
-    "module_checker",
-    "ArgumentsError"
-]
+
+class MazeConfigError(MazeError):
+    pass
+
+
+class MazeGenerationError(MazeError):
+    pass
