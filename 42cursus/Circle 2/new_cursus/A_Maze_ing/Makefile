@@ -6,7 +6,7 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/20 16:18:29 by roandrie        #+#    #+#               #
-#  Updated: 2026/01/22 13:27:11 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/05 14:58:29 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -30,6 +30,8 @@ CONFIG=config.txt
 install:
 				@echo "$(BLUE)Installing dependencies...$(RESET)"
 				@$(PIP) install -r requirements.txt
+				@echo "$(BLUE)Installing project in editable mode...$(RESET)"
+				@$(PIP) install -e .
 				@echo "$(GREEN)✔ Dependencies installed!$(RESET)"
 
 # Run the main script of the project.

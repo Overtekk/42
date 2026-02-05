@@ -14,7 +14,7 @@ EXIT=36,38
 OUTPUT_FILE=maze.txt
 
 # Is the maze perfect?
-PERFECT=True
+PERFECT=False
 
 # The seed to use (Optional)
 # SEED=42

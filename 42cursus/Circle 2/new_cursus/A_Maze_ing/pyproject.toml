@@ -32,4 +32,4 @@ include = ["maze*"]
 include-package-data = true
 
 [tool.setuptools.package-data]
-mazegen = ["*.md"]
+maze = ["*.md"]

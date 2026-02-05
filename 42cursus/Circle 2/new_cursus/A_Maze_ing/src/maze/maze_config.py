@@ -6,9 +6,15 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/27 14:14:51 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 09:58:43 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/05 16:11:13 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
+
+"""Configuration model for maze generation.
+
+Defines validation rules for maze dimensions, coordinates and
+runtime options. Uses `pydantic` for input parsing and validation.
+"""
 
 from pathlib import Path
 from typing import Any, Self, Tuple
@@ -21,6 +27,12 @@ from .maze_fortytwo_pattern import get_fortytwo_pattern as ft_patt
 
 
 class MazeConfig(BaseModel):
+    """Pydantic model that represents validated maze configuration.
+
+    Fields are validated for sensible ranges and formats. Helper
+    validators convert string coordinates and enforce permitted
+    display/algorithm values.
+    """
     width: int = Field(ge=7)
     height: int = Field(ge=5)
     entry: Tuple[int, int]
@@ -34,6 +46,11 @@ class MazeConfig(BaseModel):
     @field_validator('entry', 'exit', mode='before')
     @classmethod
     def parse_coordinate(cls, coord: str) -> Tuple[int, int]:
+        """Parse a coordinate string "x,y" into a tuple.
+
+        Accepts either a tuple or a string. Raises `ValueError` for an
+        invalid format.
+        """
         if isinstance(coord, tuple):
             return coord
 
@@ -63,6 +80,10 @@ class MazeConfig(BaseModel):
     @field_validator('display')
     @classmethod
     def validate_display_mode(cls, display: str | None) -> str:
+        """Validate `display` field and normalize its value.
+
+        Raises `MazeConfigError` if the value is not supported.
+        """
         valid_display = ["ascii", "emoji"]
 
         if display is not None:
@@ -77,6 +98,10 @@ class MazeConfig(BaseModel):
     @field_validator('algorithm')
     @classmethod
     def validate_algorithm_mode(cls, algo: str | None) -> str:
+        """Validate `algorithm` field and normalize its value.
+
+        Raises `MazeConfigError` if the value is not supported.
+        """
         valid_algo = ["rb", "huntandkill"]
 
         if algo is not None:
@@ -90,6 +115,11 @@ class MazeConfig(BaseModel):
 
     @model_validator(mode='after')
     def valid_config_input(self) -> Self:
+        """Perform cross-field validation after model construction.
+
+        Ensures coordinates are inside bounds and that entry and exit
+        are not overlapping or placed on reserved '42' pattern cells.
+        """
 
         entry_x, entry_y = self.entry
         if not (0 <= entry_x < self.width and 0 <= entry_y < self.height):
@@ -115,6 +145,21 @@ class MazeConfig(BaseModel):
 
     @classmethod
     def from_config_file(cls, filepath: str) -> "MazeConfig":
+        """Create a `MazeConfig` instance from a simple key=value file.
+
+        The expected keys are: width, height, entry, exit, output_file,
+        perfect, seed, display, algorithm.
+
+        Args:
+            filepath: Path to the configuration file.
+
+        Returns:
+            MazeConfig: Validated configuration model.
+
+        Raises:
+            FileNotFoundError: If `filepath` does not exist.
+            MazeConfigError: On malformed content or validation errors.
+        """
         path = Path(filepath)
         if not path.is_file():
             raise FileNotFoundError("Missing config file")

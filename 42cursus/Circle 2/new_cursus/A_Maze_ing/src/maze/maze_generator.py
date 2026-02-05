@@ -6,9 +6,19 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/22 12:07:28 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 10:04:54 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/05 14:45:05 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
+
+"""Maze generation core.
+
+This module provides the `MazeGenerator` class which builds a maze
+representation and renders it to terminal or writes it to an output
+file. It coordinates display formatting, algorithm selection and
+seeded random generation.
+
+Google style docstrings are used for public members.
+"""
 
 import random
 import string
@@ -24,14 +34,30 @@ from .maze_customization import (COLORS, STYLE, ANIM, DISPLAY_MODE, ALGO_MODE,
                                  MAZE, VISUAL, EMOJI)
 from .algorithms import (recursive_backtracking, hunt_and_kill,
                          break_random_walls)
-from src.maze.output import maze_output
+from .output import maze_output
 
 
 class MazeGenerator():
+    """Generate and render mazes.
+
+    The generator uses a `MazeConfig` instance to configure maze
+    dimensions, entry/exit coordinates, output file and algorithm
+    selection. It exposes methods to generate the grid, render it and
+    export it.
+
+    Attributes:
+        cfg: The `MazeConfig` used to configure generation.
+    """
 
     txt_white = f"{COLORS.white}{STYLE.bright}"
 
     def __init__(self, config: MazeConfig) -> None:
+        """Initialize the generator from a `MazeConfig`.
+
+        Args:
+            config: MazeConfig containing width, height, entry/exit
+                positions, output file and other generation options.
+        """
         # Import config
         self.cfg = config
 
@@ -71,7 +97,7 @@ class MazeGenerator():
         self.color_path = COLORS.cyan
 
         self.visual_empty: str | VISUAL
-        self.visual_wall: str | VISUAL
+        self.visual_wall: str | VISUAL | EMOJI
 
         # Configure rendering based on display
         if self.display == DISPLAY_MODE.ascii:
@@ -95,9 +121,20 @@ class MazeGenerator():
 
     def maze_generator(self, rendering: bool = False,
                        regen: bool = False) -> None:
-        if (rendering and self.display in (DISPLAY_MODE.ascii,
-                                           DISPLAY_MODE.emoji)
-                                           and regen is False):
+        """Create a new maze and optionally render it.
+
+        The method fills the internal grid, runs the selected
+        generation algorithm and validates labyrinth solvability.
+
+        Args:
+            rendering: If True, render progress and the final maze to
+                the terminal.
+            regen: If True, regenerate the random seed before
+                generation.
+        """
+        if (rendering and
+            self.display in (DISPLAY_MODE.ascii, DISPLAY_MODE.emoji) and
+                regen is False):
             print(ANIM.clear, end="")
             while True:
                 user_choice = self._customize_maze_walls_color()
@@ -130,9 +167,9 @@ class MazeGenerator():
                 visual_width = self.width
             else:
                 visual_width = self.width // 2
-            if regen is False:
-                filling = " " * max(0, ((visual_width -
-                                         (len(text_generating) // 2))))
+        if regen is False:
+            filling = " " * max(0, ((visual_width -
+                                     (len(text_generating) // 2))))
 
         # Print the loading text
         if regen is False:
@@ -164,7 +201,7 @@ class MazeGenerator():
         self._choose_algo(rendering)
 
         # Check if the maze can be solved
-        from src.maze.maze_solver import MazeSolver
+        from .maze_solver import MazeSolver
         solver = MazeSolver(self)
         solver.find_path()
         if len(solver.path) <= 0:
@@ -181,6 +218,12 @@ class MazeGenerator():
             print(Cursor.POS(1, self.height + self.y_offset))
 
     def get_maze_parameters(self) -> Dict[str, Any]:
+        """Return a dictionary describing current maze parameters.
+
+        Returns:
+            Dict[str, Any]: Human-readable mapping of current
+                generator settings.
+        """
         return {
             'Width': self.width,
             'Height': self.height,
@@ -194,6 +237,17 @@ class MazeGenerator():
         }
 
     def break_wall(self, x: int, y: int, rendering: bool) -> None:
+        """Break a wall at the given coordinates.
+
+        This updates the internal grid and, when `rendering` is True,
+        updates the terminal output at the corresponding cursor
+        position.
+
+        Args:
+            x: X coordinate of cell to convert to empty.
+            y: Y coordinate of cell to convert to empty.
+            rendering: Whether to print the change to the terminal.
+        """
         self.maze[(x, y)] = MAZE.empty
 
         if rendering:
@@ -219,9 +273,15 @@ class MazeGenerator():
 
             print(Cursor.POS(curs_x, curs_y) + f"{color}{symbol}"
                   f"{COLORS.reset}", end="", flush=True)
-            time.sleep(0.001)
+            if self.height < 100 or self.width < 100:
+                time.sleep(0.001)
 
     def print_maze(self) -> None:
+        """Render the maze to the terminal.
+
+        Iterates over the internal grid and prints the appropriate
+        symbol and color for each cell.
+        """
         for y in range(self.height):
             for x in range(self.width):
                 cell = self.maze[(x, y)]
@@ -258,6 +318,12 @@ class MazeGenerator():
             print()
 
     def _choose_algo(self, rendering: bool) -> None:
+        """Dispatch to the selected generation algorithm.
+
+        Args:
+            rendering: Passed through to algorithm implementations to
+                control incremental rendering.
+        """
         if self.algorithm == ALGO_MODE.rb and self.perfect:
             recursive_backtracking(self, rendering)
         elif self.algorithm == ALGO_MODE.rb and self.perfect is False:
@@ -268,6 +334,11 @@ class MazeGenerator():
             hunt_and_kill(self, rendering)
 
     def _correcting_coords(self) -> None:
+        """Adjust coordinates and dimensions for algorithm needs.
+
+        Ensures entry/exit coordinates and width/height parity are
+        compatible with generation algorithms.
+        """
         if self.entry_coord[0] == 0:
             self.entry_coord = (self.entry_coord[0] + 1, self.entry_coord[1])
             self.exit_coord = (self.exit_coord[0] + 1, self.exit_coord[1])
@@ -290,6 +361,11 @@ class MazeGenerator():
             self.exit_coord = (self.exit_coord[0], self.height - 2)
 
     def _fill_maze(self) -> None:
+        """Initialize the internal grid with default cell values.
+
+        Entry, exit and the special '42' positions are preserved; all
+        other cells are initialized to walls.
+        """
         for y in range(self.height):
             for x in range(self.width):
                 if x == self.entry_x and y == self.entry_y:
@@ -302,19 +378,25 @@ class MazeGenerator():
                     self.maze[(x, y)] = MAZE.wall
 
     def _customize_maze_walls_color(self) -> str:
+        """Interactively prompt the user to choose wall colors.
+
+        Returns:
+            str: "ok" when a valid choice was made, empty string on
+                invalid input.
+        """
         print(f"{self.txt_white}Choose walls color:")
 
         if self.display == DISPLAY_MODE.ascii:
             print(f"{COLORS.white}1. White\t {COLORS.blue}3. Blue\t "
-                f"{COLORS.lightyellow}5. Yellow")
+                  f"{COLORS.lightyellow}5. Yellow")
             print(f"{COLORS.magenta}2. Magenta\t {COLORS.cyan}4. Cyan\t "
-                f"{COLORS.green}6. Green")
+                  f"{COLORS.green}6. Green")
 
         else:
             print(f"{COLORS.white}1. White\t {COLORS.blue}3. Blue\t "
-                f"{COLORS.lightyellow}5. Yellow")
+                  f"{COLORS.lightyellow}5. Yellow")
             print(f"{COLORS.magenta}2. Magenta\t {COLORS.yellow}4. Brown\t "
-                f"{COLORS.green}6. Green")
+                  f"{COLORS.green}6. Green")
 
         user_choice = input(f"{self.txt_white}Enter choice: ")
         try:
@@ -335,12 +417,21 @@ class MazeGenerator():
         return ""
 
     def _generate_random_seed(self) -> None:
+        """Generate a random seed string and attach it to the
+        generator."""
         random_seed = ''.join(random.choices(string.ascii_letters +
                                              string.digits,
                                              k=random.randint(1, 101)))
         self.seed = random_seed
 
     def _apply_wall_color(self, choice: int, rotate: bool = False) -> None:
+        """Apply an aesthetic color/emoji mapping for walls.
+
+        Args:
+            choice: Numeric choice selected by the user.
+            rotate: Unused in current implementation; reserved for
+                future behavior.
+        """
         color = {
             1: COLORS.lightwhite,
             2: COLORS.magenta,

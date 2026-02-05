@@ -6,25 +6,48 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/02/02 08:52:18 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 09:53:06 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/05 14:44:20 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
+"""Maze path-finding utilities.
+
+This module implements a simple breadth-first search to discover a
+path from maze entry to exit and provides helpers to print the path
+to the terminal.
+"""
+
 import time
 
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 from colorama import Cursor
 
-from src.maze.maze_generator import MazeGenerator
-from src.maze.maze_customization import COLORS, MAZE, DISPLAY_MODE
+from .maze_generator import MazeGenerator
+from .maze_customization import COLORS, MAZE, DISPLAY_MODE
 
 
 class MazeSolver():
+    """Find and render a path through a generated maze.
+
+    The solver stores the discovered path in `self.path` as a list of
+    (x, y) coordinates.
+    """
     def __init__(self, maze: MazeGenerator) -> None:
+        """Create a solver for a given `MazeGenerator`.
+
+        Args:
+            maze: The `MazeGenerator` instance whose grid will be
+                searched.
+        """
         self.maze = maze
         self.path: List[Tuple[int, int]] = []
 
     def find_path(self) -> None:
+        """Discover a path from entry to exit using BFS.
+
+        The found path (excluding the entrance) is appended to
+        `self.path` in order from entry->exit.
+        """
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
         start = (self.maze.entry_x, self.maze.entry_y)
         end = (self.maze.exit_x, self.maze.exit_y)
@@ -63,6 +86,12 @@ class MazeSolver():
                     visited.append(neighbour)
 
     def print_maze_solver(self) -> None:
+        """Render the maze highlighting the discovered path.
+
+        Prints the maze to the terminal using the maze's color and
+        display settings. Cells that are part of `self.path` are
+        shown with the path symbol/color.
+        """
         for y in range(self.maze.height):
             for x in range(self.maze.width):
                 cell = self.maze.maze[(x, y)]
@@ -112,6 +141,11 @@ class MazeSolver():
             print()
 
     def print_path(self) -> None:
+        """Animate the discovered path from entry to exit.
+
+        The function animates each path cell and finally positions
+        the cursor below the maze.
+        """
         for x, y in reversed(self.path):
             if (x, y) == self.maze.exit_coord:
                 break
@@ -120,13 +154,19 @@ class MazeSolver():
         print(Cursor.POS(1, self.maze.height + 1))
 
     def _anim_path(self, x: int, y: int) -> None:
+        """Animate a single cell of the path.
+
+        Args:
+            x: X coordinate of the path cell.
+            y: Y coordinate of the path cell.
+        """
         curs_x = (x * self.maze.step_x) + 1
         curs_y = y + self.maze.y_offset + 1
 
         if self.maze.display == DISPLAY_MODE.emoji:
-             symbol = self.maze.visual_path
+            symbol: Any = self.maze.visual_path
         else:
-             symbol = self.maze.visual_wall
+            symbol = self.maze.visual_wall
         color = self.maze.color_path
 
         print(Cursor.POS(curs_x, curs_y) + f"{color}{symbol}{COLORS.reset}",

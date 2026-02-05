@@ -6,10 +6,10 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/02/03 12:00:41 by rruiz           #+#    #+#               #
-#  Updated: 2026/02/03 13:05:16 by rruiz           ###   ########.fr        #
+#  Updated: 2026/02/05 14:19:59 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-from src.maze.output.maze_output import maze_output
+from maze.output.maze_output import maze_output
 
 __all__ = ["maze_output"]

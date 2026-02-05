@@ -6,18 +6,31 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/31 10:55:56 by rruiz           #+#    #+#               #
-#  Updated: 2026/02/05 09:38:52 by rruiz           ###   ########.fr        #
+#  Updated: 2026/02/05 14:10:32 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
+
+"""Hunt-and-kill maze generation algorithm.
+
+This module provides a non-recursive hunt-and-kill implementation
+which alternates between random walks (kill) and scanning (hunt)
+to find new starting points.
+"""
 
 from random import choice, randrange
 
 from typing import Any
 
-from src.maze.maze_customization import MAZE
+from maze.maze_customization import MAZE
 
 
 def hunt_and_kill(generator: Any, rendering: bool) -> None:
+    """Generate a maze using the hunt-and-kill strategy.
+
+    Args:
+        generator: The `MazeGenerator` instance to operate on.
+        rendering: Whether to render progress during generation.
+    """
     targets = (MAZE.wall, MAZE.entry, MAZE.exit)
     while True:
         x = randrange(1, generator.width, 2)

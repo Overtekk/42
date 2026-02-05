@@ -6,15 +6,16 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/20 16:25:20 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 08:52:05 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/05 14:56:54 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-"""Main script for the Maze Generator.
+"""Command-line entry point for the A-Maze-ing generator.
 
-First, we check if all dependencies are installed. If no error have been found,
-we can import everything and start to check the config file.
-Then, construct the maze, output it and launch the 'game'.
+This script validates runtime dependencies, parses a simple
+`config.txt` format via `MazeConfig.from_config_file`, constructs a
+`MazeGenerator` and provides an interactive terminal UI to regenerate
+mazes, change colors and toggle algorithms.
 """
 
 import sys
@@ -26,15 +27,14 @@ from typing import TYPE_CHECKING
 from src.utils import module_checker, ArgumentsError
 
 if TYPE_CHECKING:
-    from src.maze import MazeGenerator
+    from maze import MazeGenerator
 
 
 def main() -> int:
-    """"Programm main entry point.
+    """Main program entry point.
 
     Returns:
-        int: 0 if no error occured, 1 or 2 otherwise.
-
+        int: Process return code (0 for success, non-zero on error).
     """
     try:
         try:
@@ -45,10 +45,9 @@ def main() -> int:
 
         from colorama import Cursor
 
-        from src.maze import (MazeConfig, MazeConfigError, MazeGenerationError,
-                              MazeGenerator, MazeSolver)
-        from src.maze.maze_customization import (ANIM, COLORS, STYLE,
-                                                 ALGO_MODE)
+        from maze import (MazeConfig, MazeConfigError, MazeGenerationError,
+                          MazeGenerator, MazeSolver)
+        from maze.maze_customization import (ANIM, COLORS, STYLE, ALGO_MODE)
 
         if len(sys.argv) == 2:
             config = MazeConfig.from_config_file("config.txt")
@@ -167,9 +166,9 @@ def main() -> int:
                             else:
                                 raise ValueError
                         except ValueError:
-                                print(f"{COLORS.red}❌ Error!{COLORS.reset}",
-                                      end="", flush=True)
-                                time.sleep(0.5)
+                            print(f"{COLORS.red}❌ Error!{COLORS.reset}",
+                                  end="", flush=True)
+                            time.sleep(0.5)
 
                     print(f"{STYLE.bright}{COLORS.green}✅ Algorithm "
                           f"successfuly changed!{STYLE.reset}")
@@ -211,9 +210,16 @@ def main() -> int:
 
 
 def display_text(maze: "MazeGenerator") -> None:
+    """Print small summary text above the rendered maze.
 
-    from src.maze.maze_customization import (STYLE, ALGO_MODE,
-                                             DISPLAY_MODE)
+    The function chooses a centered title string and a brief line
+    describing the current algorithm and display mode.
+
+    Args:
+        maze: The `MazeGenerator` used to derive display properties.
+    """
+
+    from maze.maze_customization import (STYLE, ALGO_MODE, DISPLAY_MODE)
 
     text_generated = "-Maze Generated-"
     if maze.algorithm == ALGO_MODE.rb:

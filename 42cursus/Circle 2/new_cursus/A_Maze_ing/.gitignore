@@ -9,3 +9,4 @@ __pycache__
 test.py
 
 maze.txt
+mazegen.egg-info/
