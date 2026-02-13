@@ -10,7 +10,7 @@
 | 2 | **[push_swap](https://github.com/Overtekk/push_swap)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) | 13/12/2025 | Sort data using two stacks and limited set of instructions |
 | 2 | **[Python Modules](https://github.com/Overtekk/Python-Module-00-10.git)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) | 24/01/2025 | Introduction to Python language |
 | 2 | **[minitalk](https://github.com/Overtekk/minitalk)** | ![C](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/125%25-Success-2ea44f) | 31/01/2026 | Code a small data exchange program using UNIX signals |
-| 2 | **[A_maze_ing](https://github.com/Overtekk/A_Maze_ing)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/In_Progress-ce9603) | Not Completed | Create your own maze generator and display its result! |
+| 2 | **[A_maze_ing](https://github.com/Overtekk/A_Maze_ing)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/125%25-Success-2ea44f) | 13/02/2026 | Create your own maze generator and display its result! |
 | 3 | **[Codexion](https://github.com/Overtekk/Codexion)** | ![P](https://img.shields.io/badge/100%25-C-00599C) | ![Score](https://img.shields.io/badge/In_Progress-ce9603) | Not Completed | Master the race for resources before the deadline masters you! |
 
 ---
