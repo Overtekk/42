@@ -6,7 +6,7 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/22 12:07:28 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 14:45:05 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/11 15:03:37 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -16,8 +16,6 @@ This module provides the `MazeGenerator` class which builds a maze
 representation and renders it to terminal or writes it to an output
 file. It coordinates display formatting, algorithm selection and
 seeded random generation.
-
-Google style docstrings are used for public members.
 """
 
 import random
@@ -38,45 +36,54 @@ from .output import maze_output
 
 
 class MazeGenerator():
-    """Generate and render mazes.
+    """Manages the lifecycle of a maze: configuration, generation, and
+       rendering.
 
-    The generator uses a `MazeConfig` instance to configure maze
-    dimensions, entry/exit coordinates, output file and algorithm
-    selection. It exposes methods to generate the grid, render it and
-    export it.
+    This class serves as the central hub for the application. It maintains
+    the grid state (walls, paths, entry, exit), handles the coordinate
+    adjustments required by generation algorithms, and manages the
+    visual output to the terminal.
 
     Attributes:
-        cfg: The `MazeConfig` used to configure generation.
+        cfg (MazeConfig): The configuration object containing user preferences.
     """
 
+    # Global variable to render text in bright white.
     txt_white = f"{COLORS.white}{STYLE.bright}"
 
     def __init__(self, config: MazeConfig) -> None:
         """Initialize the generator from a `MazeConfig`.
 
-        Args:
-            config: MazeConfig containing width, height, entry/exit
-                positions, output file and other generation options.
-        """
-        # Import config
-        self.cfg = config
+        If no seed is provided, generate a random one and start the
+        randomization based on it. Correct the coordinates (entry, exit, grid)
+        for no errors in the algorithm generation. And create the variable maze
+        that will contain all the maze informations.
+        Scales the dimensions from a cell-based grid to a block-based grid
+        (2N + 1) to accommodate walls as physical coordinates.
 
-        # Maze parameters
-        self.width = config.width
-        self.height = config.height
-        self.entry_coord = config.entry
-        self.exit_coord = config.exit
+        Args:
+            config: MazeConfig containing all the config validate by the
+            MazeConfig class.
+        """
+        # Import config.
+        self.cfg = config
+        # Export config into the class.
+        self.width = config.width * 2 + 1
+        self.height = config.height * 2 + 1
+        self.entry_coord = (config.entry[0] * 2 + 1, config.entry[1] * 2 + 1)
+        self.exit_coord = (config.exit[0] * 2 + 1, config.exit[1] * 2 + 1)
         self.output_file = config.output_file
         self.perfect = config.perfect
         self.seed = config.seed
         self.display = config.display
         self.algorithm = config.algorithm
 
-        # Generate seed if user didn't give it.
+        # Generate seed if user didn't give it and launch the random sequence.
         if self.seed is None:
             self._generate_random_seed()
+        random.seed(self.seed)
 
-        # Correct coordinates for the different algorithms
+        # Correct coordinates, entry and exit for the algorithms.
         self._correcting_coords()
 
         # Unpacking coords.
@@ -85,11 +92,13 @@ class MazeGenerator():
         self.entry_x, self.entry_y = entry_x, entry_y
         self.exit_x, self.exit_y = exit_x, exit_y
 
+        # Check the 42 pattern.
         self.fourtytwo_coord = ft_patt(self.width, self.height)
 
+        # Create the maze dict to store all informations.
         self.maze: Dict[Tuple[int, int], Any] = {}
 
-        # Defaults color and visual
+        # Defaults color and visual.
         self.color_wall = COLORS.lightwhite
         self.color_ft = COLORS.yellow
         self.color_entry = COLORS.magenta
@@ -99,7 +108,7 @@ class MazeGenerator():
         self.visual_empty: str | VISUAL
         self.visual_wall: str | VISUAL | EMOJI
 
-        # Configure rendering based on display
+        # Configure rendering based on display.
         if self.display == DISPLAY_MODE.ascii:
             self.visual_empty = VISUAL.empty_block
             self.visual_wall = VISUAL.block
@@ -121,16 +130,26 @@ class MazeGenerator():
 
     def maze_generator(self, rendering: bool = False,
                        regen: bool = False) -> None:
-        """Create a new maze and optionally render it.
+        """Orchestrates the full maze generation workflow.
 
-        The method fills the internal grid, runs the selected
-        generation algorithm and validates labyrinth solvability.
+        This method executes the pipeline in the following order:
+        1. Handles UI customization (colors) if rendering is enabled.
+        2. Initializes the grid.
+        3. Executes the selected generation algorithm.
+        4. Validates that the maze is solvable.
+        5. Performs post-processing (e.g., breaking extra walls for
+           'imperfect' mazes).
+        6. Writes the result to the output file.
 
         Args:
-            rendering: If True, render progress and the final maze to
-                the terminal.
-            regen: If True, regenerate the random seed before
-                generation.
+            rendering: If True, displays real-time animations and menus
+                       to the terminal.
+            regen: If True, generates a new random seed before running;
+                   otherwise, uses the existing configuration seed.
+
+        Raises:
+            MazeGenerationError: If the generated maze is theoretically
+                                 unsolvable.
         """
         if (rendering and
             self.display in (DISPLAY_MODE.ascii, DISPLAY_MODE.emoji) and
@@ -186,10 +205,8 @@ class MazeGenerator():
                                  (len(text_algo_display) // 2))))
         print(f"\r{filling}{text_algo_display}{STYLE.reset}")
 
-        # Start the random sequence based on the seed given/generated
-        if regen is False:
-            random.seed(self.seed)
-        else:
+        # Regenerate a maze if the maze is re-generated.
+        if regen is True:
             self._generate_random_seed()
             random.seed(self.seed)
 
@@ -209,20 +226,24 @@ class MazeGenerator():
                 print(Cursor.POS(1, self.height + self.y_offset))
             raise MazeGenerationError("This maze cannot be resolve. Omg, "
                                       "this is so rare!")
+
         maze_output(self, solver.path)
 
         # Put the cursor at the bottom of the screen
         if rendering:
             print(Cursor.POS(1, self.y_offset), end="")
             self.print_maze()
+            if (len(self.fourtytwo_coord) <= 0):
+                print(f"{COLORS.red}{STYLE.bright}ERROR: '42' pattern can't be"
+                      f" printed!{STYLE.reset}")
             print(Cursor.POS(1, self.height + self.y_offset))
 
     def get_maze_parameters(self) -> Dict[str, Any]:
-        """Return a dictionary describing current maze parameters.
+        """Retrieves the current configuration state of the generator.
 
         Returns:
-            Dict[str, Any]: Human-readable mapping of current
-                generator settings.
+            Dict[str, Any]: A dictionary containing key parameters like
+                            dimensions, seed, algorithm, and file paths.
         """
         return {
             'Width': self.width,
@@ -237,16 +258,17 @@ class MazeGenerator():
         }
 
     def break_wall(self, x: int, y: int, rendering: bool) -> None:
-        """Break a wall at the given coordinates.
+        """Transforms a wall cell into an empty path cell.
 
-        This updates the internal grid and, when `rendering` is True,
-        updates the terminal output at the corresponding cursor
-        position.
+        Updates the internal grid state and, if rendering is enabled,
+        updates the specific character on the terminal screen without
+        redrawing the entire maze.
 
         Args:
-            x: X coordinate of cell to convert to empty.
-            y: Y coordinate of cell to convert to empty.
-            rendering: Whether to print the change to the terminal.
+            x: The grid X coordinate of the wall to remove.
+            y: The grid Y coordinate of the wall to remove.
+            rendering: If True, visualizes the wall removal immediately for
+                       animation.
         """
         self.maze[(x, y)] = MAZE.empty
 
@@ -277,10 +299,11 @@ class MazeGenerator():
                 time.sleep(0.001)
 
     def print_maze(self) -> None:
-        """Render the maze to the terminal.
+        """Renders the current state of the entire maze to the terminal.
 
-        Iterates over the internal grid and prints the appropriate
-        symbol and color for each cell.
+        Iterates through every cell in the grid and prints the
+        appropriate symbol (ASCII or Emoji) and color code based on the
+        current display settings.
         """
         for y in range(self.height):
             for x in range(self.width):
@@ -317,12 +340,38 @@ class MazeGenerator():
                       end="")
             print()
 
-    def _choose_algo(self, rendering: bool) -> None:
-        """Dispatch to the selected generation algorithm.
+    def _is_breakable(self, x: int, y: int) -> bool:
+        """Checks if the wall at the given coordinates is breakable.
+
+        This method checks adjacent cells (up, down, left, right).
+        If at least one of them is a target (empty, entry, or exit),
+        the wall is considered breakable.
 
         Args:
-            rendering: Passed through to algorithm implementations to
-                control incremental rendering.
+            x (int): The x-coordinate of the wall to check.
+            y (int): The y-coordinate of the wall to check.
+
+        Returns:
+            bool: True if the wall can be broken, False otherwise.
+        """
+        targets = (MAZE.empty, MAZE.entry, MAZE.exit)
+        if ((self.maze[(x + 1, y)] in targets or
+            self.maze[(x - 1, y)] in targets or
+            self.maze[(x, y + 1)] in targets or
+                self.maze[(x, y - 1)] in targets)):
+            return True
+        return False
+
+    def _choose_algo(self, rendering: bool) -> None:
+        """Dispatches the generation process to the selected algorithm.
+
+        Based on `self.algorithm` and `self.perfect`, this method calls
+        the appropriate external function (Recursive Backtracking or
+        Hunt-and-Kill).
+
+        Args:
+            rendering: Passed to the algorithm functions to enable or
+                disable real-time visualization during generation.
         """
         if self.algorithm == ALGO_MODE.rb and self.perfect:
             recursive_backtracking(self, rendering)
@@ -332,45 +381,83 @@ class MazeGenerator():
 
         elif self.algorithm == ALGO_MODE.hunt_kill:
             hunt_and_kill(self, rendering)
+            if not self.perfect:
+                from .algorithms.hunt_and_kill import break_walls_hak
+                break_walls_hak(self, rendering)
 
     def _correcting_coords(self) -> None:
-        """Adjust coordinates and dimensions for algorithm needs.
+        """Validates and clamps entry/exit points to the nearest valid passage.
 
-        Ensures entry/exit coordinates and width/height parity are
-        compatible with generation algorithms.
+        Ensures coordinates are odd-indexed to reside within passage blocks
+        and prevents spawning inside the reserved '42' pattern or outside
+        the grid boundaries.
         """
-        if self.entry_coord[0] == 0:
-            self.entry_coord = (self.entry_coord[0] + 1, self.entry_coord[1])
-            self.exit_coord = (self.exit_coord[0] + 1, self.exit_coord[1])
-            self.width += 1
 
-        if self.entry_coord[1] == 0:
-            self.entry_coord = (self.entry_coord[0], self.entry_coord[1] + 1)
-            self.exit_coord = (self.exit_coord[0], self.exit_coord[1] + 1)
-            self.height += 1
+        def clamp_to_odd(value: int, max_value: int) -> int:
+            """Adjusts a coordinate to the nearest odd index within grid
+               bounds.
 
-        if self.algorithm in (ALGO_MODE.rb, ALGO_MODE.hunt_kill):
-            if self.width % 2 == 0:
-                self.width += 1
-            if self.height % 2 == 0:
-                self.height += 1
+            This utility ensures that coordinates provided by the user or
+            generated by algorithms always land on a passage (odd block)
+            and never on a wall (even block) or outside the grid.
 
-        if self.exit_coord[0] >= self.width - 1:
-            self.exit_coord = (self.width - 2, self.exit_coord[1])
-        if self.exit_coord[1] >= self.height - 1:
-            self.exit_coord = (self.exit_coord[0], self.height - 2)
+            Args:
+                value (int): The raw coordinate value to be adjusted.
+                max_limit (int): The total size of the grid dimension
+                                 (width or height).
+
+            Returns:
+                int: The closest valid odd coordinate within the maze passages.
+            """
+            if value < 1:
+                return 1
+            if value >= max_value - 1:
+                last_index = max_value - 2
+
+                if last_index % 2 == 0:
+                    return last_index - 1
+                return last_index
+            if value % 2 == 0:
+                return value + 1
+
+            return value
+
+        ent_x, ent_y = self.entry_coord
+        ext_x, ext_y = self.exit_coord
+
+        # Coords adjustments;
+        self.entry_coord = (clamp_to_odd(ent_x, self.width),
+                            clamp_to_odd(ent_y, self.height))
+        self.exit_coord = (clamp_to_odd(ext_x, self.width),
+                           clamp_to_odd(ext_y, self.height))
+
+        # Security : if entry and exit are in the same place.
+        if self.entry_coord == self.exit_coord:
+            new_ext_x = clamp_to_odd(self.exit_coord[0] + 2, self.width)
+            if new_ext_x == self.exit_coord[0]:
+                new_ext_x = clamp_to_odd(self.exit_coord[0] - 2, self.width)
+            self.exit_coord = (new_ext_x, self.exit_coord[1])
+
+        # Avoid 42 pattern.
+        ft_pattern = ft_patt(self.width, self.height)
+        while self.exit_coord in ft_pattern:
+            new_ext_y = clamp_to_odd(self.exit_coord[1] + 2, self.height)
+            if new_ext_y == self.exit_coord[1]:
+                new_ext_y = clamp_to_odd(self.exit_coord[1] - 4, self.height)
+            self.exit_coord = (self.exit_coord[0], new_ext_y)
 
     def _fill_maze(self) -> None:
-        """Initialize the internal grid with default cell values.
+        """Initializes the grid with the starting state.
 
-        Entry, exit and the special '42' positions are preserved; all
-        other cells are initialized to walls.
+        Sets the entry, exit, and special '42' pattern cells to their
+        respective types. All other cells are initialized as walls,
+        ready to be carved by the generation algorithm.
         """
         for y in range(self.height):
             for x in range(self.width):
-                if x == self.entry_x and y == self.entry_y:
+                if (x, y) == self.entry_coord:
                     self.maze[(x, y)] = MAZE.entry
-                elif x == self.exit_x and y == self.exit_y:
+                elif (x, y) == self.exit_coord:
                     self.maze[(x, y)] = MAZE.exit
                 elif (x, y) in self.fourtytwo_coord:
                     self.maze[(x, y)] = MAZE.fortytwo
@@ -378,11 +465,15 @@ class MazeGenerator():
                     self.maze[(x, y)] = MAZE.wall
 
     def _customize_maze_walls_color(self) -> str:
-        """Interactively prompt the user to choose wall colors.
+        """Prompts the user to select a color scheme for the walls.
+
+        Displays a menu of available colors (depending on whether ASCII
+        or Emoji mode is active) and captures the user's input.
 
         Returns:
-            str: "ok" when a valid choice was made, empty string on
-                invalid input.
+            str: Returns "ok" if a valid choice was made, otherwise
+                returns an empty string (used for loop control in the
+                caller).
         """
         print(f"{self.txt_white}Choose walls color:")
 
@@ -398,7 +489,7 @@ class MazeGenerator():
             print(f"{COLORS.magenta}2. Magenta\t {COLORS.yellow}4. Brown\t "
                   f"{COLORS.green}6. Green")
 
-        user_choice = input(f"{self.txt_white}Enter choice: ")
+        user_choice = input(f"{self.txt_white}Enter choice (1-6): ")
         try:
             choice = int(user_choice)
 
@@ -417,20 +508,28 @@ class MazeGenerator():
         return ""
 
     def _generate_random_seed(self) -> None:
-        """Generate a random seed string and attach it to the
-        generator."""
+        """Generates a random alphanumeric seed string.
+
+        Creates a random string containing letters and digits (length
+        between 1 and 100) to serve as the seed for `random.seed()`.
+        This ensures unique maze generation when no specific seed is
+        provided by the user.
+        """
         random_seed = ''.join(random.choices(string.ascii_letters +
                                              string.digits,
                                              k=random.randint(1, 101)))
         self.seed = random_seed
 
     def _apply_wall_color(self, choice: int, rotate: bool = False) -> None:
-        """Apply an aesthetic color/emoji mapping for walls.
+        """Applies a color theme or emoji set to the maze walls.
+
+        Maps the user's numeric choice to specific ANSI color codes or
+        Emoji constants defined in `maze_customization`.
 
         Args:
-            choice: Numeric choice selected by the user.
-            rotate: Unused in current implementation; reserved for
-                future behavior.
+            choice: The user's menu selection index.
+            rotate: Randomizes the color of special '42' pattern cells
+                    if set to True.
         """
         color = {
             1: COLORS.lightwhite,
@@ -520,6 +619,12 @@ class MazeGenerator():
             self.color_ft = COLORS.lightblack
 
     def _apply_algo_change(self, choice: int) -> None:
+        """Updates the generation algorithm based on user input.
+
+        Args:
+            choice: The integer corresponding to the user's menu selection
+                    (1 for Recursive Backtracking, 2 for Hunt and Kill).
+        """
         algo = {
             1: ALGO_MODE.rb,
             2: ALGO_MODE.hunt_kill

@@ -6,38 +6,64 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/27 16:16:22 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 14:54:43 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/09 09:34:07 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-"""Recursive backtracking algorithm and helpers.
+"""Recursive Backtracking maze generation algorithm.
 
-This module implements the recursive backtracking maze generation
-algorithm and utilities used to break additional random walls.
+This module implements the Depth-First Search (DFS) based maze generation
+strategy, commonly known as Recursive Backtracking. It also includes
+post-processing utilities to introduce loops into the maze for
+"imperfect" generation modes.
 """
 
 import random
 import sys
 
-from typing import Any, Tuple
+from typing import Any
 
 from maze.maze_customization import MAZE
 
 
 def recursive_backtracking(generator: Any, rendering: bool) -> None:
-    """Carve passages using recursive backtracking.
+    """Generates a perfect maze using the Recursive Backtracking algorithm.
+
+    This function increases the system recursion limit to handle the grid
+    size, selects a valid starting point ensuring parity alignment, and
+    initiates the recursive `visit` function to carve paths.
+
+    The algorithm works by:
+    1. Choosing a starting cell.
+    2. Randomly choosing an unvisited neighbor.
+    3. Moving to that neighbor (breaking the wall between them).
+    4. Recursively repeating step 2 until dead-end.
+    5. Backtracking to the previous cell.
 
     Args:
-        generator: The `MazeGenerator` instance whose grid will be
-            mutated.
-        rendering: Whether algorithms should update the terminal as
-            they run.
+        generator: The `MazeGenerator` instance containing the grid and
+                   configuration.
+        rendering: If True, visualizes the wall breaking process in
+                   real-time.
     """
     recursion_limit = generator.width * generator.height
     sys.setrecursionlimit(recursion_limit)
 
-    start_coords = _choose_random_starting_point(generator)
+    start_coords = generator.entry_coord
+
+    if start_coords[0] % 2 == 0:
+        if random.choice([True, False]):
+            start_coords = (start_coords[0] + 1, start_coords[1])
+        else:
+            start_coords = (start_coords[0] - 1, start_coords[1])
+    if start_coords[1] % 2 == 0:
+        if random.choice([True, False]):
+            start_coords = (start_coords[0], start_coords[1] + 1)
+        else:
+            start_coords = (start_coords[0], start_coords[1] - 1)
+
     start_coords_x, start_coords_y = start_coords
+    generator.break_wall(start_coords_x, start_coords_y, rendering)
 
     def visit(x: int, y: int) -> None:
         walls_list = {}
@@ -105,33 +131,16 @@ def recursive_backtracking(generator: Any, rendering: bool) -> None:
     visit(start_coords_x, start_coords_y)
 
 
-def _choose_random_starting_point(generator: Any) -> Tuple[int, int]:
-    """Select a random starting cell for generation.
-
-    The function returns a tuple of coordinates that is not the
-    maze's entry, exit or reserved '42' cell.
-    """
-    while True:
-        x = random.randrange(1, generator.width, 2)
-        y = random.randrange(1, generator.height, 2)
-
-        coords = (x, y)
-
-        if coords == generator.entry_coord:
-            continue
-        if coords == generator.exit_coord:
-            continue
-        if coords in generator.fourtytwo_coord:
-            continue
-
-        return coords
-
-
 def break_random_walls(generator: Any, rendering: bool) -> None:
-    """Optionally break random walls to make imperfect mazes.
+    """Removes additional walls to create an imperfect maze.
 
-    Scans for wall candidates and randomly removes some to create
-    loops when the `perfect` option is False.
+    Scans the generated maze for dead-ends or specific wall configurations
+    and randomly removes walls to create loops and alternative paths.
+    This is only executed if the `perfect` configuration is set to False.
+
+    Args:
+        generator: The `MazeGenerator` instance to modify.
+        rendering: If True, updates the terminal display for each broken wall.
     """
     potential_wall_to_break = []
 

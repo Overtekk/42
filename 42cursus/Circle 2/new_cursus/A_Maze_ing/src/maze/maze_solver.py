@@ -6,15 +6,17 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/02/02 08:52:18 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 14:44:20 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/10 13:21:08 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-"""Maze path-finding utilities.
+"""Maze path-finding and solving utilities.
 
-This module implements a simple breadth-first search to discover a
-path from maze entry to exit and provides helpers to print the path
-to the terminal.
+This module provides the `MazeSolver` class, which implements algorithms
+to solve generated mazes. It includes a Breadth-First Search (BFS) for
+finding the shortest path and a recursive Depth-First Search (DFS) for
+counting all possible solution paths. It also handles the visual rendering
+of these paths in the terminal.
 """
 
 import time
@@ -27,26 +29,38 @@ from .maze_customization import COLORS, MAZE, DISPLAY_MODE
 
 
 class MazeSolver():
-    """Find and render a path through a generated maze.
+    """Finds and renders paths through a generated maze.
 
-    The solver stores the discovered path in `self.path` as a list of
-    (x, y) coordinates.
+    This class encapsulates the pathfinding logic (BFS/DFS) and the
+    visualization methods required to animate or print the solution
+    over the existing maze in the terminal.
+
+    Attributes:
+        maze (MazeGenerator): A reference to the maze generator instance
+            containing the grid data and configuration.
+        path (List[Tuple[int, int]]): A list of (x, y) coordinates
+            representing the solved path. The path is stored in reverse
+            order (from exit to entry).
     """
+
     def __init__(self, maze: MazeGenerator) -> None:
-        """Create a solver for a given `MazeGenerator`.
+        """Initializes the solver with a target maze.
 
         Args:
-            maze: The `MazeGenerator` instance whose grid will be
-                searched.
+            maze: The `MazeGenerator` instance to be solved.
         """
         self.maze = maze
         self.path: List[Tuple[int, int]] = []
 
     def find_path(self) -> None:
-        """Discover a path from entry to exit using BFS.
+        """Discovers the shortest path from entry to exit using BFS.
 
-        The found path (excluding the entrance) is appended to
-        `self.path` in order from entry->exit.
+        Uses the Breadth-First Search algorithm to explore the grid layer
+        by layer. Once the exit is found, the path is reconstructed
+        backwards using a `came_from` map.
+
+        The resulting path is stored in `self.path` starting from the
+        exit coordinates down to the entry coordinates (excluded).
         """
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
         start = (self.maze.entry_x, self.maze.entry_y)
@@ -85,12 +99,80 @@ class MazeSolver():
                     came_from[neighbour_x, neighbour_y] = (cell_x, cell_y)
                     visited.append(neighbour)
 
-    def print_maze_solver(self) -> None:
-        """Render the maze highlighting the discovered path.
+    def path_checker(self) -> int:
+        """Determines the number of valid paths from entry to exit.
 
-        Prints the maze to the terminal using the maze's color and
-        display settings. Cells that are part of `self.path` are
-        shown with the path symbol/color.
+        This method uses a recursive Depth-First Search (DFS) with backtracking
+        to explore possible routes. It includes an optimization to stop the
+        search immediately once more than one path is found, as its primary
+        purpose is to distinguish between a perfect maze (unique path) and an
+        imperfect one.
+
+        Returns:
+            int: The number of paths found. Returns 0 if unsolvable, 1 if
+                 unique, and caps at 2 if multiple paths exist.
+        """
+        number_of_paths = 0
+
+        def explore_recursive(x: int, y: int,
+                              visited: set[Any]) -> bool | None:
+            """Recursively explores the maze to find valid paths to the exit.
+
+            This inner function performs a Depth-First Search (DFS) from
+            the given coordinates. It updates the nonlocal `number_of_paths`
+            counter when the exit is reached.
+
+            Args:
+                x: Current x-coordinate.
+                y: Current y-coordinate.
+                visited: A set of coordinates already visited in the current
+                         recursion stack to prevent cycles.
+
+            Returns:
+                bool: True if the search should be aborted (i.e., more than one
+                      path has been found), False otherwise.
+            """
+            nonlocal number_of_paths
+            if number_of_paths > 1:
+                return True
+
+            if (x, y) == (self.maze.exit_x, self.maze.exit_y):
+                number_of_paths += 1
+                return number_of_paths > 1
+
+            directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+            for move_x, move_y in directions:
+                neighbor_x = x + move_x
+                neighbor_y = y + move_y
+                neighbor = (neighbor_x, neighbor_y)
+
+                if ((0 <= neighbor_x < self.maze.width and
+                    0 <= neighbor_y < self.maze.height) and
+                        neighbor not in visited and
+                        self.maze.maze[(neighbor_x, neighbor_y)] in
+                        (MAZE.empty, MAZE.exit)):
+
+                    visited.add(neighbor)
+                    if explore_recursive(neighbor_x, neighbor_y, visited):
+                        return True
+                    visited.remove(neighbor)
+            return False
+
+        visited = {(self.maze.entry_x, self.maze.entry_y)}
+        explore_recursive(self.maze.entry_x, self.maze.entry_y, visited)
+
+        return number_of_paths
+
+    def print_maze_solver(self) -> None:
+        """Renders the entire maze with the solution path highlighted.
+
+        Iterates through the grid and prints each cell. If a cell is part
+        of `self.path`, it is rendered with the specific path color or
+        symbol defined in the maze configuration.
+
+        This method is typically used to redraw the maze statically after
+        computation.
         """
         for y in range(self.maze.height):
             for x in range(self.maze.width):
@@ -141,10 +223,11 @@ class MazeSolver():
             print()
 
     def print_path(self) -> None:
-        """Animate the discovered path from entry to exit.
+        """Animates the solution path on the terminal.
 
-        The function animates each path cell and finally positions
-        the cursor below the maze.
+        Iterates through `self.path` in reverse order (to go from Entry
+        to Exit) and calls `_anim_path` to draw each step with a delay.
+        Finally, moves the cursor below the maze to prevent overwriting.
         """
         for x, y in reversed(self.path):
             if (x, y) == self.maze.exit_coord:
@@ -154,11 +237,15 @@ class MazeSolver():
         print(Cursor.POS(1, self.maze.height + 1))
 
     def _anim_path(self, x: int, y: int) -> None:
-        """Animate a single cell of the path.
+        """Draws a single path cell at the specific cursor position.
+
+        Calculates the terminal cursor position based on the maze's
+        rendering steps (offsets and character width) and prints the
+        path symbol.
 
         Args:
-            x: X coordinate of the path cell.
-            y: Y coordinate of the path cell.
+            x: The grid X coordinate of the cell.
+            y: The grid Y coordinate of the cell.
         """
         curs_x = (x * self.maze.step_x) + 1
         curs_y = y + self.maze.y_offset + 1

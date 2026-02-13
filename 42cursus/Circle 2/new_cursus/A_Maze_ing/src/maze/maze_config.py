@@ -6,14 +6,15 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/27 14:14:51 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 16:11:13 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/10 14:55:54 by rruiz           ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-"""Configuration model for maze generation.
+"""Configuration management for the maze generator.
 
-Defines validation rules for maze dimensions, coordinates and
-runtime options. Uses `pydantic` for input parsing and validation.
+This module defines the data model for the application using Pydantic.
+It handles parsing of the configuration file, type conversion, and deep
+semantic validation (bounds checking, collisions with reserved patterns).
 """
 
 from pathlib import Path
@@ -27,14 +28,24 @@ from .maze_fortytwo_pattern import get_fortytwo_pattern as ft_patt
 
 
 class MazeConfig(BaseModel):
-    """Pydantic model that represents validated maze configuration.
+    """Data model representing the runtime configuration.
 
-    Fields are validated for sensible ranges and formats. Helper
-    validators convert string coordinates and enforce permitted
-    display/algorithm values.
+    This class enforces strict typing and logical constraints on the
+    maze parameters. It is typically instantiated via `from_config_file`.
+
+    Attributes:
+        width (int): Grid width (min: 3).
+        height (int): Grid height (min: 3).
+        entry (Tuple[int, int]): Coordinates (x, y) of the starting point.
+        exit (Tuple[int, int]): Coordinates (x, y) of the ending point.
+        output_file (str): Path for the output file (must end in .txt).
+        perfect (bool): If True, generates a perfect maze (no loops).
+        seed (str | int | None): Seed for the random number generator.
+        display (str | None): Rendering mode ('ascii' or 'emoji').
+        algorithm (str | None): Algorithm choice ('rb' or 'huntandkill').
     """
-    width: int = Field(ge=7)
-    height: int = Field(ge=5)
+    width: int = Field(ge=3)
+    height: int = Field(ge=3)
     entry: Tuple[int, int]
     exit: Tuple[int, int]
     output_file: str = Field(pattern=r'.+\.txt$')
@@ -46,10 +57,19 @@ class MazeConfig(BaseModel):
     @field_validator('entry', 'exit', mode='before')
     @classmethod
     def parse_coordinate(cls, coord: str) -> Tuple[int, int]:
-        """Parse a coordinate string "x,y" into a tuple.
+        """Parses a coordinate string into a tuple of integers.
 
-        Accepts either a tuple or a string. Raises `ValueError` for an
-        invalid format.
+        Allows the user to provide coordinates in the config file as a
+        string "x,y".
+
+        Args:
+            coord: A string in format "x,y" or an already parsed tuple.
+
+        Returns:
+            Tuple[int, int]: The parsed (x, y) coordinates.
+
+        Raises:
+            ValueError: If the format is incorrect or values are not integers.
         """
         if isinstance(coord, tuple):
             return coord
@@ -80,9 +100,16 @@ class MazeConfig(BaseModel):
     @field_validator('display')
     @classmethod
     def validate_display_mode(cls, display: str | None) -> str:
-        """Validate `display` field and normalize its value.
+        """Normalizes and validates the display mode.
 
-        Raises `MazeConfigError` if the value is not supported.
+        Args:
+            display: The raw string from the config (case-insensitive).
+
+        Returns:
+            str: The normalized mode ('ascii' or 'emoji').
+
+        Raises:
+            MazeConfigError: If the mode is unknown.
         """
         valid_display = ["ascii", "emoji"]
 
@@ -98,9 +125,16 @@ class MazeConfig(BaseModel):
     @field_validator('algorithm')
     @classmethod
     def validate_algorithm_mode(cls, algo: str | None) -> str:
-        """Validate `algorithm` field and normalize its value.
+        """Normalizes and validates the algorithm selection.
 
-        Raises `MazeConfigError` if the value is not supported.
+        Args:
+            algo: The raw string from the config (case-insensitive).
+
+        Returns:
+            str: The normalized algorithm identifier ('rb' or 'huntandkill').
+
+        Raises:
+            MazeConfigError: If the algorithm is unknown.
         """
         valid_algo = ["rb", "huntandkill"]
 
@@ -115,12 +149,19 @@ class MazeConfig(BaseModel):
 
     @model_validator(mode='after')
     def valid_config_input(self) -> Self:
-        """Perform cross-field validation after model construction.
+        """Performs cross-field logic validation after model creation.
 
-        Ensures coordinates are inside bounds and that entry and exit
-        are not overlapping or placed on reserved '42' pattern cells.
+        Checks that:
+        1. Entry and Exit coordinates are within grid bounds.
+        2. Entry and Exit are not identical.
+        3. Entry and Exit do not overlap with the reserved '42' pattern.
+
+        Returns:
+            Self: The validated model instance.
+
+        Raises:
+            MazeConfigError: If any logical constraint is violated.
         """
-
         entry_x, entry_y = self.entry
         if not (0 <= entry_x < self.width and 0 <= entry_y < self.height):
             raise MazeConfigError(f"Entry coords: {self.entry} is outside maze"
@@ -130,6 +171,9 @@ class MazeConfig(BaseModel):
         if not (0 <= exit_x < self.width and 0 <= exit_y < self.height):
             raise MazeConfigError(f"Exit coords: {self.exit} is outside maze"
                                   " dimensions.")
+
+        if self.width == 3 and self.height == 3:
+            raise MazeConfigError("Maze dimensions are invalid")
 
         if self.entry == self.exit:
             raise MazeConfigError("Entry and Exit cannot be at the exact same "
@@ -141,24 +185,32 @@ class MazeConfig(BaseModel):
         if self.exit in forty_two_coords:
             raise MazeConfigError("Can't place Exit here. Reserved to '42'")
 
+        neighbor_entry = [(self.entry[0] + 1, self.entry[1]),
+                          (self.entry[0], self.entry[1] - 1),
+                          (self.entry[0] - 1, self.entry[1]),
+                          (self.entry[0], self.entry[1] + 1)]
+        if self.exit in neighbor_entry:
+            raise MazeConfigError("Entry and Exit cannot be side by side.")
+
         return self
 
     @classmethod
     def from_config_file(cls, filepath: str) -> "MazeConfig":
-        """Create a `MazeConfig` instance from a simple key=value file.
+        """Parses a key-value text file to create a configuration instance.
 
-        The expected keys are: width, height, entry, exit, output_file,
-        perfect, seed, display, algorithm.
+        Reads a file line by line, ignoring comments (#) and empty lines.
+        It maps keys to the model fields and handles Pydantic validation
+        errors by converting them into user-friendly `MazeConfigError`.
 
         Args:
-            filepath: Path to the configuration file.
+            filepath: Path to the configuration file (e.g., 'config.txt').
 
         Returns:
-            MazeConfig: Validated configuration model.
+            MazeConfig: A fully validated configuration object.
 
         Raises:
-            FileNotFoundError: If `filepath` does not exist.
-            MazeConfigError: On malformed content or validation errors.
+            FileNotFoundError: If the file does not exist.
+            MazeConfigError: If the file format is invalid or validation fails.
         """
         path = Path(filepath)
         if not path.is_file():
@@ -193,12 +245,13 @@ class MazeConfig(BaseModel):
         try:
             return cls(**raw_config)
         except ValidationError as e:
+            # Custom error formatting to make Pydantic errors readable
+            # for the end user.
             for error in e.errors():
                 msg = error['msg']
                 if error['type'] == "string_pattern_mismatch":
                     msg = "File must end with '.txt'"
                 elif error['type'] == "greater_than_equal":
-                    msg = ("Too small (can't put 42 pattern). Must be at "
-                           f"least {error['ctx']['ge']}")
+                    msg = (f"Too small. Must be at least {error['ctx']['ge']}")
                 error_message = f"{error['loc'][0]}: {msg}"
             raise MazeConfigError(error_message)

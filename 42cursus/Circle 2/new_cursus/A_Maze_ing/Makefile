@@ -6,7 +6,7 @@
 #  By: roandrie, rruiz                           +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/20 16:18:29 by roandrie        #+#    #+#               #
-#  Updated: 2026/02/05 14:58:29 by roandrie        ###   ########.fr        #
+#  Updated: 2026/02/07 09:48:31 by roandrie        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -17,14 +17,16 @@ VENV_PIP = $(VENV_PATH)/bin/pip
 PYTHON = $(if $(wildcard $(VENV_PYTHON)), $(VENV_PYTHON), python3)
 PIP = $(if $(wildcard $(VENV_PIP)), $(VENV_PIP), pip)
 
+PY_PATH = PYTHONPATH=.:src
+
 MYPY_FLAGS= --warn-return-any --warn-unused-ignores --ignore-missing-imports \
 			--disallow-untyped-defs --check-untyped-defs
 
-SRC_FILES=a_maze_ing.py src/
+SRC_FILES=a_maze_ing.py src/ play/
 CONFIG=config.txt
 
 # Prevent rule to be associated with files.
-.PHONY: install run debug clean lint lint-strict venv pipfreeze all
+.PHONY: install run debug clean lint lint-strict venv pipfreeze all play
 
 # Install all dependencies needed for this project.
 install:
@@ -36,12 +38,12 @@ install:
 
 # Run the main script of the project.
 run:
-				@$(PYTHON) a_maze_ing.py $(CONFIG)
+				@$(PY_PATH) $(PYTHON) a_maze_ing.py $(CONFIG)
 
 # Run the main script in debug mode.
 debug:
 				@echo "$(YELLOW)Running in DEBUG mode$(RESET)"
-				@$(PYTHON) -m pdb a_maze_ing.py
+				@$(PY_PATH) $(PYTHON) -m pdb a_maze_ing.py
 
 # Remove temporary files or caches.
 clean:
@@ -75,6 +77,15 @@ pipfreeze:
 # Create venv and install dependencies.
 all: venv install
 				@echo "$(GREEN)✔ Environment set up ready!$(RESET)"
+
+# Run the "play mode" and install readchar if not installed
+play:
+				@if ! $(PYTHON) -c "import readchar" 2>/dev/null; then \
+						echo "$(RED)readchar not installed. Installing.....$(RESET)"; \
+						$(PIP) install readchar; \
+						echo "$(GREEN)✔ Success, readchar installed!$(RESET)"; \
+				fi
+				@$(PY_PATH) $(PYTHON) play/launch.py play/config_play.txt
 
 # Colors
 RESET=\033[0m
