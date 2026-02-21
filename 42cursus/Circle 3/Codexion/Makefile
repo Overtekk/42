@@ -6,7 +6,7 @@
 #    By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/05 16:58:06 by roandrie          #+#    #+#              #
-#    Updated: 2026/02/13 10:13:24 by roandrie         ###   ########.fr        #
+#    Updated: 2026/02/20 13:36:58 by roandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,19 +23,27 @@ INCLUDE		=		-I coders
 SRCS_DIR	=		coders
 OBJ_DIR		=		obj
 
-CFILES		=		main.c								\
-					utils/check_arguments.c				\
-					utils/init_struct.c					\
-					utils/exit.c						\
-					utils/check_time.c					\
-					utils/getter.c						\
-					utils/setter.c						\
-					thread_managements/create_thread.c	\
-					thread_managements/create_mutex.c	\
-					simulation/launch.c					\
-					simulation/coder.c					\
-					simulation/logs.c					\
-					debug/print_struct.c
+CFILES		=		main.c									\
+					utils/check_arguments.c					\
+					utils/check_scheduler.c					\
+					utils/init_struct.c						\
+					utils/exit.c							\
+					utils/check_time.c						\
+					utils/getter.c							\
+					utils/setter.c							\
+					thread_managements/create_thread.c		\
+					thread_managements/create_mutex.c		\
+					thread_managements/destroy.c			\
+					thread_managements/chained_queue.c		\
+					thread_managements/heap_queue.c			\
+					simulation/monitoring.c					\
+					simulation/coder.c						\
+					simulation/logs.c						\
+					simulation/scheduler_fifo.c				\
+					simulation/scheduler_edf.c				\
+					simulation/dongles_management.c			\
+					debug/print_struct.c					\
+					debug/print_queue.c
 
 OBJS		=		$(addprefix $(OBJ_DIR)/, $(CFILES:.c=.o))
 
@@ -56,6 +64,30 @@ UNDERLINE	=		\033[4m
 ITALIC		=		\033[3m
 RESET		=		\033[0m
 
+
+# --------------#
+#	  TEXT		#
+# --------------#
+
+BOX_LINE		=	$(MAGENTA)━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$(RESET)
+BOX_ROD_TOP_L	=	$(MAGENTA)┏$(RESET)
+BOX_ROD_BOTT_L	=	$(MAGENTA)┗$(RESET)
+BOX_ROD_TOP_R	=	$(MAGENTA)┓$(RESET)
+BOX_ROD_BOTT_R	=	$(MAGENTA)┛$(RESET)
+BOX_ROD_MIDDLE	=	$(MAGENTA)┃$(RESET)
+
+LINE			=	⮑
+
+USAGE			=	$(BMAGENTA)$(BOLD) Usage:\t\t\t\t\t\t\t\t\t\t   $(RESET)
+ARGUMENTS_LINE1	=	$(CYAN)$(BOLD) ./$(NAME)$(ITALIC) <number_of_coders> <time_to_burnout> <time_to_compile> <time_to_debug>$(RESET)
+ARGUMENTS_LINE2	=	$(CYAN)$(BOLD)$(ITALIC)     <time_to_refactor> <number_of_compiles_required> <dongle_cooldown> <scheduler>$(RESET)
+
+SUCCESS_COMPIL	=	$(BGREEN)Success! $(RESET)$(BGREEN)Compiling $(NAME)...
+COMPILED		=	$(GREEN)$(BOLD)[Compiled] ✅ $(RESET)
+
+CLEAN_OBJ		=	$(YELLOW)$(BOLD)$(OBJ_DIR)$(RESET)$(YELLOW) folder have been deleted 🗑️$(RESET)
+CLEAN_EXEC		=	$(YELLOW)$(BOLD)$(NAME)$(RESET)$(YELLOW) executable have been cleaned 🗑️$(RESET)
+
 # --------------#
 #	  RULES		#
 # --------------#
@@ -66,26 +98,26 @@ RESET		=		\033[0m
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-					@echo "\n>>> $(BGREEN)Success! $(RESET)$(BGREEN)Compiling $(NAME)... $(RESET)"
+					@echo "\n$(LINE) $(SUCCESS_COMPIL)$(RESET)"
 					$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-					@echo "$(MAGENTA)$(UNDERLINE)__________________________________________________________________________________________$(RESET)"
-					@echo "$(BMAGENTA)$(BOLD)\nUsage:\n\n$(CYAN)./$(NAME) $(ITALIC)<number_of_coders> <time_to_burnout> <time_to_compile> <time_to_debug>\n\t   <time_to_refactor> <number_of_compiles_required> <dongle_cooldown> <scheduler>\$(RESET)"
-					@echo "$(MAGENTA)$(UNDERLINE)__________________________________________________________________________________________$(RESET)"
+					@echo "$(BOX_ROD_TOP_L)$(BOX_LINE)$(BOX_ROD_TOP_R)"
+					@echo "$(BOX_ROD_MIDDLE)\t\t\t\t\t\t\t\t\t\t\t   $(BOX_ROD_MIDDLE)\n$(BOX_ROD_MIDDLE)$(USAGE)$(BOX_ROD_MIDDLE)\n$(BOX_ROD_MIDDLE)$(ARGUMENTS_LINE1)\t   $(BOX_ROD_MIDDLE)\n$(BOX_ROD_MIDDLE)\t$(ARGUMENTS_LINE2)$(BOX_ROD_MIDDLE)"
+					@echo "$(BOX_ROD_BOTT_L)$(BOX_LINE)$(BOX_ROD_BOTT_R)"
 
 $(OBJ_DIR)/%.o:	$(SRCS_DIR)/%.c
 					mkdir -p $(dir $@)
 					@if [ ! -f $(OBJ_DIR)/.header_shown ]; then \
 					touch $(OBJ_DIR)/.header_shown; \
 					fi
-					@echo ">>> $(GREEN)$(BOLD)[Compiled] ✅ $(RESET)$(BLUE)\"$^\"$(RESET)"
+					@echo "$(LINE) $(COMPILED)$(BLUE)\"$^\"$(RESET)"
 					$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 					rm -rf $(OBJ_DIR)
-					@echo ">>> $(YELLOW)$(BOLD)$(OBJ_DIR)$(RESET)$(YELLOW) folder have been deleted 🗑️$(RESET)"
+					@echo "$(LINE) $(CLEAN_OBJ)"
 
 fclean:			clean
 					rm -f $(NAME)
-					@echo ">>> $(YELLOW)$(BOLD)$(NAME)$(RESET)$(YELLOW) executable have been cleaned 🗑️$(RESET)"
+					@echo "$(LINE) $(CLEAN_EXEC)"
 
 re:				fclean all

@@ -6,11 +6,15 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 13:06:57 by roandrie          #+#    #+#             */
-/*   Updated: 2026/02/06 15:40:59 by roandrie         ###   ########.fr       */
+/*   Updated: 2026/02/21 15:51:55 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+/**
+ * Debug to print the structure with current informations provided by the user.
+ */
 
 void	debug_print_struct(t_data *data)
 {
@@ -35,7 +39,7 @@ void	debug_print_struct(t_data *data)
 	count = 0;
 	while (data->nbr_dongle != count)
 	{
-		printf("Dongle: %c | %lldms\n", data->dongle[count].id,
+		printf("Dongle: %s | %lldms\n", data->dongle[count].id,
 			data->dongle[count].cooldown);
 		count++;
 	}
