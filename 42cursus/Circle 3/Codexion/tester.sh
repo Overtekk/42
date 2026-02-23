@@ -110,3 +110,5 @@ case "$1" in
 		echo -e "${RED}Unkown test.${NC}"
 		;;
 esac
+
+# setarch $(uname -m) -R ./tester.sh 1

@@ -6,7 +6,7 @@
 #    By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/05 16:58:06 by roandrie          #+#    #+#              #
-#    Updated: 2026/02/20 13:36:58 by roandrie         ###   ########.fr        #
+#    Updated: 2026/02/23 15:21:06 by roandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME 		=		codexion
 
 CC	 		=		cc
-CFLAGS 		=		-g -Wall -Werror -Wextra -pthread # -fsanitize=thread
+CFLAGS 		=		-g -Wall -Werror -Wextra -pthread #-fsanitize=thread
 INCLUDE		=		-I coders
 
 SRCS_DIR	=		coders
