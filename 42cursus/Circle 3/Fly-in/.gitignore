@@ -1,0 +1,6 @@
+# Python caches
+__pycache__
+.mypy_cache
+
+.venv
+.python-version

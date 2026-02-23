@@ -1,0 +1,21 @@
+[project]
+name = "fly-in"
+version = "1.0.0"
+description = "Drones are interesting."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+authors = [
+	{name = "roandrie", email = "roandrie@student.42lehavre.fr"}
+]
+license = "MIT"
+
+[dependency-groups]
+dev = [
+    "flake8>=7.3.0",
+    "mypy>=1.19.1",
+]
+
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
