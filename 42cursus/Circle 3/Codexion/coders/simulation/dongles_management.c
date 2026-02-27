@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 09:57:07 by roandrie          #+#    #+#             */
-/*   Updated: 2026/02/21 16:26:25 by roandrie         ###   ########.fr       */
+/*   Updated: 2026/02/27 10:19:26 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,17 @@ void	release_dongles(t_coder *coder, t_data *data)
 	if (coder->right_dongle != NULL)
 		pthread_mutex_unlock(&coder->right_dongle->lock);
 	if (is_fifo(data))
+	{
+		pthread_mutex_lock(&data->queue_control.lock);
 		pthread_cond_broadcast(&data->queue_control.cond);
+		pthread_mutex_unlock(&data->queue_control.lock);
+	}
 	else
+	{
+		pthread_mutex_lock(&data->heap_control.lock);
 		pthread_cond_broadcast(&data->heap_control.cond);
+		pthread_mutex_unlock(&data->heap_control.lock);
+	}
 }
 
 /**

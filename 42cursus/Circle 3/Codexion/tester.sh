@@ -12,9 +12,21 @@ if [ -z "$1" ]; then
 fi
 
 VALGRIND=""
-if [ "$2" == "mem" ]; then
-    VALGRIND="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes"
-fi
+case "$2" in
+    "mem")
+        VALGRIND="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes"
+        ;;
+    "helgrind")
+        VALGRIND="valgrind --tool=helgrind --tool=drd"
+        ;;
+    "")
+        VALGRIND=""
+        ;;
+    *)
+        echo -e "${RED}Unknown mode: $2. Use 'mem' or 'helgrind'.${NC}"
+        exit 1
+        ;;
+esac
 
 run_test() {
 	echo -e "Test $1 : $2\n"
@@ -111,4 +123,8 @@ case "$1" in
 		;;
 esac
 
+
+
+
+# -fsanitize=thread
 # setarch $(uname -m) -R ./tester.sh 1

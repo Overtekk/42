@@ -6,7 +6,7 @@
 /*   By: roandrie <roandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 15:37:16 by roandrie          #+#    #+#             */
-/*   Updated: 2026/02/21 16:14:45 by roandrie         ###   ########.fr       */
+/*   Updated: 2026/02/27 10:26:38 by roandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	*monitoring_simulation(void *arg)
 		if (finish == data->nbr_coders)
 		{
 			stop_simulation(data);
+			pthread_mutex_lock(&data->mutex_print);
 			printf(LOG_SUCCESS "\n");
+			pthread_mutex_unlock(&data->mutex_print);
 			return (NULL);
 		}
 		usleep(100);
@@ -80,6 +82,10 @@ static void	stop_simulation(t_data *data)
 	pthread_mutex_lock(&data->mutex_simu);
 	data->simulation_active = 0;
 	pthread_mutex_unlock(&data->mutex_simu);
+	pthread_mutex_lock(&data->queue_control.lock);
 	pthread_cond_broadcast(&data->queue_control.cond);
+	pthread_mutex_unlock(&data->queue_control.lock);
+	pthread_mutex_lock(&data->heap_control.lock);
 	pthread_cond_broadcast(&data->heap_control.cond);
+	pthread_mutex_unlock(&data->heap_control.lock);
 }
