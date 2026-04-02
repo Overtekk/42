@@ -14,7 +14,8 @@
 
 | Month | Hours | Status |
 | :--- | :---: | :---: |
-| **March** | 29h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **April** | 3h | ![In Progress](https://img.shields.io/badge/Goal-In_Progress-yellow) |
+| **March** | 142h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
 | **February** | 116h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
 | **January** | 138h | ![Ok](https://img.shields.io/badge/Goal-Met-2ea44f) |
 
