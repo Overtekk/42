@@ -1,0 +1,10 @@
+nb_drones: 4
+
+start_hub: start 0 0 [color=green max_drones=2 zone=normal zone=blocked] # Duplicated tags
+hub: bottleneck 1 0 [max_drones=10 color=orange max_drones=2] # Duplicated tags
+hub: wide_area 2 0 [color=blue max_drones=3]
+end_hub: goal 3 0 [color=red max_drones=4]
+
+connection: start-bottleneck
+connection: bottleneck-wide_area
+connection: wide_area-goal

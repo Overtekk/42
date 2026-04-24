@@ -5,8 +5,11 @@ description = "Introduction to function calling in LLMs"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "accelerate>=1.13.0",
+    "llm-sdk>=1.0.1",
     "numpy>=2.2.6",
     "pydantic>=2.12.5",
+    "rich>=14.3.3",
 ]
 
 [dependency-groups]
@@ -14,3 +17,6 @@ dev = [
     "flake8>=7.3.0",
     "mypy>=1.19.1",
 ]
+
+[tool.uv.sources]
+llm_sdk = {path="./llm_sdk", editable = true}

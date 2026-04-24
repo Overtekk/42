@@ -1,0 +1,10 @@
+nb_drones: 2
+
+connection: start-waypoint1 # Connection defined first, should be after
+connection: waypoint1-waypoint2
+connection: waypoint2-goal
+
+start_hub: start 0 0 [color=green]
+hub: waypoint1 1 0 [color=blue]
+hub: waypoint2 2 0 [color=blue]
+end_hub: goal 3 0 [color=red]

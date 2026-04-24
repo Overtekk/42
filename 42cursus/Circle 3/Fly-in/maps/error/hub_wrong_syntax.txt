@@ -1,0 +1,12 @@
+nb_drones: 2
+
+start_hub: start 0 0 # No error, metadata is optional
+hub: waypoint1 ba1 0 [color=blue] # Error for coordinates
+hub: 2 0 [color=blue] # Missing name but still 3 mandatory part
+hub: # empty
+hub: waypoint2 2 0
+end_hub: goal 3 0 [color=red]
+
+connection: start-waypoint1
+connection: waypoint1-waypoint2
+connection: waypoint2-goal

@@ -1,0 +1,19 @@
+nb_drones: 10
+
+start_hub: start 0 0
+hub: waypoint1 1 0 [color=blue max_drones=8]
+hub: quarantine 1 1 [color=blue max_drones=2]
+hub: blocked 1 -1 [color=red max_drones=50 zone=blocked]
+hub: long_road 1 -2 [color=red max_drones=1 zone=priority]
+hub: bridge 1 3 [color=red max_drones=10 zone=priority]
+hub: waypoint2 2 0 [color=blue]
+end_hub: goal 3 0 [color=red zone=blocked max_drones=5]
+
+connection: start-waypoint1
+connection: start-quarantine
+connection: start-blocked
+connection: blocked-goal
+connection: start-long_road
+connection: waypoint1-waypoint2
+connection: quarantine-waypoint2
+connection: waypoint2-goal

@@ -1,0 +1,13 @@
+# Easy Level 1: Simple linear path
+vroum: namama # Key doesnt exist and nb_drones must be the first key
+
+start_hub: start 0 0 [color=green]
+hub: waypoint1 1 0 [color=blue]
+hub: waypoint2 2 0 [color=blue]
+end_hub: goal 0 0 [color=red, redarered] # Wrong metada
+nb_drones: -999 # Must be at the top and positive integer
+
+spaghetti # Key doesn't exist
+
+connection: start-waypoint1
+connection: waypoint1-waypoint2

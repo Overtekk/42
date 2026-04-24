@@ -1,0 +1,149 @@
+[
+  {
+   "name": "fn_simple_answer",
+   "description": "Response to an answer using 'yes' or 'no'.",
+   "parameters": {
+	"answer": {
+		"type": "string"
+	}
+   },
+   "returns": {
+	"type": "string"
+   }
+  },
+  {
+    "name": "fn_add_numbers",
+    "description": "Add two numbers together and return their sum.",
+    "parameters": {
+      "a": {
+        "type": "number"
+      },
+      "b": {
+        "type": "number"
+      }
+    },
+    "returns": {
+      "type": "number"
+    }
+  },
+  {
+    "name": "fn_greet",
+    "description": "Generate a greeting message for a person by name.",
+    "parameters": {
+      "name": {
+        "type": "string"
+      }
+    },
+    "returns": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "fn_reverse_string",
+    "description": "Reverse a string and return the reversed result.",
+    "parameters": {
+      "s": {
+        "type": "string"
+      }
+    },
+    "returns": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "fn_get_square_root",
+    "description": "Calculate the square root of a number.",
+    "parameters": {
+      "a": {
+        "type": "number"
+      }
+    },
+    "returns": {
+      "type": "number"
+    }
+  },
+  {
+    "name": "fn_get_nb_angles",
+    "description": "Get how many angles in a form.",
+    "parameters": {
+      "squares": {
+        "type": "number"
+      }
+    },
+    "returns": {
+      "type": "number"
+    }
+  },
+  {
+    "name": "fn_get_recipe",
+    "description": "Find a recipe name in a database.",
+    "parameters": {
+      "ingredients": {
+        "type": "string"
+      }
+    },
+    "returns": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "fn_search",
+    "description": "Search for a answer about something.",
+    "parameters": {
+      "question": {
+        "type": "string"
+      }
+    },
+    "returns": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "fn_life",
+    "description": "Get the response of the life, universe and everything else (which is 42).",
+    "parameters": {
+      "number": {
+        "type": "number"
+      }
+    },
+    "returns": {
+      "type": "number"
+    }
+  },
+  {
+    "name": "fn_find_bunny",
+    "description": "Find the bunny hidden.",
+    "parameters": {
+    },
+    "returns": {
+      "type": "string"
+    }
+  },
+{
+    "name": "fn_unknown",
+    "description": "Used when a prompt is weird, don't match any other function",
+    "parameters": {
+    },
+    "returns": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "fn_substitute_string_with_regex",
+    "description": "Replace all occurrences matching a regex pattern in a string.",
+    "parameters": {
+      "source_string": {
+        "type": "string"
+      },
+      "regex": {
+        "type": "string"
+      },
+      "replacement": {
+        "type": "string"
+      }
+    },
+    "returns": {
+      "type": "string"
+    }
+  }
+]

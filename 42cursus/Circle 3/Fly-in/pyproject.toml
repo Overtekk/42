@@ -4,7 +4,10 @@ version = "1.0.0"
 description = "Drones are interesting."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "arcade>=3.3.3",
+    "pydantic>=2.12.5",
+]
 authors = [
 	{name = "roandrie", email = "roandrie@student.42lehavre.fr"}
 ]
@@ -15,6 +18,9 @@ dev = [
     "flake8>=7.3.0",
     "mypy>=1.19.1",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
 
 [build-system]
 requires = ["hatchling >= 1.26"]
