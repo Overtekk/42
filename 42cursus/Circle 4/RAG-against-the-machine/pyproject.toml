@@ -1,0 +1,32 @@
+[project]
+name = "rag-against-the-machine"
+version = "0.1.0"
+description = "Will you answer my questions?"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "accelerate>=1.14.0",
+    "bm25>=0.3.9",
+    "fire>=0.7.1",
+    "langchain-text-splitters>=1.1.2",
+    "pydantic>=2.13.4",
+    "pystemmer>=3.1.0",
+    "rich>=15.0.0",
+    "torch>=2.13.0",
+    "transformers>=5.14.1",
+]
+authors = [
+	{name = "roandrie", email = "roandrie@student.42lehavre.fr"}
+]
+license = "MIT"
+
+[dependency-groups]
+dev = [
+    "flake8>=7.3.0",
+    "mypy>=2.1.0",
+    "ruff>=0.16.4",
+]
+
+[tool.ruff]
+exclude = ["data", "moulinette"]
+line-length = 79

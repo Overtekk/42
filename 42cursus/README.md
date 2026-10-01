@@ -6,8 +6,8 @@
 | **[1](https://github.com/Overtekk/42/tree/main/42cursus/Circle%201)** | ![Status](https://img.shields.io/badge/Status-Completed-2ea44f) | **3 / 3** | ✅ |
 | **[2](https://github.com/Overtekk/42/tree/main/42cursus/Circle%202)** | ![Status](https://img.shields.io/badge/Status-Completed-2ea44f) | **16 / 16** | ✅ |
 | **[3](https://github.com/Overtekk/42/tree/main/42cursus/Circle%203)** | ![Status](https://img.shields.io/badge/Status-Completed-2ea44f) | **4 / 4** | ✅ |
-| **[4](https://github.com/Overtekk/42/tree/main/42cursus/Circle%204)**| ![Status](https://img.shields.io/badge/Status-WIP-FFFF00) | **4 / 4** | ✅  |
-| **5** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 4** | ⚠️ |
+| **[4](https://github.com/Overtekk/42/tree/main/42cursus/Circle%204)**| ![Status](https://img.shields.io/badge/Status-Completed-2ea44f) | **4 / 4** | ✅  |
+| **[5](https://github.com/Overtekk/42/tree/main/42cursus/Circle%205)** | ![Status](https://img.shields.io/badge/Status-WIP-FFFF00) | **0 / 4** | ⚠️ |
 | **6** | ![Status](https://img.shields.io/badge/Status-Not_Started-red) | **0 / 3** | 🔴 |
 
 ### ⏱️ Tracked Logtime (2026)

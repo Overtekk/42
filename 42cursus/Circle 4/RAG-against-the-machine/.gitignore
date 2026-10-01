@@ -1,0 +1,27 @@
+# Python caches
+__pycache__
+.mypy_cache
+
+# Python files
+.python-version
+.venv
+
+# Other
+*.pdf
+
+# Project
+vllm-0.10.1.zip
+moulinette_pkg/
+moulinette.zip
+moulinette/
+.nfs0000000005c805ee000002b3
+data/processed/
+data/raw/
+data/output/
+datasets_public.zip
+hf_cache
+vllm-0.10.1.zip:Zone.Identifier
+# Test
+data/datasets/test.json
+ignore/
+test.json
