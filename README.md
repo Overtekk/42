@@ -16,7 +16,8 @@
 | 3 | **[Call_Me_Maybe](https://github.com/Overtekk/Call_Me_Maybe)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/125%25-Success-2ea44f) | 25/04/2026 | Introduction to function calling in LLMs. |
 | 4 | **[NetPractice](github.com/Overtekk/NetPractice)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) | 12/05/2026 | Discover the basics of networking. |
 | 4 | **[PacMan](github.com/Overtekk/PacMan)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) | 01/07/2026 | Recreate the famous arcade game Pac-man! |
-| 4 | **[RAG-Against The Machine](https://github.com/Overtekk/RAG-against-the-machine)** | ![P](https://img.shields.io/badge/100%25-P-108000) | ![Score](https://img.shields.io/badge/In_Progress-ce9603) | Not Completed | Build a Retrieval-Augmented Generation (RAG) system that can answer questions about a codebase |
+| 4 | **[RAG-Against The Machine](https://github.com/Overtekk/RAG-against-the-machine)** | ![P](https://img.shields.io/badge/100%25-P-109000) | ![Score](https://img.shields.io/badge/100%25-Success-2ea44f) | 14/09/2026 | Build a Retrieval-Augmented Generation (RAG) system that can answer questions about a codebase |
+| 5 | **[The Answer Protocol](https://github.com/Overtekk/The-Answer-Protocol)** | ![C++](https://img.shields.io/badge/100%25-C++-00599C) | ![Score](https://img.shields.io/badge/In_Progress-ce9603) | Not Completed | Build a small multiplayer text adventure with a TCP server and two clients: one CLI, one GUI. |
 
 ---
 
